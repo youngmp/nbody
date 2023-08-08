@@ -544,6 +544,7 @@ def generate_fnames(obj,model_pars='',coupling_pars=''):
     sim_pars = '_TN='+str(obj.TN)
     
     obj.monodromy_fname = obj.dir+'monodromy_'+model_pars+sim_pars+'.txt'
+    print('monodromy name',obj.monodromy_fname)
 
     v = '{}g_data_{}{}{}.txt'
     obj.g['dat_fnames'] = [v.format(obj.dir,k,
@@ -685,6 +686,9 @@ def generate_fnames(obj,model_pars='',coupling_pars=''):
         val = '{}h{}_lam_{}_N={}.d'
         obj.h[i]['lam_fnames'] = [val.format(obj.dir,i,k,obj.N)
                                   for k in range(obj.miter)]
+        val = '{}h{}_lam_{}_N={}_max_n={}.d'
+        obj.h[i]['lam_fnames_fourier'] = [val.format(obj.dir,i,k,obj.N,obj.max_n)
+                                        for k in range(obj.miter)]
 
 
 def plot(obj,option='g1'):
