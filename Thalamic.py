@@ -127,9 +127,9 @@ def coupling(vars_pair,pdict,option='val'):
         vA, hA, rA, wA, vB, hB, rB, wB = vars_pair
 
         if option == 'val':
-            return -np.array([wB*(vA-pdict['esyn']),0,0,0])/pdict['c']
+            return -np.array([wB*(vA*100-pdict['esyn']),0,0,0])/pdict['c']/100
         else:
-            return -Matrix([wB*(vA-pdict['esyn']),0,0,0])/pdict['c']
+            return -Matrix([wB*(vA*100-pdict['esyn']),0,0,0])/pdict['c']/100
 
 def coupling_mat(N,option='val'):
     """
@@ -194,7 +194,7 @@ def main():
     
     
     kwargs = {'recompute_LC':False,
-              'recompute_monodromy':True,
+              'recompute_monodromy':False,
               'recompute_g_sym':False,
               'recompute_g':False,
               'recompute_het_sym':False,
@@ -222,7 +222,7 @@ def main():
               'LC_rate':1,
               'ignore_var':True,
 
-              'NG':2000,
+              'NG':100,
               'NA':500,
               'p_iter':25,
               'max_iter':20,
@@ -248,7 +248,7 @@ def main():
     
     pardict['beta_val'] = .2
     pardict['ib_val'] = 0.8
-    pardict['esyn_val'] = 0
+    pardict['esyn_val'] = -100
     kwargs['z_forward'] = [False,False,False]
     kwargs['i_forward'] = [False,False,False]
     T_init = 34.7
