@@ -25,6 +25,7 @@ def generate_expansions(obj):
     i_sym = sym.symbols('i_sym')  # summation index
     psi = obj.psi
     
+    
     #obj.g_expand = {}
     for key in obj.var_names:
         sg = Sum(psi**i_sym*Indexed('g'+key,i_sym),(i_sym,1,obj.miter))
