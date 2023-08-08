@@ -11,8 +11,9 @@ Example: Complex Ginzburgh-Landau (CGL) model from Wilson and Ermentrout RSTA
 
 
 # user-defined
-from nBodyCoupling import nBodyCoupling
+#from nBodyCoupling import nBodyCoupling
 #from nBodyCouplingbk0317 import nBodyCoupling
+from nBodyCoupling import nBodyCoupling
 
 
 
@@ -375,7 +376,7 @@ def main():
               'recompute_k_sym':False,
               'recompute_p_sym':False,
               'recompute_p':False,
-              'recompute_gij':True,
+              'recompute_gij':False,
               'recompute_h_sym':False,
               
               'recompute_h':args.recompute_h,
@@ -388,11 +389,12 @@ def main():
               'coupling_mat':coupling_mat,
               'dir':'home+cgl_dat/',
               
-              'max_n':3,
+              'max_n':11,
               'trunc_order':2,
               'trunc_deriv':1,
-              'NA':200,
-              'NB':200,
+              'NA':101,
+              'NG':101,
+              'gij_parallel':False,
               'p_iter':5,
               'TN':5000,
               'rtol':1e-8,
