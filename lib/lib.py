@@ -544,7 +544,6 @@ def generate_fnames(obj,model_pars='',coupling_pars=''):
     sim_pars = '_TN='+str(obj.TN)
     
     obj.monodromy_fname = obj.dir+'monodromy_'+model_pars+sim_pars+'.txt'
-    print('monodromy name',obj.monodromy_fname)
 
     v = '{}g_data_{}{}{}.txt'
     obj.g['dat_fnames'] = [v.format(obj.dir,k,

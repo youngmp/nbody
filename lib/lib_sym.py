@@ -16,17 +16,17 @@ import sympy as sym
 from sympy import diff, Sum, Indexed, collect, expand, symbols
 from sympy.utilities.lambdify import lambdify
 
+import logging # for debugging
+
 def generate_expansions(obj):
     """
     generate expansions from Wilson 2020
-    
     """
-    print('* Generating expansions...')
+    
+    logging.info('* Generating expansions...')
     i_sym = sym.symbols('i_sym')  # summation index
     psi = obj.psi
     
-    
-    #obj.g_expand = {}
     for key in obj.var_names:
         sg = Sum(psi**i_sym*Indexed('g'+key,i_sym),(i_sym,1,obj.miter))
         sz = Sum(psi**i_sym*Indexed('z'+key,i_sym),(i_sym,0,obj.miter))
@@ -60,14 +60,17 @@ def generate_expansions(obj):
 
     
 def load_coupling_expansions(obj,recompute=False):
-    
+    """
+    compute expansions related to the coupling function
+    """
     k = sym.symbols('i_sym')  # summation index
     eps = obj.eps
     
     # for solution of isostables in terms of theta.
 
     for i in range(obj.N):
-        obj.p[i]['expand'] = Sum(eps**k*Indexed('p'+str(i),k),(k,1,obj.miter)).doit()
+        obj.p[i]['expand'] = Sum(eps**k*Indexed('p'+str(i),k),
+                                 (k,1,obj.miter)).doit()
     
     for key in obj.var_names:
         for i in range(obj.N):
@@ -131,12 +134,13 @@ def load_coupling_expansions(obj,recompute=False):
             obj.i[i]['vec'][key_idx] = obj.i[i][key+'_eps']
             obj.z[i]['vec'][key_idx] = obj.z[i][key+'_eps']
 
-def generate_coupling_expansions(obj,verbose=True):
+def generate_coupling_expansions(obj):
     """
+    obj: nBodyCoupling object
     generate expansions for coupling.
     """
-    if verbose:
-        print('* Generating coupling expansions...')
+    
+    logging.info('* Generating coupling expansions...')
     k = sym.symbols('i_sym')  # summation index
     psi = obj.psi
     eps = obj.eps
@@ -150,13 +154,9 @@ def generate_coupling_expansions(obj,verbose=True):
         rule_trunc.update({obj.eps**l:0})
     
     for key in obj.var_names:
-        if verbose:
-            print('key in coupling expand',key)
+        logging.info('key in coupling expand '+key)
             
         for i in range(obj.N):
-
-            if verbose:
-                print('i =',i)
 
             g_sum = Sum(psi**k*Indexed('g'+key+str(i),k),(k,1,obj.miter)).doit()
             z_sum = Sum(psi**k*Indexed('z'+key+str(i),k),(k,0,obj.miter)).doit()
@@ -217,15 +217,14 @@ def generate_g_sym(obj):
     het = {key: sym.sympify(0) for key in obj.var_names}
     
     for i in range(2,obj.miter):
-        print('g sym deriv order=',i)
+        logging.info('g sym deriv order='+str(i))
         p = lib.kProd(i,obj.dx_vec)
         for j,key in enumerate(obj.var_names):
-            print('\t var=',key)
+            logging.info('\t var='+str(key))
             d = lib.vec(lib.df(obj.rhs_sym[j],obj.x_vec,i))
             
             het[key] += (1/math.factorial(i))*p.dot(d)
             
-    #print(h)
     out = {}
     
     #  collect in psi.
@@ -237,14 +236,13 @@ def generate_g_sym(obj):
             
     for key in obj.var_names:
         
-        print('g sym subs key=',key)
+        logging.info('g sym subs key='+str(key))
         # remove small floating points
         tmp = het[key].subs(rule)
         
-        #print(tmp)
-        #print(rule)
         # collect expressions
-        print('g sym expand 1 key=',key)
+        logging.info('g sym expand 1 key='+str(key))
+        
         tmp = sym.expand(tmp,basic=False,deep=True,
                          power_base=False,power_exp=False,
                          mul=False,log=False,
@@ -252,23 +250,24 @@ def generate_g_sym(obj):
         
         tmp = tmp.subs(rule_trunc)
         
-        print('g sym collect 1 key=',key)
+        logging.info('g sym collect 1 key='+str(key))
         tmp = sym.collect(tmp,obj.psi).subs(rule_trunc)
         
-        print('g sym expand 2 key=',key)
+        logging.info('g sym expand 2 key='+str(key))
         tmp = sym.expand(tmp).subs(rule_trunc)
         
-        #print(tmp)
-        print('g sym collect 2 key=',key)
+        logging.info('g sym collect 2 key='+str(key))
         tmp = sym.collect(tmp,obj.psi).subs(rule_trunc)
         
         out[key] = tmp
-        #print()
-        #print(tmp)
         
     return out
 
 def load_jac_sym(obj):
+    """
+    obj: nBodyCoupling object
+    lambdify the jacobian matrix evaluated along limit cycle
+    """
     # symbol J on LC.
     obj.jac_sym = sym.zeros(obj.dim,obj.dim)
     
