@@ -1118,40 +1118,6 @@ RSTA 2019
 \hypertarget{functions-2}{%
 \subsection{Functions}\label{functions-2}}
 
-\hypertarget{CGL.cgl3}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{cgl3}}{Function cgl3}}\label{CGL.cgl3}}
-
-\begin{quote}
-\begin{verbatim}
-def cgl3(
-    t,
-    y,
-    pdict,
-    eps
-)
-\end{verbatim}
-\end{quote}
-
-assume y has 8 coordinates. (x1,y1),(x2,y2),(x3,y3),(x4,y4)
-
-\hypertarget{CGL.cgl4}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{cgl4}}{Function cgl4}}\label{CGL.cgl4}}
-
-\begin{quote}
-\begin{verbatim}
-def cgl4(
-    t,
-    y,
-    pdict,
-    eps
-)
-\end{verbatim}
-\end{quote}
-
-assume y has 8 coordinates. (x1,y1),(x2,y2),(x3,y3),(x4,y4)
-
 \hypertarget{CGL.coupling}{%
 \subsubsection{\texorpdfstring{Function
 \texttt{coupling}}{Function coupling}}\label{CGL.coupling}}
@@ -1211,35 +1177,6 @@ def coupling_mat(
 
 define coupling matrix.
 
-\hypertarget{CGL.d_estimate}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{d\_estimate}}{Function d\_estimate}}\label{CGL.d_estimate}}
-
-\begin{quote}
-\begin{verbatim}
-def d_estimate(
-    a,
-    eps,
-    dx=1e-05
-)
-\end{verbatim}
-\end{quote}
-
-estimate derivate of function of 4 vars a: object
-
-\hypertarget{CGL.h_at_0}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{h\_at\_0}}{Function h\_at\_0}}\label{CGL.h_at_0}}
-
-\begin{quote}
-\begin{verbatim}
-def h_at_0(
-    a,
-    eps
-)
-\end{verbatim}
-\end{quote}
-
 \hypertarget{CGL.main}{%
 \subsubsection{\texorpdfstring{Function
 \texttt{main}}{Function main}}\label{CGL.main}}
@@ -1249,78 +1186,6 @@ def h_at_0(
 def main()
 \end{verbatim}
 \end{quote}
-
-\hypertarget{CGL.phase_o1_th}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{phase\_o1\_th}}{Function phase\_o1\_th}}\label{CGL.phase_o1_th}}
-
-\begin{quote}
-\begin{verbatim}
-def phase_o1_th(
-    t,
-    y,
-    o,
-    eps
-)
-\end{verbatim}
-\end{quote}
-
-phase theta (as opposed to phase diffs phi) right-hand side of phase
-equations t: time y: phase diff variables o: object
-
-\hypertarget{CGL.phase_o2_th}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{phase\_o2\_th}}{Function phase\_o2\_th}}\label{CGL.phase_o2_th}}
-
-\begin{quote}
-\begin{verbatim}
-def phase_o2_th(
-    t,
-    y,
-    o,
-    eps
-)
-\end{verbatim}
-\end{quote}
-
-2nd lowest order phase theta (as opposed to phase diffs phi) right-hand
-side of phase equations t: time y: phase diff variables o: object
-
-\hypertarget{CGL.phase_o3_th}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{phase\_o3\_th}}{Function phase\_o3\_th}}\label{CGL.phase_o3_th}}
-
-\begin{quote}
-\begin{verbatim}
-def phase_o3_th(
-    t,
-    y,
-    o,
-    eps
-)
-\end{verbatim}
-\end{quote}
-
-2nd lowest order phase theta (as opposed to phase diffs phi) right-hand
-side of phase equations t: time y: phase diff variables o: object
-
-\hypertarget{CGL.phase_phi}{%
-\subsubsection{\texorpdfstring{Function
-\texttt{phase\_phi}}{Function phase\_phi}}\label{CGL.phase_phi}}
-
-\begin{quote}
-\begin{verbatim}
-def phase_phi(
-    t,
-    y,
-    o,
-    eps
-)
-\end{verbatim}
-\end{quote}
-
-right-hand side of phase equations t: time y: phase diff variables o:
-object
 
 \hypertarget{CGL.rhs}{%
 \subsubsection{\texorpdfstring{Function

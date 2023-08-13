@@ -958,40 +958,6 @@ Example: Complex Ginzburgh-Landau (CGL) model from Wilson and Ermentrout RSTA
 
 
     
-### Function `cgl3` {#CGL.cgl3}
-
-
-
-
->     def cgl3(
->         t,
->         y,
->         pdict,
->         eps
->     )
-
-
-assume y has 8 coordinates.
-(x1,y1),(x2,y2),(x3,y3),(x4,y4)
-
-    
-### Function `cgl4` {#CGL.cgl4}
-
-
-
-
->     def cgl4(
->         t,
->         y,
->         pdict,
->         eps
->     )
-
-
-assume y has 8 coordinates.
-(x1,y1),(x2,y2),(x3,y3),(x4,y4)
-
-    
 ### Function `coupling` {#CGL.coupling}
 
 
@@ -1046,36 +1012,6 @@ Returns
 define coupling matrix.
 
     
-### Function `d_estimate` {#CGL.d_estimate}
-
-
-
-
->     def d_estimate(
->         a,
->         eps,
->         dx=1e-05
->     )
-
-
-estimate derivate of function of 4 vars
-a: object
-
-    
-### Function `h_at_0` {#CGL.h_at_0}
-
-
-
-
->     def h_at_0(
->         a,
->         eps
->     )
-
-
-
-
-    
 ### Function `main` {#CGL.main}
 
 
@@ -1085,87 +1021,6 @@ a: object
 
 
 
-
-    
-### Function `phase_o1_th` {#CGL.phase_o1_th}
-
-
-
-
->     def phase_o1_th(
->         t,
->         y,
->         o,
->         eps
->     )
-
-
-phase theta (as opposed to phase diffs phi)
-right-hand side of phase equations
-t: time
-y: phase diff variables
-o: object
-
-    
-### Function `phase_o2_th` {#CGL.phase_o2_th}
-
-
-
-
->     def phase_o2_th(
->         t,
->         y,
->         o,
->         eps
->     )
-
-
-2nd lowest order
-phase theta (as opposed to phase diffs phi)
-right-hand side of phase equations
-t: time
-y: phase diff variables
-o: object
-
-    
-### Function `phase_o3_th` {#CGL.phase_o3_th}
-
-
-
-
->     def phase_o3_th(
->         t,
->         y,
->         o,
->         eps
->     )
-
-
-2nd lowest order
-phase theta (as opposed to phase diffs phi)
-right-hand side of phase equations
-t: time
-y: phase diff variables
-o: object
-
-    
-### Function `phase_phi` {#CGL.phase_phi}
-
-
-
-
->     def phase_phi(
->         t,
->         y,
->         o,
->         eps
->     )
-
-
-right-hand side of phase equations
-t: time
-y: phase diff variables
-o: object
 
     
 ### Function `rhs` {#CGL.rhs}
