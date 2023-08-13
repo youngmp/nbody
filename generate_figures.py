@@ -1304,6 +1304,10 @@ def generate_figure(function, args, filenames, dpi=100):
 def main():
 
     #quick_plots_thalamic()
+
+    # create figs directory if it doesn't exist
+    if not(os.path.isdir('figs')):
+        os.mkdir('figs')
     
     # listed in order of Figures in paper
     figures = [
