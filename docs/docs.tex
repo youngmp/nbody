@@ -1,0 +1,1370 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[english,a4paper,oneside]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Generating Higher-Order Coupling Functions for N-Body Oscillator Interations: A Python Library},
+            colorlinks=true,
+            linkcolor=blue,
+            filecolor=Maroon,
+            citecolor=Blue,
+            urlcolor=Blue,
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+% Make links footnotes instead of hotlinks:
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=english]{babel}
+\else
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\fi
+
+\title{Generating Higher-Order Coupling Functions for N-Body Oscillator
+Interations: A Python Library}
+\author{true \and true}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+We document the nBodyCoupling library. The framework is reasonably
+general, with no a priori restrictions on model dimension or type of
+coupling function.
+\end{abstract}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+nBodyCoupling is a script for computing the higher-order coupling
+functions in my paper with Dan Wilson, ``High-Order Accuracy Compuation
+of Coupling Functions for Strongly Coupled Oscillators''. The script
+generates higher-order interaction functions for phase reductions of
+systems containing limit cycle oscillations.
+
+\hypertarget{dependencies}{%
+\subsection{Dependencies}\label{dependencies}}
+
+All following libraries are required to make the script run.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Package & Version & Link\tabularnewline
+\midrule
+\endhead
+Python & 3.8.1 &\tabularnewline
+Matplotlib & 3.7.2 &\tabularnewline
+Numpy & 1.21.6 &\tabularnewline
+Scipy & 1.10.1 &\tabularnewline
+Pathos & 0.2.8 & https://anaconda.org/conda-forge/pathos\tabularnewline
+tqdm & 4.30.0 & https://anaconda.org/conda-forge/tqdm\tabularnewline
+Sympy & 1.12 & https://anaconda.org/anaconda/sympy\tabularnewline
+\bottomrule
+\end{longtable}
+
+Notes on depedendencies:
+
+\textbf{Python 3.7+ is necessary}. Our code often requires an arbitrary
+number of function inputs, which earlier versions of Python do not
+allow. The script will likely work with earlier versions of all other
+libraries.
+
+\hypertarget{other-notes}{%
+\subsubsection{Other Notes}\label{other-notes}}
+
+Make sure to use \textbf{pathos} over multiprocessing because pickling
+is more robust with pathos. Pathos uses dill, which can serialize far
+more objects compared to multiprocessing, which uses pickle.
+
+The code is written so that tqdm is necessary, but tqdm only provides a
+status bar during parallel computing. It is not part of the engine, and
+the code can be modified to work without it. In future versions I may
+leave tqdm as a toggle.
+
+\hypertarget{installation}{%
+\subsection{Installation}\label{installation}}
+
+As long as your computer has the packages listed above and they are
+installed using Python 3.7, the nBodyCoupling script should run. Just
+place it within the same working directory as your Python script and
+import it as a module.
+
+I have no immediate plans to release the nBodyCoupling script as an
+installable package simply because I do not have the time to maintain
+and track version releases for distribution platforms such as anaconda,
+pip, and apt.
+
+\hypertarget{reproduce-figures}{%
+\section{Reproduce Figures}\label{reproduce-figures}}
+
+To reproduce the figures in Park and Wilson 2020, cd to the examples
+directory and run
+
+\$ generate\_figures.py
+
+This file will call the complex Ginzburg-Landau (CGL) model file
+(CGL.py) and the thalamic model file (Thalamic.py) and generate the
+figures from the paper. I've taken care of most of the work and made
+sure that the code uses saved data files for figure generation as
+opposed to computing everything from scratch. If you don't have the data
+files, it will take a while to run, and will use 8 cores by default.
+Make sure to edit the keyword arguments (documented in the nBodyCoupling
+section below) if you wish to use more or less cores.
+
+\hypertarget{nBodyCoupling}{%
+\section{\texorpdfstring{Module
+\texttt{nBodyCoupling}}{Module nBodyCoupling}}\label{nBodyCoupling}}
+
+StrongCoupling.py computes the higher-order interaction functions from
+Park and Wilson 2020 for \(N=2\) models and one Floquet multiplier. In
+broad strokes, this library computes functions in the following order:
+
+\begin{itemize}
+\tightlist
+\item
+  Use the equation for \(\Delta x\) (15) to produce a hierarchy of ODEs
+  for \(g^{(k)}\) and solve. (Wilson 2020)
+\item
+  Do the same using (30) and (40) to generate a hierarchy of ODEs for
+  \(Z^{(k)}\) and \(I^{(k)}\), respectively. (Wilson 2020)
+\item
+  Solve for \(\phi\) in terms of \(\theta_i\), (13), (14) (Park and
+  Wilson 2020)
+\item
+  Compute the higher-order interaction functions (15) (Park and Wilson
+  2020)
+\end{itemize}
+
+Assumptions: -homogeneous vector fields -NO SELF COUPLING
+
+Notes: - pA requires endpoint=False. make sure corresponding dxAs are
+used.
+
+\hypertarget{functions}{%
+\subsection{Functions}\label{functions}}
+
+\hypertarget{nBodyCoupling.augment_axes}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{augment\_axes}}{Function augment\_axes}}\label{nBodyCoupling.augment_axes}}
+
+\begin{quote}
+\begin{verbatim}
+def augment_axes(
+    a,
+    dims,
+    repeat=True
+)
+\end{verbatim}
+\end{quote}
+
+fill a with repeat elements in new axes. new axes are in dims. set
+repeat=True for function values set repeat=False for Fourier.
+
+\hypertarget{nBodyCoupling.collect_nsep}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{collect\_nsep}}{Function collect\_nsep}}\label{nBodyCoupling.collect_nsep}}
+
+\begin{quote}
+\begin{verbatim}
+def collect_nsep(
+    var_list,
+    fn_list
+)
+\end{verbatim}
+\end{quote}
+
+extract the sep and nsep
+
+\hypertarget{nBodyCoupling.equal_ignore_order}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{equal\_ignore\_order}}{Function equal\_ignore\_order}}\label{nBodyCoupling.equal_ignore_order}}
+
+\begin{quote}
+\begin{verbatim}
+def equal_ignore_order(
+    a,
+    b
+)
+\end{verbatim}
+\end{quote}
+
+Use only when elements are neither hashable nor sortable!
+
+\hypertarget{nBodyCoupling.flatten}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{flatten}}{Function flatten}}\label{nBodyCoupling.flatten}}
+
+\begin{quote}
+\begin{verbatim}
+def flatten(
+    xs
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.get_slice_dim}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{get\_slice\_dim}}{Function get\_slice\_dim}}\label{nBodyCoupling.get_slice_dim}}
+
+\begin{quote}
+\begin{verbatim}
+def get_slice_dim(
+    n,
+    dims
+)
+\end{verbatim}
+\end{quote}
+
+n: dimension of h function dims: dimensions to update with coefficients
+
+\hypertarget{nBodyCoupling.module_exists}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{module\_exists}}{Function module\_exists}}\label{nBodyCoupling.module_exists}}
+
+\begin{quote}
+\begin{verbatim}
+def module_exists(
+    module_name
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.unique_v_f1}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{unique\_v\_f1}}{Function unique\_v\_f1}}\label{nBodyCoupling.unique_v_f1}}
+
+\begin{quote}
+\begin{verbatim}
+def unique_v_f1(
+    vars_list,
+    fns_list
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.unique_vf}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{unique\_vf}}{Function unique\_vf}}\label{nBodyCoupling.unique_vf}}
+
+\begin{quote}
+\begin{verbatim}
+def unique_vf(
+    var_list,
+    fn_list
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.varcount}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{varcount}}{Function varcount}}\label{nBodyCoupling.varcount}}
+
+\begin{quote}
+\begin{verbatim}
+def varcount(
+    var_list
+)
+\end{verbatim}
+\end{quote}
+
+get unique vars in var\_list
+
+\hypertarget{nBodyCoupling.varcount_min}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{varcount\_min}}{Function varcount\_min}}\label{nBodyCoupling.varcount_min}}
+
+\begin{quote}
+\begin{verbatim}
+def varcount_min(
+    var_list
+)
+\end{verbatim}
+\end{quote}
+
+count (not necessarily unique) vars in lists within var\_list
+
+\hypertarget{classes}{%
+\subsection{Classes}\label{classes}}
+
+\hypertarget{nBodyCoupling.nBodyCoupling}{%
+\subsubsection{\texorpdfstring{Class
+\texttt{nBodyCoupling}}{Class nBodyCoupling}}\label{nBodyCoupling.nBodyCoupling}}
+
+\begin{quote}
+\begin{verbatim}
+class nBodyCoupling(
+    rhs,
+    coupling,
+    LC_init,
+    var_names,
+    pardict,
+    **kwargs
+)
+\end{verbatim}
+\end{quote}
+
+See the defaults dict below for allowed kwargs.
+
+All model parameters must follow the convention `parameter\_val'. No
+other underscores should be used. the script splits the parameter name
+at '\_' and uses the string to the left as the sympy parmeter name.
+
+Reserved names: \ldots{}
+
+\begin{verbatim}
+rhs: callable.
+    right-hand side of a model
+coupling: callable.
+    coupling function between oscillators
+LC_init: list or numpy array.
+    initial condition of limit cycle (must be found manually).
+    XPP is useful, otherwise integrate your RHS for various
+    initial conditions for long times and extract an initial
+    condition close to the limit cycle.
+
+LC_long_sim_time: float or int.
+    Simulation time to compute the trjactory of an initial 
+    condition near the limit cycle solution. Used to
+    estimate limit cycle initial condition for use 
+    in the Newton method. Default: 500
+LC_eps_time: float.
+    Approximation of the time error estimate in Newton's
+    method, e.g., (difference between initial conditions)/
+    (LC_eps_time). Default: 1e-4
+LC_tol: float:
+    Error tolerance to stop Newton's method when computing
+    the limit cycle. Default: 1e-13
+
+var_names: list.
+    list of variable names as strings
+pardict: dict.
+    dictionary of parameter values. dict['par1_val'] = float.
+    Make sure to use par_val format, where each parameter name is
+    followed by _val.
+recompute_LC: bool.
+    If True, recompute limit cycle. If false, load limit cycle if
+    limit cycle data exists. Otherwise, compute. Default: False.
+
+recompute_monodromy: bool.
+    If true, recompute kappa, the FLoquet multiplier using the
+    monodromy matrix. If false, load kappa if data exists,
+    otherwise compute. Default: False.
+recompute_g_sym: bool.
+    If true, recompute the symbolic equations for g^k. If false,
+    load the symbolic equations if they exist in storage.
+    Otherwise, compute. Default: False.
+recompute_g: bool.
+    If true, recompute the ODEs for g^k. If false,
+    load the data for g^k if they exist in storage.
+    Otherwise, compute. Default: False.
+
+recompute_het_sym: bool.
+    If true, recompute the symbolic equations for z^k and i^k.
+    If false, load the symbolic equations if they exist in
+    storage. Otherwise, compute. Default: False.
+recompute_z: bool.
+    If true, recompute the ODEs for z^k. If false,
+    load the data for z^k if they exist in storage.
+    Otherwise, compute. Default: False.
+recompute_i: bool.
+    If true, recompute the ODEs for i^k. If false,
+    load the data for i^k if they exist in storage.
+    Otherwise, compute. Default: False.
+
+recompute_k_sym: bool.
+    If true, recompute the symbolic equations for K^k. If false,
+    load the symbolic equations if they exist in storage.
+    Otherwise, compute. Default: False.
+recompute_p_sym: bool.
+    If true, recompute the symbolic equations for p^k. If false,
+    load the symbolic equations if they exist in storage.
+    Otherwise, compute. Default: False.
+recompute_k_sym: bool.
+    If true, recompute the symbolic equations for H^k. If false,
+    load the symbolic equations if they exist in storage.
+    Otherwise, compute. Default: False.
+
+recompute_gij: bool
+    recompute the pairwise functions for the psi expansions
+
+recompute_h: bool.
+    If true, recompute the H functions for H^k. If false,
+    load the data equations if they exist in storage.
+    Otherwise, compute. Default: False.
+g_forward: list or bool.
+    If bool, integrate forwards or backwards
+    when computing g^k. If list, integrate g^k forwards or
+    backwards based on bool value g_forward[k].
+    Default: False.
+z_forward: list or bool.
+    Same idea as g_forward for PRCS. Default: False.
+
+i_forward: list or bool.
+    Same idea as g_forward for IRCS. Default: False.
+dense: bool.
+    If True, solve_ivp uses dense=True and evaluate solution
+    along tLC.
+dir: str.
+    Location of data directory. Please choose carefully
+    because some outputs may be on the order of gigabytes
+    if NA >= 5000. Write 'home+data_dir/' to save to the folder
+    'data_dir' in the home directory. Otherwise the script
+    will use the current working directory by default uless
+    an absolute path is used. The trailing '/' is
+    required. Default: None.
+
+trunc_order: int.
+    Highest order to truncate the expansion. For example, 
+    trunc_order = 3 means the code will compute up to and 
+    including order 3. Default: 3.
+NA: int.
+    Number of partitions to discretize phase when computing p.
+    Default: 500.
+p_iter: int.
+    Number of periods to integrate when computing the time 
+    interal in p. Default: 10.
+
+max_iter: int.
+    Number of Newton iterations. Default: 20.
+TN: int.
+    Total time steps when computing g, z, i.
+rtol, atol: float.
+    Relative and absolute tolerance for ODE solvers.
+    Defaults: 1e-7, 1e-7.
+
+rel_tol: float.
+    Threshold for use in Newton scheme. Default: 1e-6.
+method: string.
+    Specify the method used in scipy.integrate.solve_ivp.
+    Default: LSODA.
+g_bad_dx: list or bool. If bool, use another variable to increase
+    the magnitude of the Newton derivative. This can only be
+    determined after attempting to run simulations and seeing that
+    the Jacobian for the Newton step is ill-conditioned. If list,
+    check for ill-conditioning for each order k.
+    For example, we use g_small_dx = [False,True,False,...,False]
+    for the thalamic model. The CGL model only needs
+    g_small_idx = False
+
+z_bad_idx: same idea as g_small_idx for PRCs
+i_bad_idx: same idea as g_small_idx for IRCs
+
+N: total number of oscillators
+coupling_mat: function, coupling matrix. shape
+    must equal N, i.e., coupling_mat().shape[i] == N
+    for i = 0, 1.
+\end{verbatim}
+
+\hypertarget{methods}{%
+\paragraph{Methods}\label{methods}}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.fLam_ij}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{fLam\_ij}}{Method fLam\_ij}}\label{nBodyCoupling.nBodyCoupling.fLam_ij}}
+
+\begin{quote}
+\begin{verbatim}
+def fLam_ij(
+    self,
+    fn,
+    i,
+    j
+)
+\end{verbatim}
+\end{quote}
+
+interp2db object
+
+\hypertarget{nBodyCoupling.nBodyCoupling.fmod}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{fmod}}{Method fmod}}\label{nBodyCoupling.nBodyCoupling.fmod}}
+
+\begin{quote}
+\begin{verbatim}
+def fmod(
+    self,
+    fn
+)
+\end{verbatim}
+\end{quote}
+
+fn has mod built-in
+
+input function-like. usually interp1d object
+
+needed to keep lambda input variable unique to fn.
+
+otherwise lambda will use the same input variable for all lambda
+functions.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_g}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_g}}{Method generate\_g}}\label{nBodyCoupling.nBodyCoupling.generate_g}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_g(
+    self,
+    k,
+    het_vec
+)
+\end{verbatim}
+\end{quote}
+
+generate Floquet eigenfunctions g
+
+uses Newtons method
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_gij}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_gij}}{Method generate\_gij}}\label{nBodyCoupling.nBodyCoupling.generate_gij}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_gij(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+calculate convolution terms g\_\{ij\} for oscillator i and order k.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_h_brute}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_h\_brute}}{Method generate\_h\_brute}}\label{nBodyCoupling.nBodyCoupling.generate_h_brute}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_h_brute(
+    self,
+    i,
+    k,
+    idxarr1,
+    idxarr2
+)
+\end{verbatim}
+\end{quote}
+
+use this if nyquist frequency is too high brute force + parallelization
+across CPU cores.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_h_fourier}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_h\_fourier}}{Method generate\_h\_fourier}}\label{nBodyCoupling.nBodyCoupling.generate_h_fourier}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_h_fourier(
+    self,
+    i,
+    k
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_het_sym}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_het\_sym}}{Method generate\_het\_sym}}\label{nBodyCoupling.nBodyCoupling.generate_het_sym}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_het_sym(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+Generate heterogeneous terms for integrating the Z\_i and I\_i terms.
+
+Returns
+
+None.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_i}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_i}}{Method generate\_i}}\label{nBodyCoupling.nBodyCoupling.generate_i}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_i(
+    self,
+    k,
+    het_vec
+)
+\end{verbatim}
+\end{quote}
+
+i0 equation is stable in forwards time i1, i2, etc equations are stable
+in backwards time.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_k_sym}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_k\_sym}}{Method generate\_k\_sym}}\label{nBodyCoupling.nBodyCoupling.generate_k_sym}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_k_sym(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+generate terms involving the coupling term (see K in paper).
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_limit_cycle}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_limit\_cycle}}{Method generate\_limit\_cycle}}\label{nBodyCoupling.nBodyCoupling.generate_limit_cycle}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_limit_cycle(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.generate_z}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{generate\_z}}{Method generate\_z}}\label{nBodyCoupling.nBodyCoupling.generate_z}}
+
+\begin{quote}
+\begin{verbatim}
+def generate_z(
+    self,
+    k,
+    het_vec
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.get_index}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{get\_index}}{Method get\_index}}\label{nBodyCoupling.nBodyCoupling.get_index}}
+
+\begin{quote}
+\begin{verbatim}
+def get_index(
+    self,
+    fn
+)
+\end{verbatim}
+\end{quote}
+
+fn: sympy variable either x0 or p0{[}0{]}
+
+returns (0,) or (0,0), respectively.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.interp_lam}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{interp\_lam}}{Method interp\_lam}}\label{nBodyCoupling.nBodyCoupling.interp_lam}}
+
+\begin{quote}
+\begin{verbatim}
+def interp_lam(
+    self,
+    k,
+    fn_dict,
+    fn_type='z'
+)
+\end{verbatim}
+\end{quote}
+
+it is too slow to call individual interpolated functions in the symbolic
+heterogeneous terms. since the heterogeneous terms only depend on t,
+just make and interpolated version and use that instead so only 1
+function is called for the het. terms per iteration in numerical
+iteration.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_g}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_g}}{Method load\_g}}\label{nBodyCoupling.nBodyCoupling.load_g}}
+
+\begin{quote}
+\begin{verbatim}
+def load_g(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+load all Floquet eigenfunctions g or recompute
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_g_sym}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_g\_sym}}{Method load\_g\_sym}}\label{nBodyCoupling.nBodyCoupling.load_g_sym}}
+
+\begin{quote}
+\begin{verbatim}
+def load_g_sym(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_gij}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_gij}}{Method load\_gij}}\label{nBodyCoupling.nBodyCoupling.load_gij}}
+
+\begin{quote}
+\begin{verbatim}
+def load_gij(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+load or (re)calculate gij after implementing in p\_sym
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_h}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_h}}{Method load\_h}}\label{nBodyCoupling.nBodyCoupling.load_h}}
+
+\begin{quote}
+\begin{verbatim}
+def load_h(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_h_sym}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_h\_sym}}{Method load\_h\_sym}}\label{nBodyCoupling.nBodyCoupling.load_h_sym}}
+
+\begin{quote}
+\begin{verbatim}
+def load_h_sym(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+also compute h lam
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_het_sym}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_het\_sym}}{Method load\_het\_sym}}\label{nBodyCoupling.nBodyCoupling.load_het_sym}}
+
+\begin{quote}
+\begin{verbatim}
+def load_het_sym(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_i}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_i}}{Method load\_i}}\label{nBodyCoupling.nBodyCoupling.load_i}}
+
+\begin{quote}
+\begin{verbatim}
+def load_i(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+load all IRCs i or recomptue
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_k_sym}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_k\_sym}}{Method load\_k\_sym}}\label{nBodyCoupling.nBodyCoupling.load_k_sym}}
+
+\begin{quote}
+\begin{verbatim}
+def load_k_sym(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+k{[}i{]}{[}`type\_'+key{]}{[}j{]}{[}k{]} oscillator i, function type,
+oscillator j, order k, variable name `key'.
+
+c contains the derivatives of the coupling fn given oscillators i,j and
+variable name `key'. c{[}i{]}{[}key{]}{[}j{]} same as k just without
+terms collected.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_limit_cycle}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_limit\_cycle}}{Method load\_limit\_cycle}}\label{nBodyCoupling.nBodyCoupling.load_limit_cycle}}
+
+\begin{quote}
+\begin{verbatim}
+def load_limit_cycle(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_monodromy}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_monodromy}}{Method load\_monodromy}}\label{nBodyCoupling.nBodyCoupling.load_monodromy}}
+
+\begin{quote}
+\begin{verbatim}
+def load_monodromy(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+if monodromy data exists, load. if DNE or recompute required, compute
+here.
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_p}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_p}}{Method load\_p}}\label{nBodyCoupling.nBodyCoupling.load_p}}
+
+\begin{quote}
+\begin{verbatim}
+def load_p(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+insert lower order p{[}i{]} into higher order terms
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_p_sym}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_p\_sym}}{Method load\_p\_sym}}\label{nBodyCoupling.nBodyCoupling.load_p_sym}}
+
+\begin{quote}
+\begin{verbatim}
+def load_p_sym(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+generate/load the het. terms for psi ODEs.
+
+to be solved using integrating factor meothod.\\
+p{[}i{]}{[}`sym'{]}{[}k{]} is the forcing function for oscillator i of
+order k
+
+\hypertarget{nBodyCoupling.nBodyCoupling.load_z}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{load\_z}}{Method load\_z}}\label{nBodyCoupling.nBodyCoupling.load_z}}
+
+\begin{quote}
+\begin{verbatim}
+def load_z(
+    self
+)
+\end{verbatim}
+\end{quote}
+
+load all PRCs z or recompute
+
+\hypertarget{nBodyCoupling.nBodyCoupling.monodromy}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{monodromy}}{Method monodromy}}\label{nBodyCoupling.nBodyCoupling.monodromy}}
+
+\begin{quote}
+\begin{verbatim}
+def monodromy(
+    self,
+    t,
+    z
+)
+\end{verbatim}
+\end{quote}
+
+calculate right-hand side of system
+
+\(\dot \Phi = J\Phi, \Phi(0)=I\),
+
+where \(\Phi\) is a matrix solution
+
+jacLC is the jacobian evaluated along the limit cycle
+
+\hypertarget{nBodyCoupling.nBodyCoupling.numerical_jac}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{numerical\_jac}}{Method numerical\_jac}}\label{nBodyCoupling.nBodyCoupling.numerical_jac}}
+
+\begin{quote}
+\begin{verbatim}
+def numerical_jac(
+    self,
+    fn,
+    x,
+    eps=1e-07
+)
+\end{verbatim}
+\end{quote}
+
+return numerical Jacobian function
+
+\hypertarget{nBodyCoupling.nBodyCoupling.save_temp_figure}{%
+\subparagraph{\texorpdfstring{Method
+\texttt{save\_temp\_figure}}{Method save\_temp\_figure}}\label{nBodyCoupling.nBodyCoupling.save_temp_figure}}
+
+\begin{quote}
+\begin{verbatim}
+def save_temp_figure(
+    self,
+    data,
+    k,
+    fn='plot',
+    path_loc='figs_temp/'
+)
+\end{verbatim}
+\end{quote}
+
+data should be (TN,dim)
+
+\hypertarget{Thalamic}{%
+\section{\texorpdfstring{Module
+\texttt{Thalamic}}{Module Thalamic}}\label{Thalamic}}
+
+Example: Thalamic model from Wilson and Ermentrout RSTA 2019, Rubin and
+Terman JCNS 2004
+
+\hypertarget{functions-1}{%
+\subsection{Functions}\label{functions-1}}
+
+\hypertarget{Thalamic.coupling}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{coupling}}{Function coupling}}\label{Thalamic.coupling}}
+
+\begin{quote}
+\begin{verbatim}
+def coupling(
+    vars_pair,
+    pdict,
+    option='val'
+)
+\end{verbatim}
+\end{quote}
+
+Synaptic coupling function between Thalamic oscillators.
+
+E.g.,this Python function is the function \(G(x_i,x_j)\) in the equation
+\(\frac{dx_i}{dt} = F(x_i) + \varepsilon G(x_i,x_j)\)
+
+Parameters
+
+\begin{verbatim}
+vars_pair : list or array
+    contains state variables from oscillator A and B, e.g.,
+    vA, hA, rA, wA, vB, hB, rB, wB  
+pdict : dict of flots or sympy objects.
+    parameter dictionary pdict[key], val. key is always a string
+    of the parameter. val is either the parameter value (float) or 
+    the symbolic version of the parameter key.
+option : string.
+    Set to 'val' when inputs, t, z, pdict are floats. Set to
+    'sym' when inputs t, z, pdict are sympy objects. The default
+    is 'val'.
+\end{verbatim}
+
+Returns
+
+\begin{verbatim}
+numpy array or sympy Matrix
+    returns numpy array if option == 'val'. 
+    returns sympy Matrix if option == 'sym'
+\end{verbatim}
+
+\hypertarget{Thalamic.coupling_mat}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{coupling\_mat}}{Function coupling\_mat}}\label{Thalamic.coupling_mat}}
+
+\begin{quote}
+\begin{verbatim}
+def coupling_mat(
+    N,
+    option='val'
+)
+\end{verbatim}
+\end{quote}
+
+define coupling matrix.
+
+\hypertarget{Thalamic.eval_lam_arr}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{eval\_lam\_arr}}{Function eval\_lam\_arr}}\label{Thalamic.eval_lam_arr}}
+
+\begin{quote}
+\begin{verbatim}
+def eval_lam_arr(
+    pts,
+    lam=None
+)
+\end{verbatim}
+\end{quote}
+
+use this for vectorizing lamban until i figure out something better
+
+\hypertarget{Thalamic.main}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{main}}{Function main}}\label{Thalamic.main}}
+
+\begin{quote}
+\begin{verbatim}
+def main()
+\end{verbatim}
+\end{quote}
+
+\hypertarget{Thalamic.rhs}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{rhs}}{Function rhs}}\label{Thalamic.rhs}}
+
+\begin{quote}
+\begin{verbatim}
+def rhs(
+    t,
+    z,
+    pdict,
+    option='val'
+)
+\end{verbatim}
+\end{quote}
+
+Right-hand side of the Thalamic model from Wilson and Ermentrout RSTA
+2019 and Rubin and Terman JCNS 2004
+
+Parameters
+
+\begin{verbatim}
+t : float or sympy object.
+    time
+z : array or list of floats or sympy objects.
+    state variables of the thalamic model v, h, r, w.
+pdict : dict of flots or sympy objects.
+    parameter dictionary pdict[key], val. key is always a string
+    of the parameter. val is either the parameter value (float) or 
+    the symbolic version of the parameter key.
+option : string.
+    Set to 'val' when inputs, t, z, pdict are floats. Set to
+    'sym' when inputs t, z, pdict are sympy objects. The default
+    is 'val'.
+\end{verbatim}
+
+Returns
+
+\begin{verbatim}
+numpy array or sympy Matrix
+    returns numpy array if option == 'val'
+    returns sympy Matrix if option == 'sym'
+\end{verbatim}
+
+\hypertarget{CGL}{%
+\section{\texorpdfstring{Module \texttt{CGL}}{Module CGL}}\label{CGL}}
+
+Example: Complex Ginzburgh-Landau (CGL) model from Wilson and Ermentrout
+RSTA 2019
+
+\hypertarget{functions-2}{%
+\subsection{Functions}\label{functions-2}}
+
+\hypertarget{CGL.cgl3}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{cgl3}}{Function cgl3}}\label{CGL.cgl3}}
+
+\begin{quote}
+\begin{verbatim}
+def cgl3(
+    t,
+    y,
+    pdict,
+    eps
+)
+\end{verbatim}
+\end{quote}
+
+assume y has 8 coordinates. (x1,y1),(x2,y2),(x3,y3),(x4,y4)
+
+\hypertarget{CGL.cgl4}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{cgl4}}{Function cgl4}}\label{CGL.cgl4}}
+
+\begin{quote}
+\begin{verbatim}
+def cgl4(
+    t,
+    y,
+    pdict,
+    eps
+)
+\end{verbatim}
+\end{quote}
+
+assume y has 8 coordinates. (x1,y1),(x2,y2),(x3,y3),(x4,y4)
+
+\hypertarget{CGL.coupling}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{coupling}}{Function coupling}}\label{CGL.coupling}}
+
+\begin{quote}
+\begin{verbatim}
+def coupling(
+    vars_pair,
+    pdict,
+    option='value'
+)
+\end{verbatim}
+\end{quote}
+
+Diffusive coupling function between Complex Ginzburgh Landau (CGL)
+oscillators.
+
+E.g.,this Python function is the function \(G(x_i,x_j)\) in the equation
+\(\frac{dx_i}{dt} = F(x_i) + \varepsilon \sum_{j=1}^N G(x_i,x_j)\)
+
+Parameters
+
+\begin{verbatim}
+vars_pair : list or array
+    contains state variables from oscillator A and B, e.g.,
+    x1,y1,x2,y2
+pdict : dict of flots or sympy objects.
+    parameter dictionary pdict[key], val. key is always a string
+    of the parameter. val is either the parameter value (float) or 
+    the symbolic version of the parameter key.
+option : string.
+    Set to 'val' when inputs, t, z, pdict are floats. Set to
+    'sym' when inputs t, z, pdict are sympy objects. The default
+    is 'val'.
+\end{verbatim}
+
+Returns
+
+\begin{verbatim}
+* numpy array or sympy Matrix
+    * returns numpy array if option == 'val'. 
+    returns sympy Matrix if option == 'sym'
+\end{verbatim}
+
+\hypertarget{CGL.coupling_mat}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{coupling\_mat}}{Function coupling\_mat}}\label{CGL.coupling_mat}}
+
+\begin{quote}
+\begin{verbatim}
+def coupling_mat(
+    N,
+    option='val'
+)
+\end{verbatim}
+\end{quote}
+
+define coupling matrix.
+
+\hypertarget{CGL.d_estimate}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{d\_estimate}}{Function d\_estimate}}\label{CGL.d_estimate}}
+
+\begin{quote}
+\begin{verbatim}
+def d_estimate(
+    a,
+    eps,
+    dx=1e-05
+)
+\end{verbatim}
+\end{quote}
+
+estimate derivate of function of 4 vars a: object
+
+\hypertarget{CGL.h_at_0}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{h\_at\_0}}{Function h\_at\_0}}\label{CGL.h_at_0}}
+
+\begin{quote}
+\begin{verbatim}
+def h_at_0(
+    a,
+    eps
+)
+\end{verbatim}
+\end{quote}
+
+\hypertarget{CGL.main}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{main}}{Function main}}\label{CGL.main}}
+
+\begin{quote}
+\begin{verbatim}
+def main()
+\end{verbatim}
+\end{quote}
+
+\hypertarget{CGL.phase_o1_th}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{phase\_o1\_th}}{Function phase\_o1\_th}}\label{CGL.phase_o1_th}}
+
+\begin{quote}
+\begin{verbatim}
+def phase_o1_th(
+    t,
+    y,
+    o,
+    eps
+)
+\end{verbatim}
+\end{quote}
+
+phase theta (as opposed to phase diffs phi) right-hand side of phase
+equations t: time y: phase diff variables o: object
+
+\hypertarget{CGL.phase_o2_th}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{phase\_o2\_th}}{Function phase\_o2\_th}}\label{CGL.phase_o2_th}}
+
+\begin{quote}
+\begin{verbatim}
+def phase_o2_th(
+    t,
+    y,
+    o,
+    eps
+)
+\end{verbatim}
+\end{quote}
+
+2nd lowest order phase theta (as opposed to phase diffs phi) right-hand
+side of phase equations t: time y: phase diff variables o: object
+
+\hypertarget{CGL.phase_o3_th}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{phase\_o3\_th}}{Function phase\_o3\_th}}\label{CGL.phase_o3_th}}
+
+\begin{quote}
+\begin{verbatim}
+def phase_o3_th(
+    t,
+    y,
+    o,
+    eps
+)
+\end{verbatim}
+\end{quote}
+
+2nd lowest order phase theta (as opposed to phase diffs phi) right-hand
+side of phase equations t: time y: phase diff variables o: object
+
+\hypertarget{CGL.phase_phi}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{phase\_phi}}{Function phase\_phi}}\label{CGL.phase_phi}}
+
+\begin{quote}
+\begin{verbatim}
+def phase_phi(
+    t,
+    y,
+    o,
+    eps
+)
+\end{verbatim}
+\end{quote}
+
+right-hand side of phase equations t: time y: phase diff variables o:
+object
+
+\hypertarget{CGL.rhs}{%
+\subsubsection{\texorpdfstring{Function
+\texttt{rhs}}{Function rhs}}\label{CGL.rhs}}
+
+\begin{quote}
+\begin{verbatim}
+def rhs(
+    t,
+    z,
+    pdict,
+    option='value'
+)
+\end{verbatim}
+\end{quote}
+
+Right-hand side of the Complex Ginzburgh-Landau (CGL) model from Wilson
+and Ermentrout RSTA 2019
+
+Parameters
+
+\begin{verbatim}
+t : float or sympy object.
+    time
+z : array or list of floats or sympy objects.
+    state variables of the thalamic model v, h, r, w.
+pdict : dict of flots or sympy objects.
+    parameter dictionary pdict[key], val. key is always a string
+    of the parameter. val is either the parameter value (float) or 
+    the symbolic version of the parameter key.
+option : string.
+    Set to 'val' when inputs, t, z, pdict are floats. Set to
+    'sym' when inputs t, z, pdict are sympy objects. The default
+    is 'val'.
+\end{verbatim}
+
+Returns
+
+\begin{verbatim}
+numpy array or sympy Matrix
+    returns numpy array if option == 'val'
+    returns sympy Matrix if option == 'sym'
+\end{verbatim}
+
+Generated by \emph{pdoc} 0.10.0 (\url{https://pdoc3.github.io}).
+
+\end{document}
