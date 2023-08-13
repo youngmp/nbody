@@ -1,0 +1,89 @@
+p gl=0.05,gna=3,gk=5,gt=5
+p el=-70,ena=50,ek=-90,et=0
+p esyn=0,eps=0
+p c=1,alpha=3,beta=.2,sigmat=0.8
+p vt=-20,ib=.6
+p het=0
+
+ah(v) = 0.128*exp(-(v+46)/18)  
+bh(v) = 4/(1+exp(-(v+23)/5))  
+
+minf(v) = 1/(1+exp(-(v+37)/7))  
+hinf(v) = 1/(1+exp((v+41)/4))  
+rinf(v) = 1/(1+exp((v+84)/4))  
+pinf(v) = 1/(1+exp(-(v+60)/6.2))  
+
+tauh(v) = 1/(ah(v)+bh(v))  
+taur(v) = 28+exp(-(v+25)/10.5)  
+
+iL(v) = gL*(v-eL)  
+ina(v,h) = gna*minf(v)^3*h*(v-ena)  
+ik(v,h) = gk*(0.75*(1-h))^4*(v-ek)  
+it(v,r) = gt*pinf(v)^2*r*(v-et)
+isyn(v,w) = w*(v-esyn)
+
+v0b=v0*100
+r0b=r0/100
+
+v1b=v1*100
+r1b=r1/100
+
+v2b=v2*100
+r2b=r2/100
+
+v0' = (-iL(v0b)-ina(v0b,h0)-ik(v0b,h0)-it(v0b,r0b)+ib)/c/100-eps*(isyn(v0,w1)+isyn(v0,w2))/3
+h0' = (hinf(v0b)-h0)/tauh(v0b)
+r0' = (rinf(v0b)-r0b)/taur(v0b)*100
+w0' = alpha*(1-w0)/(1+exp(-(v0b-vt)/sigmat))-beta*w0
+
+v1' = (-iL(v1b)-ina(v1b,h1)-ik(v1b,h1)-it(v1b,r1b)+ib)/c/100-eps*(isyn(v1,w0)+isyn(v1,w2))/3
+h1' = (hinf(v1b)-h1)/tauh(v1b)
+r1' = (rinf(v1b)-r1b)/taur(v1b)*100
+w1' = alpha*(1-w1)/(1+exp(-(v1b-vt)/sigmat))-beta*w1
+
+v2' = (-iL(v2b)-ina(v2b,h2)-ik(v2b,h2)-it(v2b,r2b)+ib)/c/100-eps*(isyn(v2,w0)+isyn(v2,w1))/3
+h2' = (hinf(v2b)-h2)/tauh(v2b)
+r2' = (rinf(v2b)-r2b)/taur(v2b)*100
+w2' = alpha*(1-w2)/(1+exp(-(v2b-vt)/sigmat))-beta*w2
+
+aux c0=-eps*(isyn(v0,w1)+isyn(v0,w2))/3
+aux c1=-eps*(isyn(v1,w0)+isyn(v1,w2))/3
+aux c2=-eps*(isyn(v2,w0)+isyn(v2,w1))/3
+
+# below for ib=.8
+v0(0)=-0.047506861
+h0(0)=0.26033139
+r0(0)=0.34229156
+w0(0)=0.53774458
+
+v1(0)=-0.64199996
+h1(0)=0.98792797
+r1(0)=0.48446023
+w1(0)=0.08466091
+
+v2(0)=-0.56307679
+h2(0)=0.98690772
+r2(0)=0.44700521
+w2(0)=0.0083365878
+
+# below for ib=.6
+#v0(0)=-.05080318
+#h0(0)=0.26303521
+#r0(0)=0.33854183
+#w0(0)=0.53071129
+
+#v1(0)=-.6416565
+#h1(0)=0.9953672
+#r1(0)=0.5278388
+#w1(0)=0.04332812
+
+#v2(0)=-.5717518
+#h2(0)=0.9883682
+#r2(0)=0.4805663
+#w2(0)=0.002666594
+
+@ nplot=3,xp[0..2]=t,yp[j]=v[j]
+#@ total=25000
+@ total=20000
+@ xlo=0,xhi=1000,ylo=-80,yhi=10
+@ dt=.05

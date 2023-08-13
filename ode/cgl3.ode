@@ -1,0 +1,27 @@
+p mu=1,rho=.15,sig=.1,d=.9,eps=0,q=1
+
+r2(x,y)=x^2+y^2
+
+gx(xa,ya,xb,yb)=(xb-xa)-d*(yb-ya)
+gy(xa,ya,xb,yb)=(yb-ya)+d*(xb-xa)
+
+f0x=gx(x0,y0,x0,y0)+gx(x0,y0,x1,y1)+gx(x0,y0,x2,y2)
+f0y=gy(x0,y0,x0,y0)+gy(x0,y0,x1,y1)+gy(x0,y0,x2,y2)
+
+f1x=gx(x1,y1,x0,y0)+gx(x1,y1,x1,y1)+gx(x2,y2,x2,y2)
+f1y=gy(x1,y1,x0,y0)+gy(x1,y1,x1,y1)+gy(x2,y2,x2,y2)
+
+f2x=gx(x2,y2,x0,y0)+gx(x2,y2,x1,y1)+gx(x2,y2,x2,y2)
+f2y=gy(x2,y2,x0,y0)+gy(x2,y2,x1,y1)+gy(x2,y2,x2,y2)
+
+x0'=sig*x0*(mu-r2(x0,y0))-y0*(1+rho*(r2(x0,y0)-mu)) + eps*f0x/3
+y0'=sig*y0*(mu-r2(x0,y0))+x0*(1+rho*(r2(x0,y0)-mu)) + eps*f0y/3
+
+x1'=sig*x1*(mu-r2(x1,y1))-y1*(1+rho*(r2(x1,y1)-mu)) + eps*f1x/3
+y1'=sig*y1*(mu-r2(x1,y1))+x1*(1+rho*(r2(x1,y1)-mu)) + eps*f1y/3
+
+x2'=sig*x2*(mu-r2(x2,y2))-y2*(1+rho*(r2(x2,y2)-mu)) + eps*f2x/3
+y2'=sig*y2*(mu-r2(x2,y2))+x2*(1+rho*(r2(x2,y2)-mu)) + eps*f2y/3
+
+        
+@ done
