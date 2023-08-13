@@ -387,7 +387,7 @@ def main():
 
               'N':3,
               'coupling_mat':coupling_mat,
-              'dir':'home+cgl_dat/',
+              'dir':'data/dat_cgln/',
               
               'max_n':11,
               'trunc_order':2,

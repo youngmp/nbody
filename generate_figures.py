@@ -102,7 +102,7 @@ kwargs_cgl = {'recompute_LC':False,
 
           'N':3,
           'coupling_mat':CGL.coupling_mat,
-          'dir':'home+cgl_dat/',
+          'dir':'data/dat_cgln/',
 
           'trunc_order':2,
           'trunc_deriv':1,
@@ -436,7 +436,6 @@ def load_cgl_sol(ag,kw,recompute=False):
     file_does_not_exist = not(os.path.isfile(fname))
 
     if file_does_not_exist or recompute:
-        print('ag,kw',ag,kw)
         sol = solve_ivp(*ag,**kw)
         y = sol.y.T
         np.savetxt(fname,y)
@@ -1231,7 +1230,6 @@ def thalamic_eigs(example=1):
     else:
         eps_list = np.linspace(-.0015,.001,100)
         kwargs['NA'] = 500
-    print('NA?',kwargs['NA'])
     
     T_init = 44.8
     LC_init = np.array([-.5927,0.99,0.507,.006,T_init])
@@ -1310,16 +1308,14 @@ def main():
     # listed in order of Figures in paper
     figures = [
 
-        #(cgl_examples,[],['figs/f_cgl_examples.pdf']),
+        (cgl_examples,[],['figs/f_cgl_examples.pdf']),
         (cgl_eigs,[],['figs/f_cgl_eigs.pdf']),
         
-        #(thalamic_examples1,[],['figs/f_thalamic_examples1.pdf']),
-        #(thalamic_examples2,[],['figs/f_thalamic_examples2.pdf']),
+        (thalamic_examples1,[],['figs/f_thalamic_examples1.pdf']),
+        (thalamic_examples2,[],['figs/f_thalamic_examples2.pdf']),
         (thalamic_eigs,[1],['figs/f_thal_eigs1.pdf']),
         (thalamic_eigs,[2],['figs/f_thal_eigs2.pdf']),
-        
-        #(thalamic_h,[],['thal_h.pdf','thal_h.png']),
-        #(thalamic_1par,[],['thal_1par.pdf']),
+
     ]
     
     for fig in figures:

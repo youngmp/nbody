@@ -188,9 +188,6 @@ def main():
                'sigmat_val':0.8,
                'vt_val':-20,
                'ib_val':3.5}
-
-
-    
     
     
     kwargs = {'recompute_LC':False,
@@ -215,7 +212,7 @@ def main():
 
               'N':3,
               'coupling_mat':coupling_mat,
-              'dir':'home+dat_thalamicn/',
+              'dir':'data/dat_thalamicn/',
               'trunc_order':2,
               'max_n':25,
               
@@ -235,7 +232,8 @@ def main():
               'LC_tol':1e-10,
               'method':'LSODA',
               'load_all':True,
-              'LC_long_sim_time':1500}
+              'LC_long_sim_time':1500,
+              'log_level':'DEBUG'}
     
     #T_init = 10.6
     #LC_init = np.array([-.64,0.71,0.25,0,T_init])
