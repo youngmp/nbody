@@ -66,7 +66,7 @@ pardict_thal = {'gL_val':0.05,'gna_val':3,
                 'ib_val':0.6}
 
 kwargs_thal = {'N':3,'coupling_mat':Thalamic.coupling_mat,
-               'dir':'home+dat_thalamicn/',
+               'dir':'data/dat_thalamicn/',
                'NA':500,'trunc_order':1,
                'TN':10000,
                'load_all':False,
@@ -131,58 +131,6 @@ for i in range(len(labels)):
     labels[i] = r'\textbf{{{}}}'.format(labels[i])
 
 
-def _get_appdata_path():
-    import ctypes
-    from ctypes import wintypes, windll
-    CSIDL_APPDATA = 26
-    _SHGetFolderPath = windll.shell32.SHGetFolderPathW
-    _SHGetFolderPath.argtypes = [wintypes.HWND,
-                                 ctypes.c_int,
-                                 wintypes.HANDLE,
-                                 wintypes.DWORD,
-                                 wintypes.LPCWSTR]
-    path_buf = ctypes.create_unicode_buffer(wintypes.MAX_PATH)
-    result = _SHGetFolderPath(0, CSIDL_APPDATA, 0, 0, path_buf)
-    return path_buf.value
-
-def dropbox_home():
-    from platform import system
-    import base64
-    import os.path
-    _system = system()
-    if _system in ('Windows', 'cli'):
-        host_db_path = os.path.join(_get_appdata_path(),
-                                    'Dropbox',
-                                    'host.db')
-    elif _system in ('Linux', 'Darwin'):
-        host_db_path = os.path.expanduser('~'
-                                          '/.dropbox'
-                                          '/host.db')
-    else:
-        raise RuntimeError('Unknown system={}'
-                           .format(_system))
-
-    
-    if not os.path.exists(host_db_path):
-
-        manualpath = os.path.expanduser('~')+'/Dropbox'
-        if not os.path.exists(manualpath):
-            try:
-                path = "E:\\Dropbox"
-            except:
-                raise RuntimeError("Config path={} doesn't exist"
-                               .format(host_db_path))
-        else:
-            path = manualpath
-    
-    else:
-    
-        with open(host_db_path, 'r') as f:
-            data = f.read().split()
-            path = base64.b64decode(data[1]).decode('utf-8')
-    
-    return path
-
 def add_arrow_to_line2D(
         axes, line, arrow_locs=[0.2, 0.4, 0.6, 0.8],
         arrowstyle='-|>', arrowsize=1.5, transform=None,
@@ -241,121 +189,6 @@ def get_phase(pt,dat_ref):
     #print(np.linalg.norm(diff,axis=0))
     return 2*np.pi*min_idx/max_idx
 
-def quick_plots_thalamic():
-
-    
-    #eps_vals1 = np.round(np.arange(0,0.01,0.0001)[::5][2:],5)
-    #eps_vals2 = np.round(np.arange(-.01,-0.0001,0.0001)[::5][:-1],5)
-    #eps_vals = np.concatenate((eps_vals2,eps_vals1))
-
-    # for ib=.8
-    #eps_vals = [0.03,0.05]
-    #eps_vals = np.round(np.arange(0.01,0.06,.005),3)
-    eps_vals = np.round(np.arange(0.,0.03,.001),3)[5:]
-    
-    het_vals = np.array([0.0])
-
-    dhome = dropbox_home()
-
-    data_dir = dhome+'/data/thal_full_normed/'
-    ib = 0.8
-    esyn = -1
-    
-
-    if ib == 0.6:
-        fname_load_temp = data_dir+'thal3_eps={}_het={}.dat'    
-        fname_save_temp = data_dir+'thal3_{}_eps={}_phases.txt'
-        fname_save_temp_t = data_dir+'thal3_t_eps={}_phases.txt'
-        dat_ref = np.loadtxt(data_dir+'lc_ib.6_be_.2.dat')[:,1:5]
-    elif ib == 0.8:
-        fname_load_temp = data_dir+'thal3_eps={}_het={}_ib={}_esyn={}.dat'
-        fname_save_temp = data_dir+'thal3_{}_eps={}_ib={}_esyn={}_phases.txt'
-        fname_save_temp_t = data_dir+'thal3_t_eps={}_ib={}_esyn={}_phases.txt'
-        dat_ref = np.loadtxt(data_dir+'lc_ib.8_be_.2.dat')[:,1:5]
-    else:
-        raise Exception("what do i do? ib not known. ib=",ib)
-    
-    for k,eps in enumerate(eps_vals):
-        
-        for j,het in enumerate(het_vals):
-
-            if ib == 0.6:
-                format_tuple1 = (eps,het)
-                format_tuple2 = (eps,)
-            else:
-                format_tuple1 = (eps,het,ib,esyn)
-                format_tuple2 = (eps,ib,esyn)
-                
-            fname_load = fname_load_temp.format(*format_tuple1)
-            
-            fname_save0 = fname_save_temp.format(*(0,*format_tuple2))
-            fname_save1 = fname_save_temp.format(*(1,*format_tuple2))
-            fname_save2 = fname_save_temp.format(*(2,*format_tuple2))
-            fname_save_t = fname_save_temp_t.format(*format_tuple2)
-            
-            file_does_not_exist = not(os.path.isfile(fname_save0))
-            file_does_not_exist += not(os.path.isfile(fname_save1))
-            file_does_not_exist += not(os.path.isfile(fname_save2))
-            
-
-            if file_does_not_exist or True:
-
-                skipn = 100
-
-                dat = np.loadtxt(fname_load)[::skipn]
-                osc0 = dat[:,1:5];osc1 = dat[:,5:9];osc2 = dat[:,9:13]
-                t = dat[:,0]
-
-                th0 = np.zeros(len(t))
-                th1 = np.zeros(len(t))
-                th2 = np.zeros(len(t))
-
-                for i in range(len(t)):
-                    th0[i] = get_phase(osc0[i,:],dat_ref)
-                    th1[i] = get_phase(osc1[i,:],dat_ref)
-                    th2[i] = get_phase(osc2[i,:],dat_ref)
-
-                np.savetxt(fname_save0,th0)
-                np.savetxt(fname_save1,th1)
-                np.savetxt(fname_save2,th2)
-                np.savetxt(fname_save_t,t)
-
-            else:
-
-                th0 = np.loadtxt(fname_save0)
-                th1 = np.loadtxt(fname_save1)
-                th2 = np.loadtxt(fname_save1)
-                t = np.loadtxt(fname_save_t)
-                
-
-            fig,axs = plt.subplots(1,2,figsize=(8,3))
-
-            #axs.plot(th0);axs.plot(th1);axs.plot(th2)
-            #axs.plot(th0);axs.plot(th1);axs.plot(th2)
-            #axs.scatter(th1-th0,th2-th0,s=5,color='k')
-            x = np.mod(th1-th0,2*np.pi)
-            y = np.mod(th2-th0,2*np.pi)
-            axs[0].scatter(x,y,s=5,label='eps='+str(eps),
-                           c=np.linspace(0,1,len(x)))
-
-            axs[0].set_xlim(0,2*np.pi)
-            axs[0].set_ylim(0,2*np.pi)
-
-            axs[1].scatter(t,x,s=5)
-            axs[1].scatter(t,y,s=5)
-
-            axs[0].legend()
-
-            loc = 'figs_temp_normed/'
-            if ib == 0.6:
-                figname = loc+'thal3_sols_{}het={}_{}eps={}_phases.png'
-            else:
-                figname = loc+'thal3_sols_{}het={}_{}eps={}_ib={}_esyn={}_phases.png'
-            fig.savefig(figname.format(string.ascii_lowercase[j+1],het,k,eps,ib,esyn))
-            plt.close()
-
-            print('eps,het',eps,het,'inits out of 1. th1-th0',
-                  (th1[0]-th0[0])/(2*np.pi),'th2-th0',(th2[0]-th0[0])/(2*np.pi))
 
 def get_h_vals(t,a,i,order=1):
     """
@@ -429,7 +262,7 @@ def load_cgl_sol(ag,kw,recompute=False):
     fname = fname.format(kw['args'][0]['eps'])
 
     msg = ('Saving some data to {} to avoid recalculating some stuff.'
-           'You must delete this directory manually.'
+           'You must delete this directory manually to get rid of it. '
            'Delete the directory if you get an assertion error')
     print(msg.format(fname))
     
