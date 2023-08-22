@@ -1147,11 +1147,14 @@ def main():
     # listed in order of Figures in paper
     figures = [
 
-        (cgl_examples,[],['figs/f_cgl_examples.pdf']),
+        (cgl_examples,[],['figs/f_cgl_examples.pdf',
+                          'figs/f_cgl_examples.png'],200),
         (cgl_eigs,[],['figs/f_cgl_eigs.pdf']),
         
-        (thalamic_examples1,[],['figs/f_thalamic_examples1.png']),
-        (thalamic_examples2,[],['figs/f_thalamic_examples2.png']),
+        (thalamic_examples1,[],['figs/f_thalamic_examples1.pdf',
+                                'figs/f_thalamic_examples1.png'],200),
+        (thalamic_examples2,[],['figs/f_thalamic_examples2.pdf',
+                                'figs/f_thalamic_examples2.png'],200),
         (thalamic_eigs,[1],['figs/f_thal_eigs1.pdf']),
         (thalamic_eigs,[2],['figs/f_thal_eigs2.pdf']),
 
