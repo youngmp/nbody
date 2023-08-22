@@ -14,6 +14,10 @@ Assumptions:
 -homogeneous vector fields
 -NO SELF COUPLING
 
+TODO                 # get list of all cases for 4 vars
+OEIS - for counting integers
+just enumerate and count up to k=4.
+
 Notes:
 - ``pA`` requires endpoint=False. make sure corresponding `dxA`s are used.
 
@@ -2120,7 +2124,7 @@ class nBodyCoupling(object):
                               open(fname,'wb'),recurse=True)
                 
         else:
-            loggin.info('* Loading H symbolic...')
+            logging.info('* Loading H symbolic...')
                               
             for i in range(self.N):
                     
@@ -2437,6 +2441,20 @@ class nBodyCoupling(object):
                 basis[slicing] += term_coeff*tot
             
             elif nvars == 3:
+
+                addsum = 0
+                for var,fn in zip(var_list,fn_list):
+                    if type(var) is list: # nsep
+                        addsum += 1
+                if addsum == 3:
+                    print('got cycle, var,fn')
+                    for var,fn in zip(var_list,fn_list):
+                        print(var,fn)
+
+                elif addsum == 2:
+                    #print('got 2 edges')
+                    pass
+                        
                 
                 for var,fn in zip(var_list,fn_list):
                     
@@ -2491,7 +2509,8 @@ class nBodyCoupling(object):
                 
                 slicing = get_slice_dim(self.N,dims=list(set(dims1+dims2)))
                 basis[slicing] += term_coeff*tot
-                
+
+
             elif nvars == 4:
             
                 # not uniqe vars... just keep this for now.
