@@ -260,6 +260,7 @@ def quick_plots_thalamic():
     data_dir = dhome+'/data/thal_full_normed/'
     ib = 0.8
     esyn = -1
+    
 
     if ib == 0.6:
         fname_load_temp = data_dir+'thal3_eps={}_het={}.dat'    
@@ -286,6 +287,7 @@ def quick_plots_thalamic():
                 format_tuple2 = (eps,ib,esyn)
                 
             fname_load = fname_load_temp.format(*format_tuple1)
+            
             fname_save0 = fname_save_temp.format(*(0,*format_tuple2))
             fname_save1 = fname_save_temp.format(*(1,*format_tuple2))
             fname_save2 = fname_save_temp.format(*(2,*format_tuple2))
@@ -992,6 +994,10 @@ def thalamic_examples2():
     var_names = var_names_thal
     pardict = pardict_thal
     kwargs = kwargs_thal
+
+    kwargs['ib'] = 0.6
+    kwargs['esyn'] = 0
+    kwargs['NA'] = 500
     
     T_init = 44.8
     LC_init = np.array([-.5927,0.99,0.507,.006,T_init])
