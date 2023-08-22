@@ -141,7 +141,7 @@ def _get_appdata_path():
                                  wintypes.HANDLE,
                                  wintypes.DWORD,
                                  wintypes.LPCWSTR]
-    path_buf = wintypes.create_unicode_buffer(wintypes.MAX_PATH)
+    path_buf = ctypes.create_unicode_buffer(wintypes.MAX_PATH)
     result = _SHGetFolderPath(0, CSIDL_APPDATA, 0, 0, path_buf)
     return path_buf.value
 
@@ -167,7 +167,10 @@ def dropbox_home():
 
         manualpath = os.path.expanduser('~')+'/Dropbox'
         if not os.path.exists(manualpath):
-            raise RuntimeError("Config path={} doesn't exist"
+            try:
+                path = "E:\\Dropbox"
+            except:
+                raise RuntimeError("Config path={} doesn't exist"
                                .format(host_db_path))
         else:
             path = manualpath
@@ -251,8 +254,6 @@ def quick_plots_thalamic():
     eps_vals = np.round(np.arange(0.,0.03,.001),3)[5:]
     
     het_vals = np.array([0.0])
-
-    home = os.path.expanduser('~')
 
     dhome = dropbox_home()
 
@@ -809,12 +810,9 @@ def thalamic_examples1():
 
         ############## load full
         eps = eps_list_full[i]#-0.009
-        home = 'E:\\'
-
         ib = 0.8;esyn = -1
         
-        #data_dir = home+'Dropbox/data/thal_full_normed/'
-        data_dir = dropbox_home()+'/data/thal_full_normed/'
+        data_dir = 'data/thal_full_normed/'
         
         fname_load_temp = data_dir+'thal3_eps={}_het={}_ib={}_esyn={}.dat'
         fname_save_temp = data_dir+'thal3_{}_eps={}_ib={}_esyn={}_phases.txt'
@@ -1046,10 +1044,8 @@ def thalamic_examples2():
         
         ############## load full
         eps = eps_list_full[i]#-0.009
-        home = 'E:\\'
-        
-        #data_dir = home+'Dropbox/data/thal_full_normed/'
-        data_dir = dropbox_home()+'/data/thal_full_normed/'
+
+        data_dir = 'data/thal_full_normed/'
         
         fname_load_temp = data_dir+'thal3_eps={}_het={}.dat'
         fname_save_temp = data_dir+'thal3_{}_eps={}_phases.txt'
@@ -1312,13 +1308,13 @@ def main():
     # listed in order of Figures in paper
     figures = [
 
-        (cgl_examples,[],['figs/f_cgl_examples.pdf']),
-        (cgl_eigs,[],['figs/f_cgl_eigs.pdf']),
+        #(cgl_examples,[],['figs/f_cgl_examples.pdf']),
+        #(cgl_eigs,[],['figs/f_cgl_eigs.pdf']),
         
-        (thalamic_examples1,[],['figs/f_thalamic_examples1.pdf']),
-        (thalamic_examples2,[],['figs/f_thalamic_examples2.pdf']),
-        (thalamic_eigs,[1],['figs/f_thal_eigs1.pdf']),
-        (thalamic_eigs,[2],['figs/f_thal_eigs2.pdf']),
+        (thalamic_examples1,[],['figs/f_thalamic_examples1.png']),
+        (thalamic_examples2,[],['figs/f_thalamic_examples2.png']),
+        #(thalamic_eigs,[1],['figs/f_thal_eigs1.pdf']),
+        #(thalamic_eigs,[2],['figs/f_thal_eigs2.pdf']),
 
     ]
     
