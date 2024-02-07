@@ -31,9 +31,9 @@ import lib.lib_sym as slib
 
 #import lib.lib as lib
 from lib import lib
-from lib.interp_basic import interp_basic as interpb
+from lib.fast_interp import interp1d,interp2d
 from lib.lambdifyn import lambdifyn as ldn
-from lib.fast_splines import interp2d
+#from lib.fast_splines import interp2d
 #from lam_vec import lam_vec
 
 #import inspect
@@ -76,6 +76,7 @@ import numexpr as ne
 
 imp_fn = implemented_function
 
+import scipy as sp
 from scipy.interpolate import RectBivariateSpline as interp2rbso
 from scipy.interpolate import interpn, RegularGridInterpolator
 from scipy.integrate import solve_ivp, trapezoid
@@ -130,7 +131,7 @@ def module_exists(module_name):
 
 class nBodyCoupling(object):
     
-    def __init__(self,rhs,coupling,LC_init,var_names,pardict,**kwargs):
+    def __init__(self,rhs,coupling,lc_init,var_names,pardict,**kwargs):
 
         """
         See the defaults dict below for allowed kwargs.
@@ -146,22 +147,22 @@ class nBodyCoupling(object):
                 right-hand side of a model
             coupling: callable.
                 coupling function between oscillators
-            LC_init: list or numpy array.
+            lc_init: list or numpy array.
                 initial condition of limit cycle (must be found manually).
                 XPP is useful, otherwise integrate your RHS for various
                 initial conditions for long times and extract an initial
                 condition close to the limit cycle.
 
-            LC_long_sim_time: float or int.
+            lc_long_sim_time: float or int.
                 Simulation time to compute the trjactory of an initial 
                 condition near the limit cycle solution. Used to
                 estimate limit cycle initial condition for use 
                 in the Newton method. Default: 500
-            LC_eps_time: float.
+            lc_eps_time: float.
                 Approximation of the time error estimate in Newton's
                 method, e.g., (difference between initial conditions)/
-                (LC_eps_time). Default: 1e-4
-            LC_tol: float:
+                (lc_eps_time). Default: 1e-4
+            lc_tol: float:
                 Error tolerance to stop Newton's method when computing
                 the limit cycle. Default: 1e-13
 
@@ -171,56 +172,7 @@ class nBodyCoupling(object):
                 dictionary of parameter values. dict['par1_val'] = float.
                 Make sure to use par_val format, where each parameter name is
                 followed by _val.
-            recompute_LC: bool.
-                If True, recompute limit cycle. If false, load limit cycle if
-                limit cycle data exists. Otherwise, compute. Default: False.
-
-            recompute_monodromy: bool.
-                If true, recompute kappa, the FLoquet multiplier using the
-                monodromy matrix. If false, load kappa if data exists,
-                otherwise compute. Default: False.
-            recompute_g_sym: bool.
-                If true, recompute the symbolic equations for g^k. If false,
-                load the symbolic equations if they exist in storage.
-                Otherwise, compute. Default: False.
-            recompute_g: bool.
-                If true, recompute the ODEs for g^k. If false,
-                load the data for g^k if they exist in storage.
-                Otherwise, compute. Default: False.
-
-            recompute_het_sym: bool.
-                If true, recompute the symbolic equations for z^k and i^k.
-                If false, load the symbolic equations if they exist in
-                storage. Otherwise, compute. Default: False.
-            recompute_z: bool.
-                If true, recompute the ODEs for z^k. If false,
-                load the data for z^k if they exist in storage.
-                Otherwise, compute. Default: False.
-            recompute_i: bool.
-                If true, recompute the ODEs for i^k. If false,
-                load the data for i^k if they exist in storage.
-                Otherwise, compute. Default: False.
-
-            recompute_k_sym: bool.
-                If true, recompute the symbolic equations for K^k. If false,
-                load the symbolic equations if they exist in storage.
-                Otherwise, compute. Default: False.
-            recompute_p_sym: bool.
-                If true, recompute the symbolic equations for p^k. If false,
-                load the symbolic equations if they exist in storage.
-                Otherwise, compute. Default: False.
-            recompute_k_sym: bool.
-                If true, recompute the symbolic equations for H^k. If false,
-                load the symbolic equations if they exist in storage.
-                Otherwise, compute. Default: False.
-
-            recompute_gij: bool
-                recompute the pairwise functions for the psi expansions
-
-            recompute_h: bool.
-                If true, recompute the H functions for H^k. If false,
-                load the data equations if they exist in storage.
-                Otherwise, compute. Default: False.
+                
             g_forward: list or bool.
                 If bool, integrate forwards or backwards
                 when computing g^k. If list, integrate g^k forwards or
@@ -233,7 +185,7 @@ class nBodyCoupling(object):
                 Same idea as g_forward for IRCS. Default: False.
             dense: bool.
                 If True, solve_ivp uses dense=True and evaluate solution
-                along tLC.
+                along tlc.
             dir: str.
                 Location of data directory. Please choose carefully
                 because some outputs may be on the order of gigabytes
@@ -285,40 +237,41 @@ class nBodyCoupling(object):
                 for i = 0, 1.
         
         """
+        
+        self._expand_kws = {'basic':True,'deep':True,'power_base':False,
+                            'power_exp':False,'mul':True,'log':False,
+                            'multinomial':True}
 
         defaults = {
             'trunc_order':3,'trunc_deriv':3,'coupling_mat':None,
             'coupling_pars':'','N':2,'TN':20000,'dir':None,
-            'LC_long_sim_time':500,'LC_eps_time':1e-4,'LC_tol':1e-13,
-            'NG':500,'NA':500,'p_iter':10,'max_iter':100,'rtol':1e-7,
+            'lc_long_sim_time':500,'lc_eps_time':1e-4,'lc_tol':1e-13,
+            'NG':500,'NA':500,'NP':500,'p_iter':10,'max_iter':100,'rtol':1e-7,
             
             'atol':1e-7,'rel_tol':1e-6,'method':'LSODA','g_forward':True,
             'z_forward':True,'i_forward':True,'g_bad_dx':False,'z_bad_dx':False,
             'i_bad_dx':False,'ignore_var':False,'dense':False,'max_n':-1,
             
-            'g_jac_eps':1e-3,'z_jac_eps':1e-3,'i_jac_eps':1e-3,'LC_rate':1,
+            'g_jac_eps':1e-3,'z_jac_eps':1e-3,'i_jac_eps':1e-3,'lc_rate':1,
             
-            'recompute_LC':False,'recompute_monodromy':False,
-            'recompute_g_sym':False,'recompute_g':False,
-            'recompute_het_sym':False,'recompute_z':False,
-            'recompute_i':False,'recompute_k_sym':False,
-            'recompute_p_sym':False,'recompute_p':False,
-            'recompute_gij':False,'recompute_h_sym':False,
-            'recompute_h':False,'load_all':True,
+            'load_all':True,
             'load_test':False,'gij_parallel':True,
             
-            'processes':6,'chunksize':500,'chunk_g':500,
+            'recompute_list':[],
+            
+            'processes':5,'chunksize':500,'chunk_g':500,
             'process_g':5,
 
             'log_level':'INFO',
-            'log_file':'out.log',
+            'log_file':'log_default.log',
+            'plot':False,
             }
 
         
         
         self.rhs = rhs
         self.coupling = coupling
-        self.LC_init = LC_init
+        self.lc_init = lc_init
     
         self.rule_par = {}
         
@@ -386,7 +339,6 @@ class nBodyCoupling(object):
                 self.pardict_sym.update({parname:symvar})
                 self.pardict_val.update({parname:value})
 
-
         # symbolic coupling matrix
         self.cmat = self.coupling_mat(self.N,option='sym')
         self.cmat_num = self.coupling_mat(self.N,option='val')
@@ -451,7 +403,7 @@ class nBodyCoupling(object):
         
         # function dicts
         # individual functions
-        self.LC = {}
+        self.lc = {}
         self.g = {}
         self.z = {}
         self.i = {}
@@ -459,8 +411,13 @@ class nBodyCoupling(object):
         # for coupling
         self.c = {}        
         self.k = {}
+        self.pg = {}
         self.p = {}
         self.h = {}
+        
+        #dims = (self.N,self.N,self.dim)
+        #self.c['sym'] = 
+        #self.p['dat'] = 
         
         # make dicts for each oscillator
         # terrible naming convention...... will fix later if lucky
@@ -475,6 +432,10 @@ class nBodyCoupling(object):
             self.c[i]['vec'] = []
 
             self.h[i] = {}
+            
+        self.rule_pg = {}
+        dims = (self.N,self.N,self.miter)
+        self.p['imp'] = sym.MutableDenseNDimArray(np.zeros(dims))
         
         #from os.path import expanduser
         #home = expanduser("~")
@@ -532,6 +493,10 @@ class nBodyCoupling(object):
                                                      retstep=True,
                                                      endpoint=False)
 
+        self.pn,self.dpn = np.linspace(0,self.T,self.NP,
+                                         retstep=True,
+                                         endpoint=False)
+
         self.T1,self.T2 = np.meshgrid(self.Aarr_noend,self.Aarr_noend,
                                       indexing='ij')
         self.T1R = np.reshape(self.T1,(self.NA**2,))
@@ -540,14 +505,14 @@ class nBodyCoupling(object):
         if self.load_all:
                 
             slib.generate_expansions(self)
-            slib.load_coupling_expansions(self)            
+            slib.load_coupling_expansions(self,recompute=True)            
             
             slib.load_jac_sym(self)
             
-            rule = {**self.rule_LC['loc'],**self.rule_par}
+            rule = {**self.rule_lc['loc'],**self.rule_par}
             
             # callable jacobian matrix evaluated along limit cycle
-            self.jacLC = lambdify((self.t),self.jac_sym.subs(rule),
+            self.jaclc = lambdify((self.t),self.jac_sym.subs(rule),
                                   modules='numpy')
             # get monodromy matrix
             self.load_monodromy()
@@ -569,16 +534,14 @@ class nBodyCoupling(object):
             self.load_k_sym()
             
             self.load_p_sym()
-
-            self.load_gij()
-            self.load_p()
-            #sys.exit()
-        
-            self.load_h_sym()
+            
+            #self.load_pg()
+            
+            #self.load_h_sym()
         
         if not(self.load_test):
-            self.load_h()
-
+            #self.load_h()
+            pass
         
     def monodromy(self,t,z):
         """
@@ -589,16 +552,16 @@ class nBodyCoupling(object):
         
         where $\Phi$ is a matrix solution
         
-        jacLC is the jacobian evaluated along the limit cycle
+        jaclc is the jacobian evaluated along the limit cycle
         """
         
-        jac = self.jacLC(t)
-        #LC_vec = np.array([self.LC['lam_v'](t),
-        #                   self.LC['lam_h'](t),
-        #                   self.LC['lam_r'](t),
-        #                   self.LC['lam_w'](t)])
+        jac = self.jaclc(t)
+        #lc_vec = np.array([self.lc['lam_v'](t),
+        #                   self.lc['lam_h'](t),
+        #                   self.lc['lam_r'](t),
+        #                   self.lc['lam_w'](t)])
         
-        #jac = self.numerical_jac(rhs,self.LC_vec(t))
+        #jac = self.numerical_jac(rhs,self.lc_vec(t))
         
         n = int(np.sqrt(len(z)))
         z = np.reshape(z,(n,n))
@@ -630,87 +593,86 @@ class nBodyCoupling(object):
         
     def load_limit_cycle(self):
         
-        self.LC['dat'] = []
+        self.lc['dat'] = []
         
         for key in self.var_names:
-            self.LC['imp_'+key] = []
-            self.LC['lam_'+key] = []
+            self.lc['imp_'+key] = []
+            self.lc['lam_'+key] = []
             
-            logging.info('* Computing LC data...')
-        file_does_not_exist = not(os.path.isfile(self.LC['dat_fname']))
         
-        if self.recompute_LC or file_does_not_exist:
-            # get limit cycle (LC) period
+        file_dne = not(os.path.isfile(self.lc['dat_fname']))
+        
+        if 'lc' in self.recompute_list or file_dne:
+            print('* Computing lc data...')
             sol,t_arr = self.generate_limit_cycle()
             
-            # save LC data 
-            np.savetxt(self.LC['dat_fname'],sol)
-            np.savetxt(self.LC['t_fname'],t_arr)
+            np.savetxt(self.lc['dat_fname'],sol)
+            np.savetxt(self.lc['t_fname'],t_arr)
             
         else:
-            sol = np.loadtxt(self.LC['dat_fname'])
-            t_arr = np.loadtxt(self.LC['t_fname'])
+            sol = np.loadtxt(self.lc['dat_fname'])
+            t_arr = np.loadtxt(self.lc['t_fname'])
                 
-        self.LC['dat'] = sol
-        self.LC['t'] = t_arr
+        self.lc['dat'] = sol
+        self.lc['t'] = t_arr
         
         # define basic variables
-        self.T = self.LC['t'][-1]
-        self.tLC = np.linspace(0,self.T,self.TN)
+        self.T = self.lc['t'][-1]
+        self.tlc,self.dtlc = np.linspace(0,self.T,self.TN,retstep=True)
         self.omega = 2*np.pi/self.T
         
-        logging.debug('* LC period = '+str(self.T))
+        logging.debug('* lc period = '+str(self.T))
             
-        # Make LC data callable from inside sympy
-        imp_lc = sym.zeros(self.dim)
+        # Make lc data callable from inside sympy
+        imp_lc = sym.zeros(self.dim,1)
         for i,key in enumerate(self.var_names):
-            fn = interpb(self.LC['t'],self.LC['dat'][:,i],self.T)
-            #fn = interp1d(self.LC['t'],self.LC['dat'][:,i],self.T,kind='cubic')
-            self.LC['imp_'+key] = imp_fn(key,fn)
-            self.LC['lam_'+key] = fn
+            fn = interp1d(self.tlc[0],self.tlc[-2],self.dtlc,
+                          self.lc['dat'][:-1,i],p=True,k=5)
+                          
+            self.lc['imp_'+key] = imp_fn(key,fn)
+            self.lc['lam_'+key] = fn
             
-            imp_lc[i] = self.LC['imp_'+key](self.t)
-            #lam_list.append(self.LC['lam_'+key])
+            imp_lc[i] = self.lc['imp_'+key](self.t)
             
-        self.LC_vec = lambdify(self.t,imp_lc,modules='numpy')
-        #self.LC_vec = lam_vec(lam_list)
-            
-        self.save_temp_figure(sol,0,'LC')
+        self.lc_vec = lambdify(self.t,imp_lc,modules='numpy')
         
-        # local and global LC replacement rules
-        self.rule_LC = {}
-        self.rule_LC['loc'] = {}
-        self.rule_LC['glo'] = {}
+        if self.plot:
+            self.save_temp_figure(sol,0,'lc')
+        
+        # local and global lc replacement rules
+        self.rule_lc = {}
+        self.rule_lc['loc'] = {}
+        self.rule_lc['glo'] = {}
         
         for j,key in enumerate(self.var_names):
-            d = {self.syms['loc'][j]:self.LC['imp_'+key](self.t)}
-            self.rule_LC['loc'].update(d)
+            d = {self.syms['loc'][j]:self.lc['imp_'+key](self.t)}
+            self.rule_lc['loc'].update(d)
 
         for i in range(self.N):
             th = self.ths[i]
-            d = {self.syms['glo'][i,j]:self.LC['imp_'+key](th)
+            d = {self.syms['glo'][i,j]:self.lc['imp_'+key](th)
                  for j,key in enumerate(self.var_names)}
-            self.rule_LC['glo'].update(d)
-
+            self.rule_lc['glo'].update(d)
+            
     def generate_limit_cycle(self):
         
-        tol = self.LC_tol
+        tol = self.lc_tol
         
         #T_init = 5.7
         eps = np.zeros(self.dim) + 1e-4
-        epstime = self.LC_eps_time
-        dy = np.zeros(self.dim+1)+10
+        epstime = self.lc_eps_time
+        dy = np.zeros(self.dim+1) + 10
 
         # rough init found using XPP
-        init = self.LC_init
+        init = self.lc_init
         T_init = init[-1]
         
         # run for a while to settle close to limit cycle
-        sol = solve_ivp(self.rhs,[0,self.LC_long_sim_time],init[:-1],
+        sol = solve_ivp(self.rhs,[0,self.lc_long_sim_time],init[:-1],
                         method=self.method,dense_output=True,
                         rtol=1e-13,atol=1e-13,args=(self.pardict_val,))
         
-        if True:
+        if self.plot:
         
             fig = plt.figure()
             ax = fig.add_subplot(111)
@@ -719,22 +681,40 @@ class nBodyCoupling(object):
         
         tn = len(sol.y.T)
         
-        # find max index after ignoring first 20% of simulation time
-        # avoids transients.
-        maxidx = np.argmax(sol.y.T[int(.2*tn):,0])+int(.2*tn)
-
+        peak_idxs = sp.signal.find_peaks(sol.y.T[:,0])[0]
         
-        init = np.append(sol.y.T[maxidx,:],T_init)
+        maxidx = peak_idxs[-2]
+        maxidx_prev = peak_idxs[-3]
+
+        def sol_min(t):
+            return -sol.sol(t)[0]
+
+        # get stronger estimates of max values
+        pad1lo = (sol.t[maxidx]-sol.t[maxidx-1])/2
+        pad1hi = (sol.t[maxidx+1]-sol.t[maxidx])/2
+        bounds1 = [sol.t[maxidx]-pad1lo,sol.t[maxidx]+pad1hi]
+        res1 = sp.optimize.minimize_scalar(sol_min,bounds=bounds1)
+
+        pad2lo = (sol.t[maxidx_prev]-sol.t[maxidx_prev-1])/2
+        pad2hi = (sol.t[maxidx_prev+1]-sol.t[maxidx_prev])/2
+        bounds2 = [sol.t[maxidx_prev]-pad2lo,sol.t[maxidx_prev]+pad2hi]
+        res2 = sp.optimize.minimize_scalar(sol_min,bounds=bounds2)
+
+        #maxidx = np.argmax(sol.y.T[int(.2*tn):,0])+int(.2*tn)
+        #maxidx_prev = np.argmax(sol.y.T[int(.2*tn):maxidx-1,0])+int(.2*tn)
+
+        # estimate initial time
+        #T_init = sol.t[maxidx] - sol.t[maxidx_prev]
+        #init = np.append(sol.y.T[maxidx,:],T_init)
+        
+        T_init = res1.x - res2.x
+        init = np.append(sol.sol(res1.x),T_init)
+        
         
         counter = 0
         while np.linalg.norm(dy) > tol:
             
-            
-            #eps = np.zeros(self.dim)+1e-8
-            #for i in range(self.dim):
-            #    eps[i] += np.amax(np.abs(sol.y.T[:,i]))*(1e-5)
             J = np.zeros((self.dim+1,self.dim+1))
-            
             t = np.linspace(0,init[-1],self.TN)
             
             if self.ignore_var:
@@ -756,15 +736,11 @@ class nBodyCoupling(object):
                 solp = solve_ivp(self.rhs,[0,t[-1]],initp,
                                  method=self.method,
                                  rtol=1e-13,atol=1e-13,
-                                 #dense_output=True,
-                                 #t_eval=t,
                                  args=(self.pardict_val,))
                 
                 solm = solve_ivp(self.rhs,[0,t[-1]],initm,
                                  method=self.method,
                                  rtol=1e-13,atol=1e-13,
-                                 #dense_output=True,
-                                 #t_eval=t,
                                  args=(self.pardict_val,))
             
                 yp = solp.y.T
@@ -781,15 +757,11 @@ class nBodyCoupling(object):
             solp = solve_ivp(self.rhs,[0,tp[-1]],initp,
                              method=self.method,
                              rtol=1e-13,atol=1e-13,
-                             #dense_output=True,
-                             #t_eval=tp,
                              args=(self.pardict_val,))
             
             solm = solve_ivp(self.rhs,[0,tm[-1]],initm,
                              method=self.method,
                              rtol=1e-13,atol=1e-13,
-                             #dense_output=True,
-                             #t_eval=tm,
                              args=(self.pardict_val,))
             
             yp = solp.y.T
@@ -802,36 +774,35 @@ class nBodyCoupling(object):
             sol = solve_ivp(self.rhs,[0,init[-1]],init[:-1],
                              method=self.method,
                              rtol=1e-13,atol=1e-13,
-                             #dense_output=True,
-                             #t_eval=t,
-                             args=(self.pardict_val,))
+                             args=(self.pardict_val,),
+                             t_eval=t)
+                             
             
             y_final = sol.y.T[-1,:]
 
             b = np.append(init[:-1]-y_final,0)
             #dy = np.dot(np.linalg.inv(J),b)
             dy = np.linalg.solve(J,b)
-            init += dy*self.LC_rate
+            init += dy
             
             to_disp = (counter,np.linalg.norm(dy))
 
-            str1 = 'iter={}, LC rel. err ={:.2e}     '
-            logging.debug(str1.format(*to_disp))
-            
-            if self.log_level is logging.DEBUG:
-                self.save_temp_figure(sol.y.T,counter,fn='LC_counter')
-                
+            str1 = 'iter={}, lc rel. err ={:.2e}     '
+            #logging.debug(str1.format(*to_disp))
+            print(str1.format(*to_disp))
             counter += 1
 
         # find index of peak voltage and initialize.
         peak_idx = np.argmax(sol.y.T[:,0])
+        init = sol.y.T[peak_idx,:]
         
         # run finalized limit cycle solution
-        sol = solve_ivp(self.rhs,[0,init[-1]],sol.y.T[peak_idx,:],
+        sol = solve_ivp(self.rhs,[0,sol.t[-1]],sol.y.T[peak_idx,:],
                         method=self.method,
-                        t_eval=np.linspace(0,init[-1],self.TN),
+                        t_eval=np.linspace(0,sol.t[-1],self.TN),
                         rtol=1e-13,atol=1e-13,
                         args=(self.pardict_val,))
+        
         
         return sol.y.T,sol.t
 
@@ -842,16 +813,15 @@ class nBodyCoupling(object):
         recompute required, compute here.
         """
         
-        
-        if self.recompute_monodromy\
-            or not(os.path.isfile(self.monodromy_fname)):
+        file_dne = not(os.path.isfile(self.monodromy_fname))
+        if 'm' in self.recompute_list or file_dne:
 
             initm = copy.deepcopy(self.eye)
             r,c = np.shape(initm)
             init = np.reshape(initm,r*c)
             
-            sol = solve_ivp(self.monodromy,[0,self.tLC[-1]],init,
-                            t_eval=self.tLC,
+            sol = solve_ivp(self.monodromy,[0,self.tlc[-1]],init,
+                            t_eval=self.tlc,
                             method=self.method,dense_output=True,
                             rtol=1e-13,atol=1e-13)
             
@@ -887,13 +857,20 @@ class nBodyCoupling(object):
         self.z0_init = einv[idx,:]
         self.i0_init = einv[self.min_lam_idx,:]
 
-        logging.debug('eigenvectors'+str(self.eigenvectors))
+        print('* Floquet Exponent kappa ='+str(self.kappa_val))
+        print('eigenvectors'+str(self.eigenvectors))
+        print('g1_init'+str(self.g1_init))
+        print('z0_init'+str(self.z0_init))
+        print('i0_init'+str(self.i0_init))
         
-        logging.debug('g1_init'+str(self.g1_init))
-        logging.debug('z0_init'+str(self.z0_init))
-        logging.debug('i0_init'+str(self.i0_init))
         
-        logging.info('* Floquet Exponent kappa ='+str(self.kappa_val))
+        #logging.debug('eigenvectors'+str(self.eigenvectors))
+        
+        #logging.debug('g1_init'+str(self.g1_init))
+        #logging.debug('z0_init'+str(self.z0_init))
+        #logging.debug('i0_init'+str(self.i0_init))
+        
+        #logging.info('* Floquet Exponent kappa ='+str(self.kappa_val))
         
         
     def load_g_sym(self):
@@ -919,8 +896,8 @@ class nBodyCoupling(object):
             files_do_not_exist = False
         
         
-        if self.recompute_g_sym or files_do_not_exist:
-            logging.info('* Computing g symbolic...')
+        if 'g_sym' in self.recompute_list or files_do_not_exist:
+            print('* Computing g symbolic...')
             
             # create symbolic derivative
             sym_collected = slib.generate_g_sym(self)  
@@ -935,7 +912,7 @@ class nBodyCoupling(object):
                               recurse=True)
                     
         else:
-            logging.info('* Loading g symbolic...')
+            print('* Loading g symbolic...')
             for key in self.var_names:
                 self.g['sym_'+key] = lib.load_dill(self.g['sym_fnames_'+key])
         
@@ -951,13 +928,13 @@ class nBodyCoupling(object):
             self.g['imp_'+key] = []
             self.g['lam_'+key] = []
         
-        logging.info('* Computing g...')
+        print('* Computing g...')
         for i in range(self.miter):
 
             fname = self.g['dat_fnames'][i]
             
             file_does_not_exist = not(os.path.isfile(fname))
-            if self.recompute_g or file_does_not_exist:
+            if 'g' in self.recompute_list or file_does_not_exist:
                 
                 het_vec = self.interp_lam(i,self.g,fn_type='g')
                 
@@ -972,9 +949,13 @@ class nBodyCoupling(object):
             self.save_temp_figure(data,i,'g')
             
             for j,key in enumerate(self.var_names):
-                fn = interpb(self.tLC,data[:,j],self.T)
-                #fn = interp1d(self.tLC,data[:,j],self.T,kind='cubic')
-                imp = imp_fn('g'+key+'_'+str(i),self.fmod(fn))
+                #fn = interpb(self.tlc,data[:,j],self.T)
+                #fn = interp1d(self.tlc,data[:,j],self.T,kind='cubic')
+                
+                fn = interp1d(self.tlc[0],self.tlc[-2],self.dtlc,data[:-1,j],p=True,k=5)
+                imp = imp_fn('g'+key+'_'+str(i),fn)
+                #imp = imp_fn('g'+key+'_'+str(i),self.fmod(fn))
+                
                 self.g['imp_'+key].append(imp)
                 self.g['lam_'+key].append(fn)                
         
@@ -1041,14 +1022,14 @@ class nBodyCoupling(object):
         
         # get full solution
         if backwards:
-            tLC = -self.tLC
+            tlc = -self.tlc
             
         else:
-            tLC = self.tLC
+            tlc = self.tlc
 
-        sol = solve_ivp(self._dg,[0,tLC[-1]],
+        sol = solve_ivp(self._dg,[0,tlc[-1]],
                         init,args=(k,het_vec),
-                        t_eval=tLC,
+                        t_eval=tlc,
                         method=self.method,
                         dense_output=True,
                         rtol=self.rtol,atol=self.atol)
@@ -1082,8 +1063,8 @@ class nBodyCoupling(object):
             files_do_not_exist = False
             
         
-        if self.recompute_het_sym or files_do_not_exist:
-            logging.info('* Computing heterogeneous terms...')
+        if 'het' in self.recompute_list or files_do_not_exist:
+            print('* Computing heterogeneous terms...')
             sym_collected = self.generate_het_sym()
             
             for i in range(self.miter):
@@ -1105,7 +1086,7 @@ class nBodyCoupling(object):
             dill.dump(self.A,open(self.A_fname,'wb'),recurse=True)
             
         else:
-            logging.info('* Loading heterogeneous terms...')
+            print('* Loading heterogeneous terms...')
             self.A, = lib.load_dill([self.A_fname])
             for key in self.var_names:
                 self.z['sym_'+key] = lib.load_dill(self.z['sym_fnames_'+key])
@@ -1179,12 +1160,12 @@ class nBodyCoupling(object):
             self.z['imp_'+key] = []
             self.z['lam_'+key] = []
             
-        logging.info('* Computing z...')
+        print('* Computing z...')
         for i in range(self.miter):
             
             fname = self.z['dat_fnames'][i]
-            file_does_not_exist = not(os.path.isfile(fname))
-            if self.recompute_z or file_does_not_exist:
+            file_dne = not(os.path.isfile(fname))
+            if 'z' in self.recompute_list or file_dne:
                 
                 het_vec = self.interp_lam(i,self.z,fn_type='z')
                 
@@ -1195,13 +1176,18 @@ class nBodyCoupling(object):
                 data = np.loadtxt(fname)
 
             self.z['dat'].append(data)
-                
-            self.save_temp_figure(data,i,'z')
+            
+            if self.plot:
+                self.save_temp_figure(data,i,'z')
             
             for j,key in enumerate(self.var_names):
-                fn = interpb(self.tLC,data[:,j],self.T)
-                #fn = interp1d(self.tLC,data[:,j],self.T,kind='cubic')
-                imp = imp_fn('z'+key+'_'+str(i),self.fmod(fn))
+                
+                fn = interp1d(self.tlc[0],self.tlc[-2],self.dtlc,data[:-1,j],p=True,k=5)
+                imp = imp_fn('z'+key+'_'+str(i),fn)
+                 
+                #fn = interpb(self.tlc,data[:,j],self.T)
+                #fn = interp1d(self.tlc,data[:,j],self.T,kind='cubic')
+                #imp = imp_fn('z'+key+'_'+str(i),self.fmod(fn))
                 self.z['imp_'+key].append(imp)
                 self.z['lam_'+key].append(fn)
 
@@ -1261,15 +1247,15 @@ class nBodyCoupling(object):
                                   backwards=backwards,dense=self.dense)
         
         if backwards:
-            tLC = -self.tLC
+            tlc = -self.tlc
             
         else:
-            tLC = self.tLC
+            tlc = self.tlc
             
-        sol = solve_ivp(self._dz,[0,tLC[-1]],
+        sol = solve_ivp(self._dz,[0,tlc[-1]],
                         init,args=(k,het_vec),
                         method=self.method,dense_output=True,
-                        t_eval=tLC,
+                        t_eval=tlc,
                         rtol=self.rtol,atol=self.atol)
         
         if backwards:
@@ -1280,8 +1266,12 @@ class nBodyCoupling(object):
         
         if k == 0:
             # normalize
-            dLC = self.rhs(0,self.LC_vec(0)[0],self.pardict_val)
-            zu = zu/(np.dot(dLC,zu[0,:]))*np.pi/self.T
+            if len(self.lc_vec(0)[0]) == 1:
+                in1 = np.squeeze(self.lc_vec(0))
+            else:
+                in1 = self.lc_vec(0)[0]
+            dlc = self.rhs(0,in1,self.pardict_val)
+            zu = zu/(np.dot(dlc,zu[0,:]))*2*np.pi/self.T
             
         
         return zu
@@ -1298,29 +1288,34 @@ class nBodyCoupling(object):
             self.i['imp_'+key] = []
             self.i['lam_'+key] = []
         
-        logging.info('* Computing i...')
+        print('* Computing i...')
         for i in range(self.miter):
 
             fname = self.i['dat_fnames'][i]
-            file_does_not_exist = not(os.path.isfile(fname))
+            file_dne = not(os.path.isfile(fname))
             
-            if self.recompute_i or file_does_not_exist:
+            if 'i' in self.recompute_list or file_dne:
 
                 het_vec = self.interp_lam(i,self.i,fn_type='i')
                 data = self.generate_i(i,het_vec)
-                np.savetxt(self.i['dat_fnames'][i],data)
+                np.savetxt(fname,data)
                 
             else:
                 data = np.loadtxt(fname)
 
             self.i['dat'].append(data)
             
-            self.save_temp_figure(data,i,'i')
+            if self.plot:
+                self.save_temp_figure(data,i,'i')
             
             for j,key in enumerate(self.var_names):
-                fn = interpb(self.tLC,data[:,j],self.T)
-                #fn = interp1d(self.tLC,data[:,j],self.T,kind='linear')
-                imp = imp_fn('i'+key+'_'+str(i),self.fmod(fn))
+                #fn = interpb(self.tlc,data[:,j],self.T)
+                #fn = interp1d(self.tlc,data[:,j],self.T,kind='linear')
+                #imp = imp_fn('i'+key+'_'+str(i),self.fmod(fn))
+                
+                fn = interp1d(self.tlc[0],self.tlc[-2],self.dtlc,data[:-1,j],p=True,k=5)
+                imp = imp_fn('i'+key+'_'+str(i),fn)
+                
                 self.i['imp_'+key].append(imp)
                 self.i['lam_'+key].append(fn)
                 
@@ -1397,14 +1392,14 @@ class nBodyCoupling(object):
                                    dense=self.dense)
 
         if backwards:
-            tLC = -self.tLC
+            tlc = -self.tlc
             
         else:
-            tLC = self.tLC
+            tlc = self.tlc
         
-        sol = solve_ivp(self._di,[0,tLC[-1]],init,
+        sol = solve_ivp(self._di,[0,tlc[-1]],init,
                         args=(k,het_vec),
-                        t_eval=tLC,
+                        t_eval=tlc,
                         method=self.method,dense_output=True,
                         rtol=self.rtol,atol=self.atol)
     
@@ -1428,24 +1423,24 @@ class nBodyCoupling(object):
             #    iu[:,-1] = 0
             
             # see Wilson 2020 PRE for normalization formula.
-            LC0 = []
+            lc0 = []
             g10 = []
             z00 = []
             i00 = []
         
             for varname in self.var_names:
                 key = 'lam_'+varname
-                LC0.append(self.LC[key](0))
+                lc0.append(self.lc[key](0))
                 g10.append(self.g[key][1](0))
                 z00.append(self.z[key][0](0))
                 i00.append(self.i[key][0](0))
                 
-            F = self.rhs(0,LC0,self.pardict_val)
+            F = self.rhs(0,lc0,self.pardict_val)
             g1 = np.array(g10)
             z0 = np.array(z00)
             i0 = np.array(i00)
             
-            J = self.jacLC(0)
+            J = self.jaclc(0)
             i1 = iu[0,:]
             
             ijg = np.dot(i0,np.dot(J,g1))
@@ -1453,9 +1448,9 @@ class nBodyCoupling(object):
             
             init = iu[0,:] + be*z0
 
-            sol = solve_ivp(self._di,[0,tLC[-1]],init,
+            sol = solve_ivp(self._di,[0,tlc[-1]],init,
                             args=(k,het_vec),
-                            t_eval=tLC,
+                            t_eval=tlc,
                             method=self.method,dense_output=True)
             
             iu = sol.y.T[::-1]
@@ -1499,9 +1494,10 @@ class nBodyCoupling(object):
         rule_trunc = {}
         for k in range(self.miter,self.miter+500):
             rule_trunc.update({self.eps**k:0})
+            
         
-        if self.recompute_k_sym or files_do_not_exist:
-            logging.info('* Computing K symbolic...')
+        if 'k_sym' in self.recompute_list or files_do_not_exist:
+            print('* Computing K symbolic...')
             
             self.generate_k_sym()
             
@@ -1510,6 +1506,7 @@ class nBodyCoupling(object):
                     
                     self.c[i]['vec'].append(sym.zeros(self.dim,1))
                     
+                    print(i,j,self.c[i]['vec'])
                     # save c in vector format
                     for key_idx,key in enumerate(self.var_names):
                         self.c[i]['vec'][j][key_idx] = self.c[i]['sym_'+key][j]
@@ -1528,11 +1525,8 @@ class nBodyCoupling(object):
                     self.c[i][key+'_collected'] = []
                     
                     for j in range(self.N):
-                        tmp = expand(self.c[i]['sym_'+key][j],basic=True,
-                                     deep=True,power_base=False,
-                                     power_exp=False,
-                                     mul=True,log=False,
-                                     multinomial=True)
+                        tmp = expand(self.c[i]['sym_'+key][j],
+                                     **self._expand_kws)
                         tmp = tmp.subs(rule_trunc)
                 
                         self.c[i][key+'_collected'].append(tmp)
@@ -1549,15 +1543,19 @@ class nBodyCoupling(object):
                     
                 
         else:
-            logging.info('* Loading K symbolic...')
+            print('* Loading K symbolic...')
             for key in self.var_names:
                 for i in range(self.N):
                     self.k[i]['sym_'+key] = []
                     
                     for j in range(self.N):
+                    
+                        self.c[i]['vec'].append(sym.zeros(self.dim,1))
                         
                         dat = lib.load_dill(self.k[i]['sym_fnames_'+key][j])
                         self.k[i]['sym_'+key].append(dat)
+                        
+                        self.c[i]['vec'][j] = lib.load_dill([self.c[i]['sym_fname'][j]])
 
             for i in range(self.N):
                 fnames = [self.c[i]['sym_fname'][j] for j in range(self.N)]
@@ -1568,6 +1566,7 @@ class nBodyCoupling(object):
         generate terms involving the coupling term (see K in paper).
         """
 
+       
         psym = self.pardict_sym # shorten for readability
         a = self.cmat
         fn = self.coupling # coupling function
@@ -1580,6 +1579,8 @@ class nBodyCoupling(object):
         c_all = sym.MutableDenseNDimArray(np.zeros(dims))
         self.c['sym'] = sym.MutableDenseNDimArray(np.zeros(dims))
 
+        print('self c before',self.c)
+         
         # get full coupling term for each oscillator i
         for i in range(self.N):
             for j in range(self.N):
@@ -1592,6 +1593,8 @@ class nBodyCoupling(object):
                 out = sym.flatten(a[i,j]*fn(z,psym,option='sym'))
                 c_all[i,j,:] = out
 
+        print('')
+        print('self c 1',self.c)
         # 0 and 1st derivative
         c_temp = {}
         for i in range(self.N):
@@ -1612,7 +1615,9 @@ class nBodyCoupling(object):
                     
                     d = lib.df(c_all[i,j,key_idx],z.T,1).dot(dz.T)
                     c_temp[i][j][key] += d
-                    
+        print('')
+        print('self c 2',self.c)
+        
         # 2nd + derivative
         for i in range(self.N):
             for j in range(self.N):
@@ -1631,6 +1636,8 @@ class nBodyCoupling(object):
                         da = lib.vec(lib.df(c_all[i,j,key_idx],z,k))
                         c_temp[i][j][key] += (1/math.factorial(k))*kp.dot(da)
 
+        print('')
+        print('self c 3',self.c)
         # save to c
         for key in self.var_names:
             
@@ -1650,6 +1657,7 @@ class nBodyCoupling(object):
             for i in range(self.N):
                 for j in range(self.N):
                     self.c[i]['sym_'+key][j] = self.c[i]['sym_'+key][j].subs(rule)
+        print('self c',self.c)
 
         return self.c
     
@@ -1658,24 +1666,38 @@ class nBodyCoupling(object):
         generate/load the het. terms for psi ODEs.
             
         to be solved using integrating factor meothod.        
-        p[i]['sym'][k] is the forcing function for oscillator i of order k
+        p['sym'][i,j,k] is the forcing function for oscillator i of order k
+        and specifically the term involving i and j.
+        
+        so the full forcing function for a given i and k would be the sum
+        over j. but we need to keep these terms distinct.
+        
+        After using the integrating factor method, each $p_i^{(k)}$ takes
+        the form
+        
+        $p_i^{(k)}(t) = \sum_{j=1}^N g_{ij}^{(k}(\theta_i(t),\theta_j(t))$.
+        
+        so a substitution of the above needs to be done for $k>1$.
+        
         """
+        
 
         val = 0
         for i in range(self.N):
-            val += not(lib.files_exist(self.p[i]['sym_fnames']))
+            for j in range(self.N):
+                val += not(lib.files_exist(list(self.p['sym_fnames'][i,j,:])))
 
         if val != 0:
             files_do_not_exist = True
         else:
             files_do_not_exist = False
 
-        dims = (self.N,self.miter)
+        dims = (self.N,self.N,self.miter)
         self.p['sym'] = sym.MutableDenseNDimArray(np.zeros(dims))
 
         eps = self.eps
-        if self.recompute_p_sym or files_do_not_exist:
-            logging.info('* Computing p symbolic...')
+        if 'p_sym' in self.recompute_list or files_do_not_exist:
+            print('* Computing p symbolic...')
             
             rule_trunc = {}
             for k in range(self.miter,self.miter+500):
@@ -1684,37 +1706,225 @@ class nBodyCoupling(object):
             for i in range(self.N):
                 logging.info('Oscillator '+str(i))
                 for j in range(self.N):
+                    #print(i,j,self.i[i]['vec'],self.c[i]['vec'][j])
+                    #print('')
                     
                     v1 = self.i[i]['vec']; v2 = self.c[i]['vec'][j]
                     
                     tmp = eps*v1.dot(v2)
 
-                    tmp = expand(tmp,basic=True,deep=True,
-                                 power_base=False,power_exp=False,
-                                 mul=True,log=False,multinomial=True)
+                    tmp = expand(tmp,**self._expand_kws)
                     
                     tmp = tmp.subs(rule_trunc)
                     tmp = collect(tmp,self.eps)
                     tmp = collect(expand(tmp),self.eps)
 
                     for k in range(self.miter):
+                        #print(i,j,k,tmp.coeff(self.eps,k))
                         
-                        self.p['sym'][i,k] += tmp.coeff(self.eps,k)
+                        self.p['sym'][i,j,k] += tmp.coeff(self.eps,k)
 
             # after saving each order k above to list, dill.
             for i in range(self.N):
-                for k in range(self.miter):
-                    fname = self.p[i]['sym_fnames'][k]
-                    dill.dump(self.p['sym'][i,k],
-                              open(fname,'wb'),recurse=True)
+                for j in range(self.N):
+                    for k in range(self.miter):
+                        fname = self.p['sym_fnames'][i,j,k]
+                        #print('fname',fname)
+                        dill.dump(self.p['sym'][i,j,k],
+                                  open(fname,'wb'),recurse=True)
 
         else:
-            logging.info('* Loading p symbolic...')
+            print('* Loading p symbolic...')
             for i in range(self.N):
+                for j in range(self.N):
+                    for k in range(self.miter):
+                        fname = self.p['sym_fnames'][i,j,k]
+
+                        dat = lib.load_dill([fname])[0]
+                        self.p['sym'][i,j,k] = dat
+                
+        #print('p sym',self.p['sym'][:,:,2])
+        
+        #self.rule_p.update({sym.Indexed('p'+str(i),k):expr})
+        
+        #self._evaluate_p_expansions()
+        
+    def _evaluate_p_expansions(self):
+        """
+        This function takes the above forcing function values, which
+        contain p_i^{(k)} for k>1. These p_i^{(k)} for k>1 must be 
+        substituted into the forcing functions before computing
+        the higher-order terms.
+        
+        sym.Indexed('p',i,k) for p
+        sym.Indexed('gg',i,j,k) for individual terms.
+        """
+        
+        self.rule_p2g = {}
+        # create substitution for p to pg
+        for k in range(self.miter):
+            for i in range(self.N):
+                gsyms = 0
+                
+                
+                for j in range(self.N):
                     
-                fname = self.p[i]['sym_fnames']
-                dat = lib.load_dill(fname)
-                self.p['sym'][i,:] = dat
+                    if i != j:
+                        gsyms += sym.Indexed('gg',i,j,k)
+
+                self.rule_p2g.update({sym.Indexed('p',i,k):gsyms})
+                
+        #print('rule p2g',self.rule_p2g)
+        
+        # substitute into each p sym.
+        for i in range(self.N):
+            for j in range(self.N):
+                for k in range(self.miter):
+                    self.p['sym'][i,j,k] = self.p['sym'][i,j,k].subs(self.rule_p2g)
+        
+        
+    def load_pg(self):
+        #for i in range(self.N):
+        #        for j in range(self.N):
+        #            for k in range(self.miter):
+        
+        
+        
+        
+        
+        #self.load_pg1(0,0,1)
+        
+        for k in range(self.miter):
+            for i in range(self.N):
+                for j in range(self.N):
+                    if i!=j:
+                        self.load_pg1(i,j,k)
+                    
+                    
+        print('rule_pg',self.rule_pg)
+        
+        print('')
+    
+        #sys.exit()
+    
+    def load_pg1(self,i,j,k):
+    
+        if k == 0:
+            #p0 is 0 (no forcing function)
+            return np.zeros((self.NP,self.NP))
+    
+        fname = self.pg['dat_fnames'][i,j,k]
+        file_dne = not(os.path.isfile(fname))
+        
+        if 'pg' in self.recompute_list or file_dne:
+            data = self.generate_pg1(i,j,k)
+            
+            np.savetxt(fname,data)
+            
+        else:
+            data = np.loadtxt(fname)
+        
+        #pg_interp = interp2d(self.pn,self.pn,data,k=1
+        pg_interp = interp2d([0,0],[self.pn[-2],self.pn[-2]],
+                             [self.dpn,self.dpn],
+                             data,k=5,p=[True,True])
+        
+        ta = self.ths[i];tb = self.ths[j]
+        name = 'gg_{}{}{}'.format(i,j,k)
+        pg_imp = imp_fn(name,self.fLam2(pg_interp,i,j))
+        
+        print('pg_imp',pg_imp)
+        
+        lamtemp = lambdify([ta,tb],pg_imp(ta,tb))
+        
+        
+        # imp, lam, subs rule here.
+        self.rule_pg.update({sym.Indexed('gg',i,j,k):pg_imp(ta,tb)})
+        
+        xtmp = np.linspace(0,1,3)
+        ytmp = np.linspace(1,2,3)
+        print('gp_interp',pg_interp(xtmp,ytmp),'lamtemp',lamtemp(xtmp,ytmp))
+            
+        
+            
+    def generate_pg1(self,i,j,k):
+    
+        pg_data = np.zeros((self.NP,self.NP))
+    
+        if i==j:
+            return pg_data
+    
+    
+        rule = {**self.rule_lc['glo'],**self.rule_i['glo'],
+                **self.rule_g['glo'],
+                **self.rule_par,**self.rule_pg}
+                
+        in2 = [self.ths[i],self.ths[j]]
+        
+        self.p['imp'][i,j,k] = self.p['sym'][i,j,k].subs(rule)
+        
+        pg1_imp = self.p['imp'][i,j,k]
+        pg1_lam = lambdify(in2,pg1_imp)
+        
+        print(i,j,k,pg1_imp)
+        
+        s1 = np.arange(0,self.T*self.p_iter,self.dpn)
+        exponential = np.exp(s1*self.kappa_val)
+        fb = fftw(exponential)
+        
+        a_i = np.arange(self.NP,dtype=int)
+        
+        #print('pg1_lam',i,j,k,pg1_lam(s1,s1-s1[0]))
+        
+        for i in range(self.NP):
+            f1 = pg1_lam(s1,s1-s1[i])
+            
+            #f1_gpu = cp.array(f1)
+            #fa_gpu = scipy.fft.fft(f1_gpu)
+            #c_gpu = fa_gpu*fb_gpu
+            #conv = np.array(conv_gpu.get())
+            #conv_gpu = scipy.fft.ifft(c_gpu)*dg_noend
+            
+            fa = fftw(f1)
+            conv = ifftw(fa*fb)*self.dpn
+            
+            pg_data[a_i,a_i-i] = conv[len(s1)-self.NP:len(s1)].real
+        
+        return pg_data
+        
+    def load_p(self,i,k):
+        rule = self.rule_par
+        
+        fname = self.p['dat_fnames'][i,k]
+        file_dne = not(os.path.isfile(fname))
+
+        if 'p' in self.recompute_list or file_dne:
+            print('* Computing p...')
+            
+            p_data = self.generate_p(i,k)
+            
+        else:
+            print('* Loading p...')
+            p_data = np.loadtxt(fname)
+        
+        
+        p_interp0 = interp2d(self.pn,self.pn,p_data,k=1)
+        
+        ta = self.ths[i];tb = self.ths[j]
+        name = 'p_{}{}{}'.format(i,j,k)
+        
+        p_imp = imp_fn(name,self.fLam_ij(p_interp0,i,j))
+        lamtemp = lambdify(self.ths,p_imp(ta,tb))
+        
+        self.p['dat'][i,k] = p_data
+        
+    def generate_p(self,i,k):
+        if k == 0:
+            NP = self.NP
+            #p0 is 0 (no forcing function)
+            return np.zeros((NP,NP))
+            
+        
 
     def load_gij(self):
         """
@@ -1800,12 +2010,12 @@ class nBodyCoupling(object):
                             suffix = '_'.join(str(mul_sub).split('*'))
                             suffix = suffix.replace('[','')
                             suffix = suffix.replace(']','')
-                            fname = '{}gij_{}{}_{}_NG={}.txt'
+                            fname = r'{}gij_{}{}_{}_NG={}.txt'
                             fname = fname.format(self.dir,i,k,suffix,self.NG)
                             
                             file_does_not_exist = not(os.path.isfile(fname))
                             
-                            if self.recompute_gij or file_does_not_exist:
+                            if 'g' in self.recompute_list or file_does_not_exist:
                                 out = self._gij_conv(i_idx,j_idx,fni,fnj,fb,s1_b)
                                 i_idx,j_idx,gij_data,fni,fnj = out
                                 np.savetxt(fname,gij_data)
@@ -1820,7 +2030,9 @@ class nBodyCoupling(object):
                                 
                                 name = 'gca{}{}_{}_{}_{}'.format(i,k,l,ll,suffix)
                                 
-                                g_ij_interp = interpb(self.garr_noend,gij_data,self.T)
+                                #g_ij_interp = interpb(self.garr_noend,gij_data,self.T)
+                                g_ij_interp = interp1d(self.garr_noend[0],self.garr_noend[-2],
+                                                      self.dg_noend,gij_data[:-1],k=3,p=True)
                                 
                                 g_ij_imp = imp_fn(name,g_ij_interp)
                                 rule = {mul_sub:g_ij_imp(t1)}
@@ -1833,6 +2045,11 @@ class nBodyCoupling(object):
                                                        self.garr_noend,
                                                        gij_data,k=1)
                                 
+                                
+                                #g_ij_interp = interp2d([0,0],[self.garr_noend[-2],self.garr_noend[-2]],
+                                #                       [self.dg_noend,self.dg_noend],
+                                #                       gij_data,k=3,p=[True,True])
+                                
                                 # substitute back into expression.
                                 #name = 'gconvb{}{}_{}_{}'.format(i,k,l,ll)
                                 name = 'gcb{}{}_{}'.format(i,k,suffix)
@@ -1843,7 +2060,8 @@ class nBodyCoupling(object):
                                 
                                 
                                 # brute check
-                                #lamtemp = lambdify(self.ths,g_ij_imp(t1,t2))
+                                lamtemp = lambdify(self.ths,g_ij_imp(t1,t2))
+                                #print('gij check?',name,lamtemp(0,1,1))
                                 #fig,axs = plt.subplots(1,1)
                                 #p = np.zeros(500)
                                 #t2 = np.linspace(0,5*self.T,len(p))
@@ -1958,11 +2176,11 @@ class nBodyCoupling(object):
         j_idx = idx2#fnj_idx[0]
         
         
-        fni = fni.subs(self.rule_LC['glo'])
+        fni = fni.subs(self.rule_lc['glo'])
         fni = fni.subs(self.rule_g['glo'])
         fni = fni.subs(self.rule_i['glo'])
         
-        fnj = fnj.subs(self.rule_LC['glo'])
+        fnj = fnj.subs(self.rule_lc['glo'])
         fnj = fnj.subs(self.rule_g['glo'])
         fnj = fnj.subs(self.rule_i['glo'])
         
@@ -2045,7 +2263,114 @@ class nBodyCoupling(object):
             fn_split = str(fn).split('[')
             return (int(fn_split[0][-1]),int(fn_split[-1][0]))
 
-    def load_p(self):
+    def load_p_old(self,i,j,k):
+    
+        rule = self.rule_par
+        
+        fname = self.p['dat_fnames'][i,j,k]
+        file_dne = not(os.path.isfile(fname))
+
+        if 'p' in self.recompute_list or file_dne:
+            print('* Computing p...')
+            
+            p_data = self.generate_p(i,j,k)
+
+            #p_interp0 = interp2d([0,0],[2*np.pi,2*np.pi],
+            #                 [self.dan,self.dan],
+            #                 p_data,k=3,p=[True,True])
+            
+            
+
+            # fix indexing (see check_isostable.ipynb)
+            #X,Y = np.meshgrid(self.an,self.an,indexing='ij')
+            #p_data = p_interp0(X+Y*self.om,Y)
+                
+            np.savetxt(fname,p_data)
+
+        else:
+            print('* Loading p...')
+            p_data = np.loadtxt(fname)
+            
+        
+        p_interp0 = interp2d(self.pn,self.pn,p_data,k=1)
+        
+        ta = self.ths[i];tb = self.ths[j]
+        name = 'p_{}{}{}'.format(i,j,k)
+        
+        p_imp = imp_fn(name,self.fLam_ij(p_interp0,i,j))
+        lamtemp = lambdify(self.ths,p_imp(ta,tb))
+        
+        self.p['dat'][i,j,k] = p_data
+
+        if k == 0:
+            imp = imp_fn('p_'+self.model_name+'_0', lambda x: 0*x)
+            system1.p['imp'][k] = imp
+            system1.p['lam'][k] = 0
+        
+        if system1.save_fig:
+            
+            fig,axs = plt.subplots()
+            axs.imshow(p_data)
+            plt.savefig('figs_temp/p_'+system1.model_name+str(k)+'.png')
+            plt.close()
+
+        # put these implemented functions into the expansion
+        self.rule_p.update({sym.Indexed('p_{}{}'.format(i,k)):
+                               self.p[i]['imp'][k](ta,tb)})
+
+    def generate_p_old(self,i,k):
+
+        NP = self.NP
+        if k == 0:
+            #pA0 is 0 (no forcing function)
+            return np.zeros((NP,NP))
+
+        kappa1 = self.kappa_val
+
+        rule = {**self.rule_p,**self.rule_p,**self.rule_par,
+                **self.rule_par,**self.rule_lc,**self.rule_lc,
+                **self.rule_i,**self.rule_i,**self.rule_g,
+                **self.rule_g}
+        
+        ph_imp1 = self.p[i]['sym'][k].subs(rule)
+        
+        print(ph_imp1)
+        if k >= 1 and i == 2:
+            sys.exit()
+
+        if ph_imp1 == 0:
+            return np.zeros((NP,NP))
+        lam1 = lambdify(self.ths,ph_imp1)
+        het1 = np.zeros((NP,int(self._m[1]*NP)))
+
+        # get lam1 for testing
+        if True:
+            X,Y = np.meshgrid(self.an,self.an,indexing='ij')
+
+            fig,axs = plt.subplots()
+            im = axs.imshow(lam1(X,Y))
+            plt.colorbar(im,ax=axs)
+            plt.savefig('figs_temp/lam_heta_'+str(k)+'.png')
+            plt.close()
+                   
+        an=self.an;dan=self.dan;pfactor=self.pfactor
+        NP=self.NP;s=np.arange(0,self.T*pfactor*self._m[1],dan)
+            
+        fac = self.om*(1-system1.idx) + system1.idx
+        exp1 = exp(fac*s*system1.kappa_val)
+
+        g_in = np.fft.fft(exp1)
+        a_i = np.arange(NP,dtype=int)
+        
+        for ll in range(len(an)):
+
+            f_in = np.fft.fft(lam1(an[ll]+self.om*s,+s))
+            conv = np.fft.ifft(f_in*g_in)            
+            het1[(a_i+ll)%NP,a_i] = conv[-NP:].real
+
+        return fac*het1*dan
+
+    def load_p_old(self):
         """
         insert lower order p[i] into higher order terms
         """
@@ -2088,8 +2413,8 @@ class nBodyCoupling(object):
 
         a = self.cmat # coupling matrix
         
-        if self.recompute_h_sym or files_do_not_exist:
-            logging.info('* Computing H symbolic...')
+        if 'h_sym' in self.recompute_list or files_do_not_exist:
+            print('* Computing H symbolic...')
             
             # simplify expansion for speed
             rule_trunc = {}
@@ -2124,7 +2449,7 @@ class nBodyCoupling(object):
                               open(fname,'wb'),recurse=True)
                 
         else:
-            logging.info('* Loading H symbolic...')
+            print('* Loading H symbolic...')
                               
             for i in range(self.N):
                     
@@ -2171,9 +2496,9 @@ class nBodyCoupling(object):
                 
                 file_does_not_exist = not(os.path.isfile(fname))
                 
-                if self.recompute_h or file_does_not_exist:
+                if 'h' in self.recompute_list or file_does_not_exist:
 
-                    logging.info('* Computing H i={}, order={}...'.format(i,k))
+                    print('* Computing H i={}, order={}...'.format(i,k))
                     
                     if self.max_n > -1:
                         
@@ -2189,24 +2514,28 @@ class nBodyCoupling(object):
                         np.savetxt(fname,data)
 
                 else:
-                    logging.info('* Loading H i={}, order={}...'.format(i,k))
+                    print('* Loading H i={}, order={}...'.format(i,k))
                     if self.max_n > -1:
                         fn1 = self.h[i]['lam_fnames_fourier'][k]
                         lam = lib.load_dill([fn1])[0]
                     else:
                     
-                        data = np.loadtxt(fname)                        
-                        lam_avg = interp2d(t,t,data,k=1)
+                        data = np.loadtxt(fname)           
 
-                        name = 'h{}{}'.format(i,k)
-                        if self.N == 2:
-                            himp = imp_fn(name,self.fLam_ij(lam_avg,0,1))
-                            lam = lambdify([self.ths[0],self.ths[1]],
-                                            himp(self.ths[0],self.ths[1]))
-                        else:
-                            himp = imp_fn(name,self.fLam_ij(lam_avg,1,2))
-                            lam = lambdify([self.ths[1],self.ths[2]],
-                                            himp(self.ths[1],self.ths[2]))
+                #lam_avg = interp2d([0,0],[t[-2],t[-2]],
+                #                   [self.dxA_noend,self.dxA_noend],
+                #                   data,k=3,p=[True,True])
+                lam_avg = interp2d(t,t,data,k=1)
+
+                name = 'h{}{}'.format(i,k)
+                if self.N == 2:
+                    himp = imp_fn(name,self.fLam_ij(lam_avg,0,1))
+                    lam = lambdify([self.ths[0],self.ths[1]],
+                                    himp(self.ths[0],self.ths[1]))
+                else:
+                    himp = imp_fn(name,self.fLam_ij(lam_avg,1,2))
+                    lam = lambdify([self.ths[1],self.ths[2]],
+                                    himp(self.ths[1],self.ths[2]))
                 self.h[i]['lam'].append(lam)        
                 
     def generate_h_brute(self,i,k,idxarr1,idxarr2):
@@ -2216,7 +2545,7 @@ class nBodyCoupling(object):
         """
         rule = {**self.rule_p,**self.rule_par,
                 **self.rule_i['glo'],**self.rule_g['glo'],
-                **self.rule_z['glo'],**self.rule_LC['glo']}
+                **self.rule_z['glo'],**self.rule_lc['glo']}
         
         del rule[0]
         assert(self.N == 3)
@@ -2231,11 +2560,12 @@ class nBodyCoupling(object):
         T = self.T
 
         expr = self.h['sym'][i,k].subs(rule)
+        print('expr',expr)
         
         global ths,lam,t1,dt1,data,idxarr11d,idxarr21d,a_i
         ths = self.ths
         lam = lambdify(ths,expr)
-        t1,dt1 = np.linspace(0,T,3000,endpoint=False,retstep=True)
+        t1,dt1 = np.linspace(0,T,1000,endpoint=False,retstep=True)
         
         start = time.time()
         data = np.zeros((N-1)*(NA,)).reshape((NA**(N-1),))
@@ -2282,7 +2612,7 @@ class nBodyCoupling(object):
         pool = _ProcessPool(processes=self.processes,maxtasksperchild=1)
 
         for x in tqdm.tqdm(pool.imap(get_avg,a_i,
-                        chunksize=1000),
+                        chunksize=200),
                         total=len(a_i)):
                        
             ll, avg = x
@@ -2310,7 +2640,7 @@ class nBodyCoupling(object):
                         
         rule = {**self.rule_p,**self.rule_par,
                 **self.rule_i['glo'],**self.rule_g['glo'],
-                **self.rule_z['glo'],**self.rule_LC['glo']}
+                **self.rule_z['glo'],**self.rule_lc['glo']}
         
         del rule[0]
         
@@ -2881,13 +3211,13 @@ class nBodyCoupling(object):
         
         z: position
         t: time
-        jacLC: jacobian on LC
+        jaclc: jacobian on lc
         het: heterogeneous terms
         
         order determines the Taylor expansion term
         """
 
-        jac = self.jacLC(t)*(order > 0)
+        jac = self.jaclc(t)*(order > 0)
         hom = np.dot(jac-order*self.kappa_val*self.eye,z.T)
         out = hom + het_vec(t).T
     
@@ -2899,13 +3229,13 @@ class nBodyCoupling(object):
         
         z: position
         t: time
-        jacLC: jacobian on LC
+        jaclc: jacobian on lc
         het: heterogeneous terms
         
         order determines the Taylor expansion term
         """
         
-        hom = np.dot(self.jacLC(t).T+order*self.kappa_val*self.eye,z.T)
+        hom = np.dot(self.jaclc(t).T+order*self.kappa_val*self.eye,z.T)
         out = -hom - het_vec(t).T
         
         return out
@@ -2916,13 +3246,13 @@ class nBodyCoupling(object):
         
         z: position
         t: time
-        jacLC: jacobian on LC
+        jaclc: jacobian on lc
         het: heterogeneous terms
         
         order determines the Taylor expansion term
         """
         
-        hom = np.dot(self.jacLC(t).T+(order-1)*self.kappa_val*self.eye,z)
+        hom = np.dot(self.jaclc(t).T+(order-1)*self.kappa_val*self.eye,z)
         out = -hom - het_vec(t).T
         
         return out
@@ -2953,7 +3283,7 @@ class nBodyCoupling(object):
             
             rule.update(tmp)
         
-        rule = {**rule,**self.rule_LC['loc'],**self.rule_par}
+        rule = {**rule,**self.rule_lc['loc'],**self.rule_par}
         if fn_type == 'z':
             rule.update({**self.rule_g['loc']})
         
@@ -2973,11 +3303,14 @@ class nBodyCoupling(object):
             elif sym_fn == 0:
                 y= np.zeros(self.TN)
             else:
-                y = lam(self.tLC)
+                y = lam(self.tlc)
                         
             # save as implemented fn
-            interp = interpb(self.LC['t'],y,self.T)
-            imp = imp_fn(key,self.fmod(interp))
+            fn = interp1d(self.tlc[0],self.tlc[-2],self.dtlc,y[:-1],p=True,k=5)
+            imp = imp_fn(key,fn)
+            
+            #interp = interpb(self.lc['t'],y,self.T)
+            #imp = imp_fn(key,self.fmod(interp))
             het_imp[i] = imp(self.t)
             
         het_vec = lambdify(self.t,het_imp,modules='numpy')
@@ -3004,6 +3337,15 @@ class nBodyCoupling(object):
         return lambda ti=self.ths[i],tj=self.ths[j]: fn(np.mod(ti,self.T),
                                                         np.mod(tj,self.T))
 
+
+
+    def fLam2(self,fn,i,j):
+        """
+        interp2d object from fast_interp
+        """
+        return lambda ti=self.ths[i],tj=self.ths[j]: fn(ti,tj)
+        
+        
     def save_temp_figure(self,data,k,fn='plot',path_loc='figs_temp/'):
         """
         data should be (TN,dim)
@@ -3016,7 +3358,7 @@ class nBodyCoupling(object):
         
         for j,ax in enumerate(axs):
             key = self.var_names[j]
-            ax.plot(self.tLC,data[:,j],label=key)
+            ax.plot(self.tlc,data[:,j],label=key)
             ax.legend()
             
         logging.info(fn+str(k)+' ini'+str(data[0,:]))
