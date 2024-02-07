@@ -50,8 +50,8 @@ I have no immediate plans to release the nBodyCoupling script as an installable 
 
 # Reproduce Figures
 
-To reproduce the figures in Park and Wilson 2020, cd to the examples directory and run
+To reproduce figures, cd to the examples directory and run
 
    $ generate_figures.py
 
-This file will call the complex Ginzburg-Landau (CGL) model file (CGL.py) and the thalamic model file (Thalamic.py) and generate the figures from the paper. I've taken care of most of the work and made sure that the code uses saved data files for figure generation as opposed to computing everything from scratch. If you don't have the data files, it will take a while to run, and will use 8 cores by default. Make sure to edit the keyword arguments (documented in the nBodyCoupling section below) if you wish to use more or less cores.
+This file will call the complex Ginzburg-Landau (CGL) model file (cgl3.py) and the thalamic model file (thal3.py) and generate the figures from the paper. I've taken care of most of the work and made sure that the code uses saved data files for figure generation as opposed to computing everything from scratch. If you don't have the data files, it will take a while to run, and will use 8 cores by default. Make sure to edit the keyword arguments (documented in the nBodyCoupling section below) if you wish to use more or less cores.
