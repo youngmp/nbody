@@ -125,9 +125,9 @@ def coupling(vars_pair,pdict,option='val'):
     
         """
         vA, hA, rA, wA, vB, hB, rB, wB = vars_pair
-
+        
         if option == 'val':
-            return -np.array([wB*(vA*100-pdict['esyn']),0,0,0])/pdict['c']/100
+            return -np.array([wB*(vA*100-pdict['esyn']),0*wB,0*wB,0*wB])/pdict['c']/100
         else:
             return -Matrix([wB*(vA*100-pdict['esyn']),0,0,0])/pdict['c']/100
 
@@ -147,9 +147,6 @@ def coupling_mat(N,option='val'):
         #a = sym.MatrixSymbol('a',N,N)
         a = sym.Matrix(N,N, lambda i,j:sym.var('a_%d%d' % (i,j)))
         
-        for i in range(N):
-            a[i,i] = 0
-            
         return a
 
 import numba as nb
@@ -190,25 +187,7 @@ def main():
                'ib_val':3.5}
     
     
-    kwargs = {'recompute_LC':False,
-              'recompute_monodromy':False,
-              'recompute_g_sym':False,
-              'recompute_g':False,
-              'recompute_het_sym':False,
-              'recompute_z':False,
-              'recompute_i':False,
-
-              
-              'recompute_k_sym':False,
-              'recompute_p_sym':False,
-              
-              'recompute_gij':False,
-              
-              'recompute_h_sym':False,
-              'recompute_h':args.recompute_h,
-              'z_forward':[False,True,True,True],
-              'i_forward':[False,False,True,False,False,False,False],
-              'i_bad_dx':True,
+    kwargs = {
 
               'N':3,
               'coupling_mat':coupling_mat,
@@ -216,7 +195,6 @@ def main():
               'trunc_order':2,
               'max_n':25,
               
-              'LC_rate':1,
               'ignore_var':True,
 
               'NG':100,
@@ -230,9 +208,8 @@ def main():
               'atol':1e-9,
               'rel_tol':1e-7,
               'LC_tol':1e-10,
-              'method':'LSODA',
               'load_all':True,
-              'LC_long_sim_time':1500,
+              'save_fig':True,
               'log_level':'DEBUG'}
     
     #T_init = 10.6
@@ -251,10 +228,10 @@ def main():
     kwargs['i_forward'] = [False,False,False]
     T_init = 34.7
     
-    LC_init = np.array([-.05467127, 0.3326327, 0.3430555, 0.4488427,T_init])
+    lc_init = np.array([-.05467127, 0.3326327, 0.3430555, 0.4488427,T_init])
     #LC_init = np.array([-.5927,0.99,0.507,.006,T_init]) # for ib=.6
     
-    a = nBodyCoupling(rhs,coupling,LC_init,var_names,pardict,**kwargs)
+    a = nBodyCoupling(rhs,coupling,lc_init,var_names,pardict,**kwargs)
 
     pdict = {}
     for key in pardict.keys():

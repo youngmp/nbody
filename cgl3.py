@@ -32,7 +32,7 @@ from scipy.integrate import solve_ivp
 
 import argparse
 
-def rhs(t, z, pdict, option='value'):
+def rhs(t,z,pdict,option='value',idx=''):
     """
     Right-hand side of the Complex Ginzburgh-Landau (CGL) model from
     Wilson and Ermentrout RSTA 2019 
@@ -60,12 +60,13 @@ def rhs(t, z, pdict, option='value'):
 
     """
 
+    idx = str(idx)
+    
     x,y = z
     R2 = x**2 + y**2
-    mu = pdict['mu']
-    sig = pdict['sig']
-    rho = pdict['rho']
-
+    mu = pdict['mu'+idx]
+    sig = pdict['sig'+idx]
+    rho = pdict['rho'+idx]
 
     if option == 'value' or option == 'val':
         return np.array([sig*x*(mu-R2)-y*(1+rho*(R2-mu)),
@@ -130,9 +131,6 @@ def coupling_mat(N,option='val'):
         #a = sym.MatrixSymbol('a',N,N)
         a = sym.Matrix(N,N, lambda i,j:sym.var('a_%d%d' % (i,j)))
         
-        for i in range(N):
-            a[i,i] = 0
-
         print('a',a)
             
         return a
@@ -160,20 +158,8 @@ def main():
         key2 = key[:-4]
         pdict[key2] = pardict[key]
 
-    kwargs = {'recompute_LC':False,
-              'recompute_monodromy':False,
-              'recompute_g_sym':False,
-              'recompute_g':False,
-              'recompute_het_sym':False,
-              'recompute_z':False,
-              'recompute_i':False,
-              'recompute_k_sym':False,
-              'recompute_p_sym':False,
-              'recompute_p':False,
-              'recompute_gij':False,
-              'recompute_h_sym':False,
+    kwargs = {'recompute_list':['pg'],
               
-              'recompute_h':args.recompute_h,
               'g_forward':False,
               'i_forward':False,
               'z_forward':False,
@@ -181,13 +167,14 @@ def main():
 
               'N':3,
               'coupling_mat':coupling_mat,
-              'dir':'data/dat_cgln/',
+              'dir':'data/dat_cgl3/',
               
-              'max_n':11,
+              'max_n':-1,
               'trunc_order':2,
               'trunc_deriv':1,
               'NA':101,
               'NG':101,
+              'NP':101,
               'gij_parallel':False,
               'p_iter':5,
               'TN':5000,
@@ -195,13 +182,15 @@ def main():
               'atol':1e-8,
               'rel_tol':1e-6,
               'method':'LSODA',
-              'load_all':True}
+              'load_all':True,
+              'plot':False,
+              'log_level':'INFO'}
 
     T_init = 2*np.pi
-    LC_init = np.array([1,0,T_init])
+    lc_init = np.array([1,0,T_init])
 
     # for NIC, 3rd derivatives go away, so we only need trunc_gh=3.
-    a = nBodyCoupling(rhs,coupling,LC_init,var_names,pardict,**kwargs)
+    a = nBodyCoupling(rhs,coupling,lc_init,var_names,pardict,**kwargs)
 
     
 if __name__ == "__main__":
