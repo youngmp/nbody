@@ -28,23 +28,27 @@ def generate_expansions(obj):
     psi = obj.psi
     
     for key in obj.var_names:
-        sg = Sum(psi**i_sym*Indexed('g'+key,i_sym),(i_sym,1,obj.miter))
-        sz = Sum(psi**i_sym*Indexed('z'+key,i_sym),(i_sym,0,obj.miter))
-        si = Sum(psi**i_sym*Indexed('i'+key,i_sym),(i_sym,0,obj.miter))
+        sg = Sum(psi**i_sym*Indexed('g'+key,i_sym),(i_sym,1,obj.miter-1))
+        sz = Sum(psi**i_sym*Indexed('z'+key,i_sym),(i_sym,0,obj.miter-1))
+        si = Sum(psi**i_sym*Indexed('i'+key,i_sym),(i_sym,0,obj.miter-1))
         
         obj.g['expand_'+key] = sg.doit()
         obj.z['expand_'+key] = sz.doit()
         obj.i['expand_'+key] = si.doit()
     
     obj.z['vec'] = sym.zeros(obj.dim,1)
+    obj.i['vec'] = sym.zeros(obj.dim,1)
+    obj.g['vec'] = sym.zeros(obj.dim,1)
     
     for i,key in enumerate(obj.var_names):
         obj.z['vec'][i] = [obj.z['expand_'+key]]
+        obj.i['vec'][i] = [obj.i['expand_'+key]]
+        obj.g['vec'][i] = [obj.g['expand_'+key]]
     
     # for computing derivatives
     obj.dx_vec = sym.zeros(1,obj.dim) 
     obj.x_vec = sym.zeros(obj.dim,1)
-    
+
     for i,name in enumerate(obj.var_names):
         # save var1, var2, ..., varN
         symname = symbols(name)
@@ -69,7 +73,7 @@ def load_coupling_expansions(obj,recompute=False):
     # for solution of isostables in terms of theta.
 
     for i in range(obj.N):
-        obj.p[i]['expand'] = Sum(eps**k*Indexed('p'+str(i),k),
+        obj.p[i]['expand'] = Sum(eps**k*Indexed('p',i,k),
                                  (k,1,obj.miter)).doit()
     
     for key in obj.var_names:
@@ -268,7 +272,7 @@ def load_jac_sym(obj):
     obj: nBodyCoupling object
     lambdify the jacobian matrix evaluated along limit cycle
     """
-    # symbol J on LC.
+    # symbol J on lc.
     obj.jac_sym = sym.zeros(obj.dim,obj.dim)
     
     for i in range(obj.dim):
@@ -278,6 +282,6 @@ def load_jac_sym(obj):
             
             obj.jac_sym[i,j] = diff(fn,var)
     
-    rule = {**obj.rule_LC,**obj.rule_par}
+    rule = {**obj.rule_lc,**obj.rule_par}
     # callable jacobian matrix evaluated along limit cycle
-    obj.jacLC = lambdify((obj.t),obj.jac_sym.subs(rule))
+    obj.jaclc = lambdify((obj.t),obj.jac_sym.subs(rule))
