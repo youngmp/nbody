@@ -1,0 +1,1500 @@
+
+\documentclass[10pt, a4paper]{article}
+\usepackage{amsmath}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+
+\begin{document}
+
+What follows are the terms for $\mathcal{H}_1^{(3)}$. While it is possible to further simplify the expression, we argue that proceeding numerically may be more fruitful.
+
+\begin{flushleft}
+    \linespread{2.5}\selectfont
+    %\leftskip=0em
+    \hspace*{-3em}$\displaystyle
+    \frac{1}{\kappa }(16 e^{-3 i (\theta _1+\theta _2)} (e^{i \theta _1}-e^{i \theta _2}) (e^{i \theta _1}
+        (\hat{c}_1){}^*-e^{i \theta _2} \hat{c}_1) (-e^{2 i (\theta _1+\theta _2)} a_g^2
+        d^2-e^{4 i \theta _2} (a_i){}^* (a_Z){}^* a_L^2 d^2-e^{2 i (\theta _1+\theta _2)}
+        (a_i){}^* (a_Z){}^* a_L^2 d^2+2 e^{i (\theta _1+3 \theta _2)} (a_i){}^*
+        (a_Z){}^* a_L^2 d^2+e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_g a_i d^2-e^{i (3
+            \theta _1+\theta _2)} (a_L){}^* a_g a_i d^2-e^{2 i (\theta _1+\theta _2)}
+        (a_i){}^* a_g a_L d^2+e^{i (\theta _1+3 \theta _2)} (a_i){}^* a_g a_L d^2-e^{2 i
+            (\theta _1+\theta _2)} (a_Z){}^* a_g a_L d^2+e^{i (\theta _1+3 \theta _2)}
+        (a_Z){}^* a_g a_L d^2+2 e^{2 i (\theta _1+\theta _2)} (a_L){}^* (a_Z){}^* a_i
+        a_L d^2-e^{i (3 \theta _1+\theta _2)} (a_L){}^* (a_Z){}^* a_i a_L d^2-e^{i (\theta
+            _1+3 \theta _2)} (a_L){}^* (a_Z){}^* a_i a_L d^2+e^{2 i (\theta _1+\theta _2)}
+        (a_L){}^* a_g a_Z d^2-e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_g a_Z d^2-e^{4 i \theta
+            _1} ((a_L){}^*){}^2 a_i a_Z d^2-e^{2 i (\theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z d^2+2 e^{i (3 \theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z d^2+2 e^{2 i (\theta _1+\theta _2)} (a_i){}^*
+        (a_L){}^* a_L a_Z d^2-e^{i (3 \theta _1+\theta _2)} (a_i){}^* (a_L){}^* a_L
+        a_Z d^2-e^{i (\theta _1+3 \theta _2)} (a_i){}^* (a_L){}^* a_L a_Z d^2-2 i e^{2 i
+            (\theta _1+\theta _2)} a_g^2 d-2 i e^{2 i (\theta _1+\theta _2)} \kappa  (\hat{c}_1){}^*
+        a_g^2 d+2 i e^{i (3 \theta _1+\theta _2)} \kappa  (\hat{c}_1){}^* a_g^2 d-2 i e^{4 i \theta _2}
+        (a_i){}^* (a_Z){}^* a_L^2 d-2 i e^{2 i (\theta _1+\theta _2)} (a_i){}^*
+        (a_Z){}^* a_L^2 d+4 i e^{i (\theta _1+3 \theta _2)} (a_i){}^* (a_Z){}^* a_L^2
+        d+2 i e^{4 i \theta _1} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 d+2 i e^{2 i (\theta _1+\theta
+            _2)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 d-4 i e^{i (3 \theta _1+\theta _2)}
+        \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 d-2 i e^{2 i (\theta _1+\theta _2)} \kappa
+        (a_Z){}^* (\hat{c}_1){}^* a_g d+2 i e^{i (3 \theta _1+\theta _2)} \kappa
+        (a_Z){}^* (\hat{c}_1){}^* a_g d-4 i e^{2 i (\theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L d+2 i e^{i (3 \theta _1+\theta _2)}
+        \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L d+2 i e^{i (\theta _1+3 \theta
+            _2)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L d-2 i e^{2 i (\theta
+            _1+\theta _2)} (a_i){}^* a_g a_L d+2 i e^{i (\theta _1+3 \theta _2)} (a_i){}^* a_g
+        a_L d-2 i e^{2 i (\theta _1+\theta _2)} (a_Z){}^* a_g a_L d+2 i e^{i (\theta _1+3 \theta
+            _2)} (a_Z){}^* a_g a_L d+2 i e^{4 i \theta _1} ((a_L){}^*){}^2 a_i a_Z d+2 i e^{2
+            i (\theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z d-4 i e^{i (3 \theta _1+\theta
+            _2)} ((a_L){}^*){}^2 a_i a_Z d-2 i e^{2 i (\theta _1+\theta _2)} \kappa  a_g^2
+        \hat{c}_1 d+2 i e^{i (\theta _1+3 \theta _2)} \kappa  a_g^2 \hat{c}_1 d+4 i e^{2 i (\theta _1+\theta
+            _2)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1 d-2 i e^{i (3 \theta _1+\theta _2)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1 d-2 i e^{i (\theta _1+3 \theta _2)} \kappa  (a_L){}^* a_Z^2
+        \hat{c}_1 d-2 i e^{2 i (\theta _1+\theta _2)} \kappa  (a_Z){}^* a_g \hat{c}_1 d+2 i e^{i
+            (\theta _1+3 \theta _2)} \kappa  (a_Z){}^* a_g \hat{c}_1 d-2 i e^{4 i \theta _2} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1 d-2 i e^{2 i (\theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1 d+4 i e^{i (\theta _1+3 \theta _2)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1 d-(d-i)^2 e^{2 i (\theta _1+\theta _2)}
+        ((a_g){}^*){}^2+e^{2 i (\theta _1+\theta _2)} a_g^2+2 e^{2 i (\theta _1+\theta
+            _2)} \kappa  (\hat{c}_1){}^* a_g^2-2 e^{i (3 \theta _1+\theta _2)} \kappa
+        (\hat{c}_1){}^* a_g^2+e^{4 i \theta _2} (a_i){}^* (a_Z){}^* a_L^2+e^{2 i (\theta
+            _1+\theta _2)} (a_i){}^* (a_Z){}^* a_L^2-2 e^{i (\theta _1+3 \theta _2)}
+        (a_i){}^* (a_Z){}^* a_L^2+2 e^{4 i \theta _1} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2+2 e^{2 i (\theta _1+\theta _2)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2-4 e^{i (3 \theta _1+\theta _2)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2+2 e^{2 i (\theta _1+\theta _2)} \kappa  (a_Z){}^*
+        (\hat{c}_1){}^* a_g-2 e^{i (3 \theta _1+\theta _2)} \kappa  (a_Z){}^*
+        (\hat{c}_1){}^* a_g+e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_g a_i-e^{i (3 \theta
+            _1+\theta _2)} (a_L){}^* a_g a_i+4 e^{2 i (\theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L-2 e^{i (3 \theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L-2 e^{i (\theta _1+3 \theta _2)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L+e^{2 i (\theta _1+\theta _2)}
+        (a_i){}^* a_g a_L-e^{i (\theta _1+3 \theta _2)} (a_i){}^* a_g a_L+e^{2 i (\theta
+            _1+\theta _2)} (a_Z){}^* a_g a_L-e^{i (\theta _1+3 \theta _2)} (a_Z){}^* a_g a_L+2
+        e^{2 i (\theta _1+\theta _2)} (a_L){}^* (a_Z){}^* a_i a_L-e^{i (3 \theta _1+\theta
+            _2)} (a_L){}^* (a_Z){}^* a_i a_L-e^{i (\theta _1+3 \theta _2)}
+        (a_L){}^* (a_Z){}^* a_i a_L+e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_g
+        a_Z-e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_g a_Z+e^{4 i \theta _1}
+        ((a_L){}^*){}^2 a_i a_Z+e^{2 i (\theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z-2 e^{i (3 \theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z+2 e^{2 i (\theta _1+\theta _2)} (a_i){}^*
+        (a_L){}^* a_L a_Z-e^{i (3 \theta _1+\theta _2)} (a_i){}^* (a_L){}^* a_L
+        a_Z-e^{i (\theta _1+3 \theta _2)} (a_i){}^* (a_L){}^* a_L a_Z+2 e^{2 i (\theta
+            _1+\theta _2)} \kappa  a_g^2 \hat{c}_1-2 e^{i (\theta _1+3 \theta _2)} \kappa  a_g^2 \hat{c}_1+4 e^{2 i
+            (\theta _1+\theta _2)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1-2 e^{i (3 \theta _1+\theta _2)}
+        \kappa  (a_L){}^* a_Z^2 \hat{c}_1-2 e^{i (\theta _1+3 \theta _2)} \kappa  (a_L){}^*
+        a_Z^2 \hat{c}_1+2 e^{2 i (\theta _1+\theta _2)} \kappa  (a_Z){}^* a_g \hat{c}_1-2 e^{i (\theta
+            _1+3 \theta _2)} \kappa  (a_Z){}^* a_g \hat{c}_1+2 e^{4 i \theta _2} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1+2 e^{2 i (\theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1-4 e^{i (\theta _1+3 \theta _2)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1-2 i (d-i) e^{i (\theta _1+\theta _2)} (-e^{i \theta
+            _1}+e^{i \theta _2}) \kappa  ((a_g){}^*){}^2 (e^{i \theta _2} \hat{c}_1-e^{i \theta _1}
+        (\hat{c}_1){}^*)+(d-i) e^{i (\theta _1+\theta _2)} (a_g){}^* (d e^{i
+            (\theta _1+\theta _2)} a_g+(d+i) e^{i (\theta _1+\theta _2)} a_g+i e^{i (\theta _1+\theta
+            _2)} a_g+d e^{2 i \theta _1} (a_L){}^* a_i-i e^{2 i \theta _1} (a_L){}^* a_i-d e^{i
+            (\theta _1+\theta _2)} (a_L){}^* a_i+i e^{i (\theta _1+\theta _2)} (a_L){}^*
+        a_i-d e^{2 i \theta _2} (a_i){}^* a_L-i e^{2 i \theta _2} (a_i){}^* a_L+d e^{i (\theta
+            _1+\theta _2)} (a_i){}^* a_L+i e^{i (\theta _1+\theta _2)} (a_i){}^* a_L-d e^{2 i
+            \theta _2} (a_Z){}^* a_L-i e^{2 i \theta _2} (a_Z){}^* a_L+d e^{i (\theta _1+\theta _2)}
+        (a_Z){}^* a_L+i e^{i (\theta _1+\theta _2)} (a_Z){}^* a_L+d e^{2 i \theta _1}
+        (a_L){}^* a_Z-i e^{2 i \theta _1} (a_L){}^* a_Z-d e^{i (\theta _1+\theta _2)}
+        (a_L){}^* a_Z+i e^{i (\theta _1+\theta _2)} (a_L){}^* a_Z-2 i e^{i \theta _1} (e^{i
+            \theta _1}-e^{i \theta _2}) \kappa  (\hat{c}_1){}^* a_Z-2 i e^{2 i \theta _2} \kappa  a_Z \hat{c}_1+2 i
+        e^{i (\theta _1+\theta _2)} \kappa  a_Z \hat{c}_1)) a_1^3)
+        +\frac{1}{\kappa }(16 e^{-i (3 \theta
+            _1+2 \theta _2+\theta _3)} a_2 (-e^{2 i (2 \theta _1+\theta _2)} (\hat{c}_1){}^* a_g^2
+        d^2-2 e^{i (4 \theta _1+\theta _2+\theta _3)} (\hat{c}_1){}^* a_g^2 d^2+3 e^{i (3 \theta _1+2
+            \theta _2+\theta _3)} (\hat{c}_1){}^* a_g^2 d^2+2 e^{3 i (\theta _1+\theta _2)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-e^{2 i (2 \theta _1+\theta _2)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-e^{2 i (\theta _1+2 \theta _2)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-4 e^{2 i (\theta _1+\theta _2+\theta
+            _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-2 e^{i (4 \theta _1+\theta
+            _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2+5 e^{i (3 \theta
+            _1+2 \theta _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-4 e^{i
+            (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^*
+        a_L^2 d^2+e^{i (\theta _1+4 \theta _2+\theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2 d^2+2 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2+2 e^{i (\theta _1+3 \theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2+2 e^{2 i (2 \theta _1+\theta
+            _2)} (a_L){}^* (\hat{c}_1){}^* a_g a_i d^2-2 e^{i (5 \theta _1+\theta _2)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_i d^2-e^{i (5 \theta _1+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2+4 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2+e^{3 i (\theta _1+\theta _2)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (2 \theta _1+\theta _2)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+4 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+e^{3 i (\theta _1+\theta _2)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (2 \theta _1+\theta _2)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+4 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{3 i (\theta _1+\theta _2)} (a_L){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+4 e^{2 i (2 \theta _1+\theta _2)}
+        (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2-2 e^{i (5 \theta _1+\theta
+            _2)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+e^{2 i (2 \theta
+            _1+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2-e^{i (5 \theta
+            _1+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+e^{2 i (\theta
+            _1+\theta _2+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+4 e^{i
+            (4 \theta _1+\theta _2+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i
+        a_L d^2-5 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L d^2+2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_L){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+2 e^{2 i (2 \theta _1+\theta
+            _2)} (a_L){}^* (\hat{c}_1){}^* a_g a_Z d^2-2 e^{i (5 \theta _1+\theta _2)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z d^2-e^{i (5 \theta _1+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_Z d^2+4 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_Z d^2-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_Z d^2-3 e^{6 i \theta _1} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2-3 e^{2 i (2 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2+6 e^{i (5 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2+3 e^{i (5 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2-6 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d^2+3 e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d^2-2 e^{3 i (\theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2+4 e^{2 i (2 \theta
+            _1+\theta _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-2 e^{i (5
+            \theta _1+\theta _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2+e^{2 i
+            (2 \theta _1+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-e^{i
+            (5 \theta _1+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2+e^{2
+            i (\theta _1+\theta _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L
+        a_Z d^2+4 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^* (a_L){}^*
+        (\hat{c}_1){}^* a_L a_Z d^2-5 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2+2 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-2 e^{i (3 \theta _1+\theta _2+2
+            \theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-e^{2 i (\theta
+            _1+\theta _2+\theta _3)} a_g^2 \hat{c}_1 d^2+3 e^{i (3 \theta _1+2 \theta _2+\theta _3)} a_g^2 \hat{c}_1
+        d^2-2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} a_g^2 \hat{c}_1 d^2-3 e^{2 i (\theta _1+\theta _2+\theta
+            _3)} (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2-3 e^{2 i (2 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2+3 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2-6 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2+3 e^{i (\theta _1+4 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2+6 e^{i (\theta _1+3 \theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2-e^{3 i (\theta _1+\theta _2)}
+        (a_L){}^* a_g a_i \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _2)} (a_L){}^* a_g a_i
+        \hat{c}_1 d^2+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1 d^2+2 e^{i
+            (4 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1 d^2-4 e^{i (3 \theta _1+2
+            \theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1 d^2+2 e^{i (2 \theta _1+3 \theta _2+\theta
+            _3)} (a_L){}^* a_g a_i \hat{c}_1 d^2-e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* a_g a_i \hat{c}_1 d^2-2 e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^* a_g
+        a_L \hat{c}_1 d^2+3 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2-4
+        e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2+e^{i (\theta _1+4
+            \theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2+2 e^{i (\theta _1+3 \theta _2+2 \theta
+            _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2-2 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_Z){}^* a_g a_L \hat{c}_1 d^2+3 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        a_g a_L \hat{c}_1 d^2-4 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1
+        d^2+e^{i (\theta _1+4 \theta _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d^2+2 e^{i (\theta
+            _1+3 \theta _2+2 \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d^2-2 e^{3 i (\theta _1+\theta _2)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _2)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2+e^{2 i (\theta _1+2 \theta _2)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2+2 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2-5 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2+4 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2-e^{i (\theta _1+4 \theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2-2 e^{i (\theta _1+3 \theta _2+2 \theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1 d^2-e^{3 i (\theta _1+\theta _2)}
+        (a_L){}^* a_g a_Z \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _2)} (a_L){}^* a_g a_Z
+        \hat{c}_1 d^2+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1 d^2+2 e^{i
+            (4 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1 d^2-4 e^{i (3 \theta _1+2
+            \theta _2+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1 d^2+2 e^{i (2 \theta _1+3 \theta _2+\theta
+            _3)} (a_L){}^* a_g a_Z \hat{c}_1 d^2-e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* a_g a_Z \hat{c}_1 d^2+2 e^{3 i (\theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-4 e^{2 i (2 \theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+2 e^{i (5 \theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-e^{2 i (2 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+e^{i (5 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-e^{2 i (\theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+5 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-2 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+2 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-2 e^{3 i (\theta _1+\theta _2)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _2)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+e^{2 i (\theta _1+2 \theta _2)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+2 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-5 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+4 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-e^{i (\theta _1+4 \theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-2 e^{i (\theta _1+3 \theta _2+2 \theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-4 i e^{2 i (2 \theta _1+\theta _2)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d+4 i e^{i (5 \theta _1+\theta _2)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d+2 i e^{i (5 \theta _1+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d-8 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d+6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d-2 i e^{2 i (2 \theta _1+\theta _2)}
+        (\hat{c}_1){}^* a_g^2 d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)} (\hat{c}_1){}^*
+        a_g^2 d+6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} (\hat{c}_1){}^* a_g^2 d+4 i e^{3 i
+            (\theta _1+\theta _2)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-2 i e^{2 i
+            (2 \theta _1+\theta _2)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-2 i e^{2
+            i (\theta _1+2 \theta _2)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-8 i
+        e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^*
+        a_L^2 d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2 d+10 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-8 i e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d+2 i e^{i (\theta _1+4 \theta _2+\theta
+            _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d+4 i e^{i (3 \theta _1+\theta
+            _2+2 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d+4 i e^{i (\theta
+            _1+3 \theta _2+2 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d+6 i e^{6
+            i \theta _1} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d+6 i e^{2 i (2 \theta
+            _1+\theta _2)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d-12 i e^{i (5
+            \theta _1+\theta _2)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d-6 i e^{i
+            (5 \theta _1+\theta _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d+12 i
+        e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  (a_L){}^*
+        ((\hat{c}_1){}^*){}^2 a_Z^2 d-6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d-4 i e^{2 i (\theta _1+\theta _2+\theta
+            _3)} \kappa  a_g^2 \hat{c}_1^2 d+6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2
+        d-8 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2 d+2 i e^{i (\theta _1+4 \theta
+            _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2 d+4 i e^{i (\theta _1+3 \theta _2+2 \theta _3)} \kappa  a_g^2
+        \hat{c}_1^2 d-4 i e^{3 i (\theta _1+\theta _2)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2 d+2 i e^{2 i
+            (2 \theta _1+\theta _2)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2 d+2 i e^{2 i (\theta _1+2 \theta
+            _2)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2 d+8 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d+4 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d-10 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d+8 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d-2 i e^{i (\theta _1+4 \theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d-4 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d-4 i e^{i (\theta _1+3 \theta _2+2 \theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d-4 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2 d+6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2 d-8 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2 d+2 i e^{i (\theta _1+4 \theta _2+\theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2 d+4 i e^{i (\theta _1+3 \theta _2+2 \theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2 d-6 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d-6 i e^{2 i (2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d+6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d-12 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d+6 i e^{i (\theta _1+4 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d+12 i e^{i (\theta _1+3 \theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d-4 i e^{2 i (2 \theta _1+\theta _2)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d+4 i e^{i (5 \theta _1+\theta _2)}
+        \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d+2 i e^{i (5 \theta _1+\theta
+            _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d-8 i e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d+6 i e^{i
+            (3 \theta _1+2 \theta _2+\theta _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2
+        a_g d+4 i e^{3 i (\theta _1+\theta _2)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d-8 i e^{2 i (2 \theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d+4 i e^{i (5 \theta _1+\theta
+            _2)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d-2 i e^{2 i
+            (2 \theta _1+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d+2 i e^{i (5 \theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d-2 i e^{2 i (\theta _1+\theta
+            _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d-8 i
+        e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d+10 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d-4 i e^{i (2 \theta _1+3
+            \theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L
+        d+4 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d+2 i e^{3 i (\theta _1+\theta _2)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (2 \theta _1+\theta _2)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d+8 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d-4 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d+2 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d+2 i e^{3 i (\theta _1+\theta _2)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (2 \theta _1+\theta _2)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d+8 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d-4 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d+2 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d+6 i e^{6 i \theta _1} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d+6 i e^{2 i (2 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d-12 i e^{i (5 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d-6 i e^{i (5 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d+12 i e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d-6 i e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d-2 i e^{2 i (\theta _1+\theta
+            _2+\theta _3)} a_g^2 \hat{c}_1 d+6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} a_g^2 \hat{c}_1 d-4 i
+        e^{i (2 \theta _1+3 \theta _2+\theta _3)} a_g^2 \hat{c}_1 d+4 i e^{3 i (\theta _1+\theta _2)}
+        \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-4 i e^{2 i (2 \theta _1+\theta _2)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-4 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-8 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d+16 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-8 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d+4 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-6 i e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d-6 i e^{2 i (2 \theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d+6 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d-12 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d+6 i e^{i (\theta _1+4 \theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d+12 i e^{i (\theta _1+3 \theta _2+2 \theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d-8 i e^{3 i (\theta _1+\theta _2)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+16 i e^{2 i (2 \theta _1+\theta _2)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-8 i e^{i (5 \theta _1+\theta _2)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+4 i e^{2 i (2 \theta _1+\theta _3)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-4 i e^{i (5 \theta _1+\theta _3)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+4 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+16 i e^{i (4 \theta _1+\theta _2+\theta _3)}
+        \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-20 i e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+8 i e^{i (2 \theta _1+3 \theta
+            _2+\theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-8 i e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+4 i e^{3 i
+            (\theta _1+\theta _2)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d-4 i e^{2 i
+            (2 \theta _1+\theta _2)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d-4 i e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d-8 i
+        e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1
+        d+16 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g
+        \hat{c}_1 d-8 i e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa  (a_Z){}^*
+        (\hat{c}_1){}^* a_g \hat{c}_1 d+4 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d+8 i e^{3 i (\theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-4 i e^{2 i (2 \theta _1+\theta
+            _2)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-4 i e^{2 i
+            (\theta _1+2 \theta _2)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L
+        \hat{c}_1 d-16 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1 d-8 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d+20 i e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-16 i e^{i
+            (2 \theta _1+3 \theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^*
+        a_L \hat{c}_1 d+4 i e^{i (\theta _1+4 \theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1 d+8 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d+8 i e^{i (\theta _1+3 \theta _2+2
+            \theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-4 i e^{2 i
+            (\theta _1+\theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d+6 i e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d-8 i e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_i){}^* a_g a_L \hat{c}_1 d+2 i e^{i (\theta _1+4 \theta _2+\theta _3)} (a_i){}^* a_g
+        a_L \hat{c}_1 d+4 i e^{i (\theta _1+3 \theta _2+2 \theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d-4 i
+        e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d+6 i e^{i (3 \theta _1+2
+            \theta _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d-8 i e^{i (2 \theta _1+3 \theta _2+\theta
+            _3)} (a_Z){}^* a_g a_L \hat{c}_1 d+2 i e^{i (\theta _1+4 \theta _2+\theta _3)}
+        (a_Z){}^* a_g a_L \hat{c}_1 d+4 i e^{i (\theta _1+3 \theta _2+2 \theta _3)} (a_Z){}^*
+        a_g a_L \hat{c}_1 d-4 i e^{3 i (\theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1
+        d+8 i e^{2 i (2 \theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-4 i e^{i
+            (5 \theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+2 i e^{2 i (2 \theta
+            _1+\theta _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-2 i e^{i (5 \theta _1+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+2 i e^{2 i (\theta _1+\theta _2+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+8 i e^{i (4 \theta _1+\theta _2+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-10 i e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+4 i e^{i (2 \theta _1+3 \theta _2+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-4 i e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+4 e^{2 i (2 \theta _1+\theta _2)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2-4 e^{i (5 \theta _1+\theta _2)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2-2 e^{i (5 \theta _1+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2+8 e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2-6 e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2+e^{2 i (2 \theta _1+\theta _2)} (\hat{c}_1){}^*
+        a_g^2+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (\hat{c}_1){}^* a_g^2-3 e^{i (3 \theta _1+2
+            \theta _2+\theta _3)} (\hat{c}_1){}^* a_g^2-2 e^{3 i (\theta _1+\theta _2)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+e^{2 i (2 \theta _1+\theta _2)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+e^{2 i (\theta _1+2 \theta _2)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+4 e^{2 i (\theta _1+\theta _2+\theta
+            _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+2 e^{i (4 \theta _1+\theta
+            _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2-5 e^{i (3 \theta
+            _1+2 \theta _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+4 e^{i
+            (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^*
+        a_L^2-e^{i (\theta _1+4 \theta _2+\theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_L^2-2 e^{i (\theta _1+3 \theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+6 e^{6 i \theta _1} \kappa
+        (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2+6 e^{2 i (2 \theta _1+\theta _2)}
+        \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2-12 e^{i (5 \theta _1+\theta
+            _2)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2-6 e^{i (5 \theta _1+\theta
+            _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2+12 e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2-6 e^{i
+            (3 \theta _1+2 \theta _2+\theta _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2
+        a_Z^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2-6 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2+8 e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa  a_g^2
+        \hat{c}_1^2-2 e^{i (\theta _1+4 \theta _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2-4 e^{i (\theta _1+3
+            \theta _2+2 \theta _3)} \kappa  a_g^2 \hat{c}_1^2-4 e^{3 i (\theta _1+\theta _2)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2+2 e^{2 i (2 \theta _1+\theta _2)} \kappa  (a_L){}^* a_Z^2
+        \hat{c}_1^2+2 e^{2 i (\theta _1+2 \theta _2)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2+8 e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2+4 e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2-10 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2+8 e^{i (2 \theta _1+3 \theta _2+\theta
+            _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2-2 e^{i (\theta _1+4 \theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2-4 e^{i (\theta _1+3 \theta _2+2 \theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^*
+        a_g \hat{c}_1^2-6 e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2+8
+        e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2-2 e^{i (\theta
+            _1+4 \theta _2+\theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2-4 e^{i (\theta _1+3 \theta _2+2 \theta
+            _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2+6 e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2+6 e^{2 i (2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2-6 e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2+12 e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2-6 e^{i (\theta _1+4 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2-12 e^{i (\theta _1+3 \theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2+4 e^{2 i (2 \theta _1+\theta _2)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g-4 e^{i (5 \theta _1+\theta _2)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g-2 e^{i (5 \theta _1+\theta _3)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g+8 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g-6 e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g+2 e^{2 i (2 \theta _1+\theta
+            _2)} (a_L){}^* (\hat{c}_1){}^* a_g a_i-2 e^{i (5 \theta _1+\theta _2)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_i-e^{i (5 \theta _1+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i+4 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i-4 e^{3 i (\theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L+8 e^{2 i (2 \theta _1+\theta
+            _2)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-4 e^{i (5
+            \theta _1+\theta _2)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2
+        a_L+2 e^{2 i (2 \theta _1+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L-2 e^{i (5 \theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L+2 e^{2 i (\theta _1+\theta
+            _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L+8 e^{i
+            (4 \theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L-10 e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L+4 e^{i (2 \theta _1+3 \theta
+            _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-4 e^{i
+            (3 \theta _1+\theta _2+2 \theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L-e^{3 i (\theta _1+\theta _2)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L+e^{2 i (2 \theta _1+\theta _2)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L-4 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L+2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L-e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L-e^{3 i (\theta _1+\theta _2)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+e^{2 i (2 \theta _1+\theta _2)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L-4 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L-e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L-2 e^{3 i (\theta _1+\theta _2)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L+4 e^{2 i (2 \theta _1+\theta _2)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L-2 e^{i (5 \theta _1+\theta _2)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L+e^{2 i (2 \theta _1+\theta _3)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L-e^{i (5 \theta _1+\theta _3)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_i a_L+4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L-5 e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L+2 e^{i (2 \theta _1+3 \theta
+            _2+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L-2 e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L+2 e^{2 i
+            (2 \theta _1+\theta _2)} (a_L){}^* (\hat{c}_1){}^* a_g a_Z-2 e^{i (5 \theta
+            _1+\theta _2)} (a_L){}^* (\hat{c}_1){}^* a_g a_Z-e^{i (5 \theta _1+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z+4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z+3 e^{6 i \theta _1} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z+3 e^{2 i (2 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z-6 e^{i (5 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z-3 e^{i (5 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z+6 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z-3 e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z-2 e^{3 i (\theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z+4 e^{2 i (2 \theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z-2 e^{i (5 \theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z+e^{2 i (2 \theta _1+\theta
+            _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z-e^{i (5 \theta _1+\theta
+            _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z+e^{2 i (\theta _1+\theta
+            _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z+4 e^{i (4 \theta
+            _1+\theta _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z-5 e^{i
+            (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L
+        a_Z+2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^* (a_L){}^*
+        (\hat{c}_1){}^* a_L a_Z-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (a_L){}^* (\hat{c}_1){}^* a_L a_Z+e^{2 i (\theta _1+\theta _2+\theta _3)} a_g^2
+        \hat{c}_1-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)} a_g^2 \hat{c}_1+2 e^{i (2 \theta _1+3 \theta
+            _2+\theta _3)} a_g^2 \hat{c}_1-4 e^{3 i (\theta _1+\theta _2)} \kappa  (\hat{c}_1){}^* a_g^2
+        \hat{c}_1+4 e^{2 i (2 \theta _1+\theta _2)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+4 e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+8 e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1-16 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+8 e^{i (2 \theta _1+3 \theta _2+\theta
+            _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+3 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1+3 e^{2 i (2 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1+6 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1-3 e^{i (\theta _1+4 \theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1-6 e^{i (\theta _1+3 \theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1-8 e^{3 i (\theta _1+\theta _2)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+16 e^{2 i (2 \theta _1+\theta _2)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-8 e^{i (5 \theta _1+\theta _2)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+4 e^{2 i (2 \theta _1+\theta _3)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-4 e^{i (5 \theta _1+\theta _3)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+4 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+16 e^{i (4 \theta _1+\theta _2+\theta
+            _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-20 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+8 e^{i (2 \theta _1+3
+            \theta _2+\theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-8 e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-4 e^{3 i
+            (\theta _1+\theta _2)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1+4 e^{2 i (2
+            \theta _1+\theta _2)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1+4 e^{2 i (\theta
+            _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1+8 e^{i (4
+            \theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1-16 e^{i
+            (3 \theta _1+2 \theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1+8
+        e^{i (2 \theta _1+3 \theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g
+        \hat{c}_1-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^*
+        a_g \hat{c}_1-e^{3 i (\theta _1+\theta _2)} (a_L){}^* a_g a_i \hat{c}_1+e^{2 i (2 \theta
+            _1+\theta _2)} (a_L){}^* a_g a_i \hat{c}_1+e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_L){}^* a_g a_i \hat{c}_1+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_i
+        \hat{c}_1-4 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1+2 e^{i (2
+            \theta _1+3 \theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1-e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} (a_L){}^* a_g a_i \hat{c}_1-8 e^{3 i (\theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+4 e^{2 i (2 \theta _1+\theta
+            _2)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+4 e^{2 i (\theta
+            _1+2 \theta _2)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+16 e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L
+        \hat{c}_1+8 e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1-20 e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+16 e^{i (2 \theta _1+3 \theta
+            _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1-4 e^{i
+            (\theta _1+4 \theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^*
+        a_L \hat{c}_1-8 e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1-8 e^{i (\theta _1+3 \theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+2 e^{2 i (\theta _1+\theta _2+\theta
+            _3)} (a_i){}^* a_g a_L \hat{c}_1-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_i){}^* a_g a_L \hat{c}_1+4 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^* a_g
+        a_L \hat{c}_1-e^{i (\theta _1+4 \theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1-2 e^{i
+            (\theta _1+3 \theta _2+2 \theta _3)} (a_i){}^* a_g a_L \hat{c}_1+2 e^{2 i (\theta _1+\theta
+            _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1-3 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_Z){}^* a_g a_L \hat{c}_1+4 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_Z){}^* a_g
+        a_L \hat{c}_1-e^{i (\theta _1+4 \theta _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1-2 e^{i
+            (\theta _1+3 \theta _2+2 \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1-2 e^{3 i (\theta _1+\theta
+            _2)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+e^{2 i (2 \theta _1+\theta _2)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+e^{2 i (\theta _1+2 \theta _2)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+4 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+2 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-5 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+4 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-e^{i (\theta _1+4 \theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-2 e^{i (\theta _1+3 \theta _2+2 \theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-e^{3 i (\theta _1+\theta _2)} (a_L){}^*
+        a_g a_Z \hat{c}_1+e^{2 i (2 \theta _1+\theta _2)} (a_L){}^* a_g a_Z \hat{c}_1+e^{2 i (\theta
+            _1+\theta _2+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1+2 e^{i (4 \theta _1+\theta _2+\theta
+            _3)} (a_L){}^* a_g a_Z \hat{c}_1-4 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_L){}^* a_g a_Z \hat{c}_1+2 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_L){}^* a_g
+        a_Z \hat{c}_1-e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_g a_Z \hat{c}_1-2 e^{3 i
+            (\theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+4 e^{2 i (2 \theta
+            _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-2 e^{i (5 \theta _1+\theta _2)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+e^{2 i (2 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-e^{i (5 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+e^{2 i (\theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-5 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+2 e^{i (2 \theta _1+3 \theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-2 e^{3 i (\theta _1+\theta _2)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+e^{2 i (2 \theta _1+\theta _2)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+e^{2 i (\theta _1+2 \theta _2)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+4 e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-5 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+4 e^{i (2 \theta _1+3 \theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-e^{i (\theta _1+4 \theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-2 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-2 e^{i (\theta _1+3 \theta _2+2 \theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-(d-i)^2 e^{i (2 \theta _1+\theta _2)}
+        ((a_g){}^*){}^2 ((e^{i (2 \theta _1+\theta _2)}+2 e^{i (2 \theta
+            _1+\theta _3)}-3 e^{i (\theta _1+\theta _2+\theta _3)}) (\hat{c}_1){}^*+e^{i
+            (\theta _2+\theta _3)} (-3 e^{i \theta _1}+2 e^{i \theta _2}+e^{i \theta _3}) \hat{c}_1)-2 i
+        (d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) \kappa  ((a_g){}^*){}^2
+        (e^{i \theta _1} (\hat{c}_1){}^*-e^{i \theta _2} \hat{c}_1) ((2 e^{i (2 \theta
+            _1+\theta _2)}+e^{i (2 \theta _1+\theta _3)}-3 e^{i (\theta _1+\theta _2+\theta _3)})
+        (\hat{c}_1){}^*+e^{i (\theta _2+\theta _3)} (-3 e^{i \theta _1}+e^{i \theta _2}+2 e^{i \theta
+            _3}) \hat{c}_1)+(d-i) e^{i \theta _1} (a_g){}^* (2 i e^{2 i \theta _1} (-e^{i \theta
+            _1}+e^{i \theta _2}) (2 e^{i (\theta _1+\theta _2)}+e^{i (\theta _1+\theta _3)}-3 e^{i
+            (\theta _2+\theta _3)}) \kappa  a_Z ((\hat{c}_1){}^*){}^2+e^{i \theta _1} (d
+        e^{2 i (\theta _1+\theta _2)} a_g+i e^{2 i (\theta _1+\theta _2)} a_g+2 d e^{i (2 \theta
+            _1+\theta _2+\theta _3)} a_g+2 i e^{i (2 \theta _1+\theta _2+\theta _3)} a_g-3 d e^{i (\theta _1+2
+            \theta _2+\theta _3)} a_g-3 i e^{i (\theta _1+2 \theta _2+\theta _3)} a_g+(d+i) e^{i (\theta
+            _1+\theta _2)} (e^{i (\theta _1+\theta _2)}+2 e^{i (\theta _1+\theta _3)}-3 e^{i
+            (\theta _2+\theta _3)}) a_g-2 d e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_i+2 i
+        e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_i+2 d e^{i (3 \theta _1+\theta _2)}
+        (a_L){}^* a_i-2 i e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_i+d e^{i (3 \theta
+            _1+\theta _3)} (a_L){}^* a_i-i e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_i-4 d
+        e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_i+4 i e^{i (2 \theta _1+\theta _2+\theta
+            _3)} (a_L){}^* a_i+3 d e^{i (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_i-3 i
+        e^{i (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_i-(d+i) e^{i \theta _2} (-e^{i (2
+            \theta _1+\theta _2)}+e^{i (\theta _1+2 \theta _2)}-2 e^{i (2 \theta _1+\theta _3)}+4 e^{i
+            (\theta _1+\theta _2+\theta _3)}-2 e^{i (2 \theta _2+\theta _3)}+e^{i (\theta _1+2 \theta
+            _3)}-e^{i (\theta _2+2 \theta _3)}) (a_i){}^* a_L+d e^{2 i (\theta _1+\theta
+            _2)} (a_Z){}^* a_L+i e^{2 i (\theta _1+\theta _2)} (a_Z){}^* a_L-d e^{i
+            (\theta _1+3 \theta _2)} (a_Z){}^* a_L-i e^{i (\theta _1+3 \theta _2)}
+        (a_Z){}^* a_L+d e^{2 i (\theta _2+\theta _3)} (a_Z){}^* a_L+i e^{2 i (\theta
+            _2+\theta _3)} (a_Z){}^* a_L+2 d e^{i (2 \theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        a_L+2 i e^{i (2 \theta _1+\theta _2+\theta _3)} (a_Z){}^* a_L-4 d e^{i (\theta _1+2 \theta
+            _2+\theta _3)} (a_Z){}^* a_L-4 i e^{i (\theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        a_L+2 d e^{i (3 \theta _2+\theta _3)} (a_Z){}^* a_L+2 i e^{i (3 \theta _2+\theta _3)}
+        (a_Z){}^* a_L-d e^{i (\theta _1+\theta _2+2 \theta _3)} (a_Z){}^* a_L-i e^{i
+            (\theta _1+\theta _2+2 \theta _3)} (a_Z){}^* a_L-2 d e^{2 i (\theta _1+\theta _2)}
+        (a_L){}^* a_Z+2 i e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_Z+2 d e^{i (3 \theta
+            _1+\theta _2)} (a_L){}^* a_Z-2 i e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_Z+d
+        e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_Z-i e^{i (3 \theta _1+\theta _3)}
+        (a_L){}^* a_Z-4 d e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_Z+4 i e^{i (2
+            \theta _1+\theta _2+\theta _3)} (a_L){}^* a_Z+3 d e^{i (\theta _1+2 \theta _2+\theta _3)}
+        (a_L){}^* a_Z-3 i e^{i (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_Z+4 i e^{2 i
+            (\theta _1+\theta _2)} \kappa  a_Z \hat{c}_1-4 i e^{i (\theta _1+3 \theta _2)} \kappa  a_Z
+        \hat{c}_1+4 i e^{2 i (\theta _2+\theta _3)} \kappa  a_Z \hat{c}_1+8 i e^{i (2 \theta _1+\theta _2+\theta
+            _3)} \kappa  a_Z \hat{c}_1-16 i e^{i (\theta _1+2 \theta _2+\theta _3)} \kappa  a_Z \hat{c}_1+8 i e^{i
+            (3 \theta _2+\theta _3)} \kappa  a_Z \hat{c}_1-4 i e^{i (\theta _1+\theta _2+2 \theta _3)} \kappa
+        a_Z \hat{c}_1) (\hat{c}_1){}^*+e^{i \theta _2} \hat{c}_1 (-3 d e^{i (2 \theta _1+\theta
+            _2+\theta _3)} a_g-3 i e^{i (2 \theta _1+\theta _2+\theta _3)} a_g+2 d e^{i (\theta _1+2 \theta
+            _2+\theta _3)} a_g+2 i e^{i (\theta _1+2 \theta _2+\theta _3)} a_g+d e^{i (\theta _1+\theta _2+2
+            \theta _3)} a_g+i e^{i (\theta _1+\theta _2+2 \theta _3)} a_g+(d+i) e^{i (\theta _1+\theta
+            _2+\theta _3)} (-3 e^{i \theta _1}+2 e^{i \theta _2}+e^{i \theta _3}) a_g+d e^{2 i (\theta
+            _1+\theta _2)} (a_L){}^* a_i-i e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_i-d e^{i
+            (3 \theta _1+\theta _2)} (a_L){}^* a_i+i e^{i (3 \theta _1+\theta _2)}
+        (a_L){}^* a_i+d e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_i-i e^{2 i (\theta
+            _1+\theta _3)} (a_L){}^* a_i-2 d e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_i+2 i
+        e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_i+4 d e^{i (2 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* a_i-4 i e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_i-2 d e^{i
+            (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_i+2 i e^{i (\theta _1+2 \theta _2+\theta
+            _3)} (a_L){}^* a_i-d e^{i (\theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_i+i e^{i
+            (\theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_i-(d+i) e^{i (\theta _2+\theta _3)}
+        (-e^{i \theta _1}+e^{i \theta _2}) (-3 e^{i \theta _1}+e^{i \theta _2}+2 e^{i \theta _3})
+        (a_i){}^* a_L-2 d e^{2 i (\theta _2+\theta _3)} (a_Z){}^* a_L-2 i e^{2 i (\theta
+            _2+\theta _3)} (a_Z){}^* a_L-3 d e^{i (2 \theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        a_L-3 i e^{i (2 \theta _1+\theta _2+\theta _3)} (a_Z){}^* a_L+4 d e^{i (\theta _1+2 \theta
+            _2+\theta _3)} (a_Z){}^* a_L+4 i e^{i (\theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        a_L-d e^{i (3 \theta _2+\theta _3)} (a_Z){}^* a_L-i e^{i (3 \theta _2+\theta _3)}
+        (a_Z){}^* a_L+2 d e^{i (\theta _1+\theta _2+2 \theta _3)} (a_Z){}^* a_L+2 i e^{i
+            (\theta _1+\theta _2+2 \theta _3)} (a_Z){}^* a_L+d e^{2 i (\theta _1+\theta _2)}
+        (a_L){}^* a_Z-i e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_Z-d e^{i (3 \theta
+            _1+\theta _2)} (a_L){}^* a_Z+i e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_Z+d e^{2
+            i (\theta _1+\theta _3)} (a_L){}^* a_Z-i e^{2 i (\theta _1+\theta _3)}
+        (a_L){}^* a_Z-2 d e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_Z+2 i e^{i (3 \theta
+            _1+\theta _3)} (a_L){}^* a_Z+4 d e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        a_Z-4 i e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_Z-2 d e^{i (\theta _1+2 \theta
+            _2+\theta _3)} (a_L){}^* a_Z+2 i e^{i (\theta _1+2 \theta _2+\theta _3)} (a_L){}^*
+        a_Z-d e^{i (\theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_Z+i e^{i (\theta _1+\theta _2+2
+            \theta _3)} (a_L){}^* a_Z-4 i e^{2 i (\theta _2+\theta _3)} \kappa  a_Z \hat{c}_1-6 i e^{i
+            (2 \theta _1+\theta _2+\theta _3)} \kappa  a_Z \hat{c}_1+8 i e^{i (\theta _1+2 \theta _2+\theta
+            _3)} \kappa  a_Z \hat{c}_1-2 i e^{i (3 \theta _2+\theta _3)} \kappa  a_Z \hat{c}_1+4 i e^{i (\theta
+            _1+\theta _2+2 \theta _3)} \kappa  a_Z \hat{c}_1))) a_1^2)+\frac{1}{\kappa }(4 e^{-i (2 \theta
+            _1+3 \theta _2)} (e^{i \theta _2}-e^{i \theta _3}) a_{12} \hat{c}_1 (-(d-i)^2 e^{i (3 \theta
+            _1+\theta _2)} ((a_g){}^*){}^2+(d-i) e^{i \theta _1} ((d+i) e^{3 i \theta _2} a_g+(d-i)
+        e^{2 i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) (a_L){}^* a_Z-2 i e^{2 i \theta _1} (e^{i
+            \theta _1}-e^{i \theta _2}) \kappa  (\hat{c}_1){}^* a_Z+e^{i (\theta _1+\theta _2)}
+        ((d+i) e^{i \theta _1} a_g+(e^{i \theta _1}-e^{i \theta _2}) ((d+i) (a_Z){}^* a_L+2 i
+        \kappa  a_Z \hat{c}_1))) (a_g){}^*-(d+i) e^{2 i \theta _2} a_g (-((d+i) e^{i
+            \theta _2} (-e^{i \theta _1} a_g-e^{i \theta _1} (a_Z){}^* a_L+e^{i \theta _2} (a_Z){}^*
+        a_L))+(d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) (a_L){}^* a_Z-2 i
+        (e^{i \theta _1}-e^{i \theta _2}) \kappa  (a_Z){}^* (e^{i \theta _1}
+        (\hat{c}_1){}^*-e^{i \theta _2} \hat{c}_1))) a_1^2)+\frac{1}{\kappa }(4 e^{-3 i (\theta
+            _1+\theta _2)} (-e^{i \theta _1}+e^{i \theta _2}) a_{10} (-(d-i)^2 e^{i (2 \theta _1+\theta
+            _2)} ((e^{2 i \theta _1}+4 e^{2 i \theta _2}) \hat{c}_1-4 e^{i (\theta _1+\theta _2)}
+        (\hat{c}_1){}^*) ((a_g){}^*){}^2+(d-i) (\hat{c}_1 ((d+i) e^{i (2
+            \theta _1+\theta _2)} (4 e^{2 i \theta _1}+e^{2 i \theta _2}) a_g+(d-i) e^{4 i \theta _1} (e^{i
+            \theta _1}-e^{i \theta _2}) (a_L){}^* a_Z+e^{i \theta _2} ((d+i) (e^{4 i \theta _1}+4 e^{4 i
+            \theta _2}) a_g+e^{3 i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) ((d+i) (a_Z){}^*
+        a_L+2 i \kappa  a_Z \hat{c}_1)))-2 i e^{i \theta _1} (\hat{c}_1){}^* (2 (1-i d) e^{4 i
+            \theta _1} a_g+2 (1-i d) e^{4 i \theta _2} a_g+e^{3 i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) \kappa  a_Z
+        \hat{c}_1)) (a_g){}^*-(d+i) e^{i (\theta _1+2 \theta _2)} a_g ((d-i) e^{i \theta
+            _1} (e^{i \theta _1}-e^{i \theta _2}) (a_L){}^* a_Z \hat{c}_1-2 i (e^{i \theta _1}-e^{i \theta
+            _2}) \kappa  (a_Z){}^* (e^{i \theta _1} (\hat{c}_1){}^*-e^{i \theta _2} \hat{c}_1)
+        \hat{c}_1-(d+i) (4 e^{2 i \theta _1} (\hat{c}_1){}^* a_g-5 e^{i (\theta _1+\theta _2)}
+        \hat{c}_1 a_g+e^{2 i \theta _2} (a_Z){}^* a_L \hat{c}_1-e^{i (\theta _1+\theta _2)}
+        (a_Z){}^* a_L \hat{c}_1))) a_1^2)+\frac{1}{\kappa }(4 e^{-i (\theta _1+2 (\theta
+            _2+\theta _3))} (e^{i \theta _2}-e^{i \theta _3}) a_{12} a_{21} ((d+i) e^{2 i \theta _2}
+        a_g-(d-i) e^{2 i \theta _1} (a_g){}^*) ((d-i) e^{2 i \theta _2} (a_g){}^*-(d+i) e^{2 i
+            \theta _3} a_g) \hat{c}_1 a_1)+\frac{1}{\kappa }(4 e^{-i (\theta _1+2 (\theta _2+\theta _3))}
+        (e^{i \theta _1}-e^{i \theta _3}) a_{12} a_{20} ((d-i) e^{2 i \theta _1} (a_g){}^*-(d+i) e^{2
+            i \theta _2} a_g) ((d+i) e^{2 i \theta _3} a_g-(d-i) e^{2 i \theta _2} (a_g){}^*) \hat{c}_1
+        a_1)+\frac{1}{\kappa }(2 e^{-i (2 \theta _1+3 \theta _2)} (e^{i \theta _1}-e^{i \theta _2}) a_{10}^2
+        \hat{c}_1 (2 (d-i)^2 e^{i (3 \theta _1+\theta _2)} ((a_g){}^*){}^2+(i d+1) e^{3 i
+            \theta _1} (e^{i \theta _1}-e^{i \theta _2}) \kappa  \hat{c}_1 ((a_g){}^*){}^2-2 (d-i)
+        e^{i \theta _1} ((d+i) e^{3 i \theta _2} a_g+(d+i) e^{i (2 \theta _1+\theta _2)} a_g+(d-i) e^{i
+            (\theta _1+\theta _2)} (-e^{i \theta _1}+e^{i \theta _2}) (a_L){}^* a_i-(d+i) e^{2 i
+            \theta _1} (e^{i \theta _1}-e^{i \theta _2}) (a_i){}^* a_L) (a_g){}^*+(d+i) e^{2 i
+            \theta _2} (2 (d+i) e^{i (\theta _1+\theta _2)} a_g^2-i (e^{i \theta _1}-e^{i \theta _2})
+        (e^{i \theta _1} \kappa  \hat{c}_1 a_g^2-2 i (d-i) e^{i \theta _2} (a_L){}^* a_i a_g+2 (1-i d) e^{i
+            \theta _1} (a_i){}^* a_L a_g))) a_1)-\frac{1}{\kappa }(2 e^{-i (\theta _1+3 \theta
+            _2+\theta _3)} (-e^{i \theta _2}+e^{i \theta _3}) a_{12}^2 \hat{c}_1 (-2 (d-i)^2 e^{i (2
+            \theta _1+\theta _2+\theta _3)} ((a_g){}^*){}^2-i (d-i) e^{i (2 \theta _1+\theta
+            _3)} (-e^{i \theta _2}+e^{i \theta _3}) \kappa  \hat{c}_1 ((a_g){}^*){}^2-2 (d-i)
+        (-((d+i) e^{i (2 \theta _1+\theta _2+\theta _3)} a_g)-e^{i \theta _2} ((d+i) e^{i (2
+            \theta _2+\theta _3)} a_g+(d-i) e^{2 i \theta _1} (e^{i \theta _2}-e^{i \theta _3}) (a_L){}^*
+        a_i)+(d+i) e^{i (2 \theta _1+\theta _3)} (-e^{i \theta _2}+e^{i \theta _3})
+        (a_i){}^* a_L) (a_g){}^*+(d+i) e^{2 i \theta _2} ((-e^{i \theta _2}+e^{i \theta
+            _3}) (i e^{i \theta _3} \kappa  \hat{c}_1 a_g^2+2 (d-i) e^{i \theta _2} (a_L){}^* a_i a_g+2 (d+i)
+        e^{i \theta _3} (a_i){}^* a_L a_g)-2 (d+i) e^{i (\theta _2+\theta _3)} a_g^2))
+        a_1)+\frac{1}{\kappa }(4 e^{-i (2 \theta _1+3 \theta _2+\theta _3)} a_{10} a_{12} \hat{c}_1 ((d-i)^2 e^{i
+            (3 \theta _1+\theta _2+\theta _3)} (e^{i \theta _1}-2 e^{i \theta _2}+e^{i \theta _3})
+        ((a_g){}^*){}^2+(i d+1) e^{i (3 \theta _1+\theta _3)} (e^{i \theta _1}-e^{i \theta
+            _2}) (-e^{i \theta _2}+e^{i \theta _3}) \kappa  \hat{c}_1 ((a_g){}^*){}^2-(d-i)
+        e^{i \theta _1} ((d+i) e^{i (2 \theta _1+\theta _2+\theta _3)} (e^{i \theta _1}-2 e^{i \theta
+            _2}+e^{i \theta _3}) a_g+e^{i \theta _2} ((d+i) e^{i (2 \theta _2+\theta _3)} (e^{i \theta
+            _1}-2 e^{i \theta _2}+e^{i \theta _3}) a_g+(d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _2})
+        (e^{i \theta _2}-e^{i \theta _3}) (e^{i \theta _1}+e^{i \theta _3}) (a_L){}^*
+        a_i)+2 (d+i) e^{i (2 \theta _1+\theta _3)} (-e^{i \theta _1}+e^{i \theta _2}) (-e^{i
+            \theta _2}+e^{i \theta _3}) (a_i){}^* a_L) (a_g){}^*+(d+i) e^{2 i \theta _2}
+        ((d+i) e^{i (\theta _1+\theta _2+\theta _3)} (e^{i \theta _1}-2 e^{i \theta _2}+e^{i \theta
+            _3}) a_g^2+(e^{i \theta _1}-e^{i \theta _2}) (e^{i \theta _2}-e^{i \theta _3}) (i e^{i
+            (\theta _1+\theta _3)} \kappa  \hat{c}_1 a_g^2+(d-i) e^{i \theta _2} (e^{i \theta _1}+e^{i \theta
+            _3}) (a_L){}^* a_i a_g+2 (d+i) e^{i (\theta _1+\theta _3)} (a_i){}^* a_L
+        a_g))) a_1)+\frac{1}{\kappa }(16 e^{-i (3 \theta _1+\theta _2+2 \theta _3)} a_2^2 (-e^{2 i
+            (2 \theta _1+\theta _3)} (\hat{c}_1){}^* a_g^2 d^2-2 e^{i (4 \theta _1+\theta _2+\theta
+            _3)} (\hat{c}_1){}^* a_g^2 d^2+3 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (\hat{c}_1){}^* a_g^2 d^2+2 e^{3 i (\theta _1+\theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2 d^2-e^{2 i (2 \theta _1+\theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2 d^2-4 e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-2 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2+2 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-e^{2 i (\theta
+            _1+2 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2+5 e^{i (3
+            \theta _1+\theta _2+2 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-4
+        e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^*
+        a_L^2 d^2+2 e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2 d^2+e^{i (\theta _1+\theta _2+4 \theta _3)} (a_i){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_L^2 d^2-e^{i (5 \theta _1+\theta _2)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2+2 e^{2 i (2 \theta _1+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2-2 e^{i (5 \theta _1+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2+4 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2-3 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i d^2+e^{3 i (\theta _1+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (2 \theta _1+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+4 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_i){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+e^{3 i (\theta _1+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (2 \theta _1+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+4 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2-2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L d^2+e^{2 i (2 \theta _1+\theta _2)} (a_L){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2-e^{i (5 \theta _1+\theta _2)} (a_L){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2-2 e^{3 i (\theta _1+\theta _3)}
+        (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+4 e^{2 i (2 \theta _1+\theta
+            _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2-2 e^{i (5 \theta
+            _1+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+e^{2 i (\theta
+            _1+\theta _2+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+4 e^{i
+            (4 \theta _1+\theta _2+\theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i
+        a_L d^2-2 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L d^2-5 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_L){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L d^2-e^{i (5 \theta _1+\theta _2)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z d^2+2 e^{2 i (2 \theta _1+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z d^2-2 e^{i (5 \theta _1+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z d^2+4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z d^2-3 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z d^2-3 e^{6 i \theta _1} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2+3 e^{i (5 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2-3 e^{2 i (2 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2+6 e^{i (5 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d^2-6 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d^2+3 e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d^2+e^{2 i (2 \theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-e^{i (5 \theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-2 e^{3 i (\theta
+            _1+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2+4 e^{2 i (2
+            \theta _1+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-2 e^{i
+            (5 \theta _1+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2+e^{2
+            i (\theta _1+\theta _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L
+        a_Z d^2+4 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^* (a_L){}^*
+        (\hat{c}_1){}^* a_L a_Z d^2-2 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-5 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2+2 e^{i (2 \theta _1+\theta _2+3
+            \theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z d^2-e^{2 i (\theta
+            _1+\theta _2+\theta _3)} a_g^2 \hat{c}_1 d^2+3 e^{i (3 \theta _1+\theta _2+2 \theta _3)} a_g^2 \hat{c}_1
+        d^2-2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} a_g^2 \hat{c}_1 d^2-3 e^{2 i (\theta _1+\theta _2+\theta
+            _3)} (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2-3 e^{2 i (\theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2+3 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2-6 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2+6 e^{i (\theta _1+2 \theta _2+3 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2+3 e^{i (\theta _1+\theta _2+4 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1 d^2-e^{3 i (\theta _1+\theta _3)}
+        (a_L){}^* a_g a_i \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _3)} (a_L){}^* a_g a_i
+        \hat{c}_1 d^2+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1 d^2+2 e^{i
+            (4 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1 d^2-e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1 d^2-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* a_g a_i \hat{c}_1 d^2+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_L){}^*
+        a_g a_i \hat{c}_1 d^2-2 e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2+3
+        e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2-4 e^{i (2 \theta
+            _1+\theta _2+3 \theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2+2 e^{i (\theta _1+2 \theta _2+3 \theta
+            _3)} (a_i){}^* a_g a_L \hat{c}_1 d^2+e^{i (\theta _1+\theta _2+4 \theta _3)}
+        (a_i){}^* a_g a_L \hat{c}_1 d^2-2 e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^* a_g
+        a_L \hat{c}_1 d^2+3 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d^2-4
+        e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d^2+2 e^{i (\theta _1+2
+            \theta _2+3 \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d^2+e^{i (\theta _1+\theta _2+4 \theta
+            _3)} (a_Z){}^* a_g a_L \hat{c}_1 d^2-2 e^{3 i (\theta _1+\theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2-2 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2+e^{2 i (\theta _1+2 \theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2-5 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2+4 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2-2 e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2-e^{i (\theta _1+\theta _2+4 \theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L \hat{c}_1 d^2-e^{3 i (\theta _1+\theta _3)} (a_L){}^* a_g a_Z
+        \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1 d^2+e^{2 i (\theta
+            _1+\theta _2+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1 d^2+2 e^{i (4 \theta _1+\theta _2+\theta
+            _3)} (a_L){}^* a_g a_Z \hat{c}_1 d^2-e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_L){}^* a_g a_Z \hat{c}_1 d^2-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_L){}^*
+        a_g a_Z \hat{c}_1 d^2+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_L){}^* a_g a_Z \hat{c}_1
+        d^2-e^{2 i (2 \theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+e^{i (5
+            \theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+2 e^{3 i (\theta _1+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-4 e^{2 i (2 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+2 e^{i (5 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-e^{2 i (\theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+2 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2+5 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-2 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d^2-2 e^{3 i (\theta _1+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+e^{2 i (2 \theta _1+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+2 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-2 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+e^{2 i (\theta _1+2 \theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-5 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+4 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-2 e^{i (\theta _1+2 \theta _2+3 \theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2-e^{i (\theta _1+\theta _2+4 \theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z \hat{c}_1 d^2+2 i e^{i (5 \theta _1+\theta _2)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d-4 i e^{2 i (2 \theta _1+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d+4 i e^{i (5 \theta _1+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d-8 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d+6 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2 d-2 i e^{2 i (2 \theta _1+\theta _3)}
+        (\hat{c}_1){}^* a_g^2 d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)} (\hat{c}_1){}^*
+        a_g^2 d+6 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} (\hat{c}_1){}^* a_g^2 d+4 i e^{3 i
+            (\theta _1+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-2 i e^{2 i
+            (2 \theta _1+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-8 i e^{2
+            i (\theta _1+\theta _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2
+        d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2 d+4 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-2 i e^{2 i (\theta _1+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d+10 i e^{i (3 \theta _1+\theta _2+2
+            \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d-8 i e^{i (2 \theta
+            _1+\theta _2+3 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2 d+4 i e^{i
+            (\theta _1+2 \theta _2+3 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^*
+        a_L^2 d+2 i e^{i (\theta _1+\theta _2+4 \theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2 d+6 i e^{6 i \theta _1} \kappa  (a_L){}^*
+        ((\hat{c}_1){}^*){}^2 a_Z^2 d-6 i e^{i (5 \theta _1+\theta _2)} \kappa
+        (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d+6 i e^{2 i (2 \theta _1+\theta _3)}
+        \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d-12 i e^{i (5 \theta _1+\theta
+            _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d+12 i e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2 d-6 i e^{i
+            (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2
+        a_Z^2 d-4 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2 d+6 i e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} \kappa  a_g^2 \hat{c}_1^2 d-8 i e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        \kappa  a_g^2 \hat{c}_1^2 d+4 i e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa  a_g^2 \hat{c}_1^2 d+2 i e^{i
+            (\theta _1+\theta _2+4 \theta _3)} \kappa  a_g^2 \hat{c}_1^2 d-4 i e^{3 i (\theta _1+\theta _3)}
+        \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2 d+2 i e^{2 i (2 \theta _1+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d+8 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d+4 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d-4 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2 d+2 i e^{2 i (\theta _1+2 \theta _3)} \kappa  (a_L){}^*
+        a_Z^2 \hat{c}_1^2 d-10 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_L){}^* a_Z^2
+        \hat{c}_1^2 d+8 i e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2 d-4
+        i e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2 d-2 i e^{i
+            (\theta _1+\theta _2+4 \theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2 d-4 i e^{2 i (\theta
+            _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2 d+6 i e^{i (3 \theta _1+\theta _2+2
+            \theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2 d-8 i e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        \kappa  (a_Z){}^* a_g \hat{c}_1^2 d+4 i e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2 d+2 i e^{i (\theta _1+\theta _2+4 \theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2 d-6 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d-6 i e^{2 i (\theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d+6 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d-12 i e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d+12 i e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d+6 i e^{i (\theta _1+\theta _2+4 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2 d+2 i e^{i (5 \theta _1+\theta _2)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d-4 i e^{2 i (2 \theta _1+\theta _3)}
+        \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d+4 i e^{i (5 \theta _1+\theta
+            _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d-8 i e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g d+6 i e^{i
+            (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2
+        a_g d-2 i e^{2 i (2 \theta _1+\theta _2)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d+2 i e^{i (5 \theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d+4 i e^{3 i (\theta _1+\theta
+            _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d-8 i e^{2 i
+            (2 \theta _1+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d+4 i e^{i (5 \theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d-2 i e^{2 i (\theta _1+\theta
+            _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d-8 i
+        e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d+4 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d+10 i e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L d-4 i e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L d+2 i e^{3 i (\theta _1+\theta
+            _3)} (a_i){}^* (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (2 \theta _1+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L d+2 i e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L d+8 i e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L d-4 i e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L d+2 i e^{3 i (\theta _1+\theta _3)}
+        (a_Z){}^* (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (2 \theta _1+\theta _3)}
+        (a_Z){}^* (\hat{c}_1){}^* a_g a_L d-2 i e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_Z){}^* (\hat{c}_1){}^* a_g a_L d-4 i e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_Z){}^* (\hat{c}_1){}^* a_g a_L d+2 i e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_Z){}^* (\hat{c}_1){}^* a_g a_L d+8 i e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_Z){}^* (\hat{c}_1){}^* a_g a_L d-4 i e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_Z){}^* (\hat{c}_1){}^* a_g a_L d+6 i e^{6 i \theta _1} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d-6 i e^{i (5 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d+6 i e^{2 i (2 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d-12 i e^{i (5 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z d+12 i e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d-6 i e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z d-2 i e^{2 i (\theta _1+\theta
+            _2+\theta _3)} a_g^2 \hat{c}_1 d+6 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} a_g^2 \hat{c}_1 d-4 i
+        e^{i (2 \theta _1+\theta _2+3 \theta _3)} a_g^2 \hat{c}_1 d+4 i e^{3 i (\theta _1+\theta _3)}
+        \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-4 i e^{2 i (2 \theta _1+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-4 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-8 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d+4 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d+16 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-8 i e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 \hat{c}_1 d-6 i e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d-6 i e^{2 i (\theta _2+2 \theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d+6 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d-12 i e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d+12 i e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d+6 i e^{i (\theta _1+\theta _2+4 \theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 \hat{c}_1 d+4 i e^{2 i (2 \theta _1+\theta _2)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-4 i e^{i (5 \theta _1+\theta _2)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-8 i e^{3 i (\theta _1+\theta _3)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+16 i e^{2 i (2 \theta _1+\theta _3)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-8 i e^{i (5 \theta _1+\theta _3)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+4 i e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+16 i e^{i (4 \theta _1+\theta _2+\theta _3)}
+        \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-8 i e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d-20 i e^{i (3 \theta _1+\theta
+            _2+2 \theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+8 i e^{i (2 \theta
+            _1+\theta _2+3 \theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1 d+4 i e^{3 i
+            (\theta _1+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d-4 i e^{2 i
+            (2 \theta _1+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d-4 i e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d-8 i
+        e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1
+        d+4 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g
+        \hat{c}_1 d+16 i e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_Z){}^*
+        (\hat{c}_1){}^* a_g \hat{c}_1 d-8 i e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa
+        (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1 d+8 i e^{3 i (\theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-4 i e^{2 i (2 \theta _1+\theta
+            _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-16 i e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L
+        \hat{c}_1 d-8 i e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1 d+8 i e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-4 i e^{2 i (\theta _1+2 \theta
+            _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d+20 i e^{i (3
+            \theta _1+\theta _2+2 \theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L
+        \hat{c}_1 d-16 i e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1 d+8 i e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d+4 i e^{i (\theta _1+\theta _2+4
+            \theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1 d-4 i e^{2 i
+            (\theta _1+\theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d+6 i e^{i (3 \theta _1+\theta
+            _2+2 \theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d-8 i e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_i){}^* a_g a_L \hat{c}_1 d+4 i e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_i){}^*
+        a_g a_L \hat{c}_1 d+2 i e^{i (\theta _1+\theta _2+4 \theta _3)} (a_i){}^* a_g a_L \hat{c}_1 d-4 i
+        e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d+6 i e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1 d-8 i e^{i (2 \theta _1+\theta _2+3 \theta
+            _3)} (a_Z){}^* a_g a_L \hat{c}_1 d+4 i e^{i (\theta _1+2 \theta _2+3 \theta _3)}
+        (a_Z){}^* a_g a_L \hat{c}_1 d+2 i e^{i (\theta _1+\theta _2+4 \theta _3)} (a_Z){}^* a_g
+        a_L \hat{c}_1 d+2 i e^{2 i (2 \theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1
+        d-2 i e^{i (5 \theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-4 i e^{3 i
+            (\theta _1+\theta _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+8 i e^{2 i (2 \theta
+            _1+\theta _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-4 i e^{i (5 \theta _1+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+2 i e^{2 i (\theta _1+\theta _2+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+8 i e^{i (4 \theta _1+\theta _2+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-4 i e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-10 i e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d+4 i e^{i (2 \theta _1+\theta _2+3 \theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1 d-2 e^{i (5 \theta _1+\theta _2)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2+4 e^{2 i (2 \theta _1+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2-4 e^{i (5 \theta _1+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2+8 e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2-6 e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        ((\hat{c}_1){}^*){}^2 a_g^2+e^{2 i (2 \theta _1+\theta _3)} (\hat{c}_1){}^*
+        a_g^2+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (\hat{c}_1){}^* a_g^2-3 e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} (\hat{c}_1){}^* a_g^2-2 e^{3 i (\theta _1+\theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+e^{2 i (2 \theta _1+\theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+4 e^{2 i (\theta _1+\theta _2+\theta
+            _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+2 e^{i (4 \theta _1+\theta
+            _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2-2 e^{i (3 \theta
+            _1+2 \theta _2+\theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+e^{2 i
+            (\theta _1+2 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2-5 e^{i
+            (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^* (a_Z){}^* (\hat{c}_1){}^*
+        a_L^2+4 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_i){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_L^2-2 e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_i){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_L^2-e^{i (\theta _1+\theta _2+4 \theta _3)}
+        (a_i){}^* (a_Z){}^* (\hat{c}_1){}^* a_L^2+6 e^{6 i \theta _1} \kappa
+        (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2-6 e^{i (5 \theta _1+\theta _2)} \kappa
+        (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2+6 e^{2 i (2 \theta _1+\theta _3)}
+        \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2-12 e^{i (5 \theta _1+\theta
+            _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2+12 e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2 a_Z^2-6 e^{i
+            (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_L){}^* ((\hat{c}_1){}^*){}^2
+        a_Z^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa  a_g^2 \hat{c}_1^2-6 e^{i (3 \theta _1+\theta _2+2
+            \theta _3)} \kappa  a_g^2 \hat{c}_1^2+8 e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa  a_g^2
+        \hat{c}_1^2-4 e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa  a_g^2 \hat{c}_1^2-2 e^{i (\theta
+            _1+\theta _2+4 \theta _3)} \kappa  a_g^2 \hat{c}_1^2-4 e^{3 i (\theta _1+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2+2 e^{2 i (2 \theta _1+\theta _3)} \kappa  (a_L){}^* a_Z^2
+        \hat{c}_1^2+8 e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2+4 e^{i
+            (4 \theta _1+\theta _2+\theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2-4 e^{i (3 \theta _1+2
+            \theta _2+\theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2+2 e^{2 i (\theta _1+2 \theta _3)}
+        \kappa  (a_L){}^* a_Z^2 \hat{c}_1^2-10 e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2+8 e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2-4 e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1^2-2 e^{i (\theta _1+\theta _2+4 \theta _3)} \kappa  (a_L){}^*
+        a_Z^2 \hat{c}_1^2+4 e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2-6
+        e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2+8 e^{i (2 \theta
+            _1+\theta _2+3 \theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2-4 e^{i (\theta _1+2 \theta _2+3 \theta
+            _3)} \kappa  (a_Z){}^* a_g \hat{c}_1^2-2 e^{i (\theta _1+\theta _2+4 \theta _3)} \kappa
+        (a_Z){}^* a_g \hat{c}_1^2+6 e^{2 i (\theta _1+\theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2+6 e^{2 i (\theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2-6 e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2+12 e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2-12 e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2-6 e^{i (\theta _1+\theta _2+4 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1^2-2 e^{i (5 \theta _1+\theta _2)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g+4 e^{2 i (2 \theta _1+\theta _3)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g-4 e^{i (5 \theta _1+\theta _3)} \kappa
+        (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g+8 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g-6 e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} \kappa  (a_Z){}^* ((\hat{c}_1){}^*){}^2 a_g-e^{i (5 \theta _1+\theta
+            _2)} (a_L){}^* (\hat{c}_1){}^* a_g a_i+2 e^{2 i (2 \theta _1+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_i-2 e^{i (5 \theta _1+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i+4 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i-3 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_L){}^*
+        (\hat{c}_1){}^* a_g a_i+2 e^{2 i (2 \theta _1+\theta _2)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-2 e^{i (5 \theta _1+\theta
+            _2)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-4 e^{3 i
+            (\theta _1+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L+8 e^{2 i (2 \theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-4 e^{i (5 \theta _1+\theta
+            _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L+2 e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L+8 e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-4 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-10
+        e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  ((a_Z){}^*){}^2
+        ((\hat{c}_1){}^*){}^2 a_L+4 e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 ((\hat{c}_1){}^*){}^2 a_L-e^{3 i (\theta _1+\theta
+            _3)} (a_i){}^* (\hat{c}_1){}^* a_g a_L+e^{2 i (2 \theta _1+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L+e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L+2 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L-e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_i){}^* (\hat{c}_1){}^* a_g a_L-e^{3 i (\theta _1+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+e^{2 i (2 \theta _1+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L-e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_Z){}^*
+        (\hat{c}_1){}^* a_g a_L+e^{2 i (2 \theta _1+\theta _2)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L-e^{i (5 \theta _1+\theta _2)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L-2 e^{3 i (\theta _1+\theta _3)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L+4 e^{2 i (2 \theta _1+\theta _3)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L-2 e^{i (5 \theta _1+\theta _3)} (a_L){}^* (a_Z){}^*
+        (\hat{c}_1){}^* a_i a_L+e^{2 i (\theta _1+\theta _2+\theta _3)} (a_L){}^*
+        (a_Z){}^* (\hat{c}_1){}^* a_i a_L+4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L-2 e^{i (3 \theta _1+2 \theta _2+\theta
+            _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L-5 e^{i (3 \theta _1+\theta
+            _2+2 \theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L+2 e^{i (2 \theta
+            _1+\theta _2+3 \theta _3)} (a_L){}^* (a_Z){}^* (\hat{c}_1){}^* a_i a_L-e^{i
+            (5 \theta _1+\theta _2)} (a_L){}^* (\hat{c}_1){}^* a_g a_Z+2 e^{2 i (2 \theta
+            _1+\theta _3)} (a_L){}^* (\hat{c}_1){}^* a_g a_Z-2 e^{i (5 \theta _1+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z+4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z-3 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_L){}^* (\hat{c}_1){}^* a_g a_Z+3 e^{6 i \theta _1} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z-3 e^{i (5 \theta _1+\theta _2)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z+3 e^{2 i (2 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z-6 e^{i (5 \theta _1+\theta _3)} ((a_L){}^*){}^2
+        (\hat{c}_1){}^* a_i a_Z+6 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z-3 e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} ((a_L){}^*){}^2 (\hat{c}_1){}^* a_i a_Z+e^{2 i (2 \theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z-e^{i (5 \theta _1+\theta
+            _2)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z-2 e^{3 i (\theta _1+\theta
+            _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z+4 e^{2 i (2 \theta _1+\theta
+            _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z-2 e^{i (5 \theta _1+\theta
+            _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z+e^{2 i (\theta _1+\theta
+            _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z+4 e^{i (4 \theta
+            _1+\theta _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L a_Z-2 e^{i
+            (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^* (a_L){}^* (\hat{c}_1){}^* a_L
+        a_Z-5 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^* (a_L){}^*
+        (\hat{c}_1){}^* a_L a_Z+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_i){}^*
+        (a_L){}^* (\hat{c}_1){}^* a_L a_Z+e^{2 i (\theta _1+\theta _2+\theta _3)} a_g^2
+        \hat{c}_1-3 e^{i (3 \theta _1+\theta _2+2 \theta _3)} a_g^2 \hat{c}_1+2 e^{i (2 \theta _1+\theta _2+3
+            \theta _3)} a_g^2 \hat{c}_1-4 e^{3 i (\theta _1+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2
+        \hat{c}_1+4 e^{2 i (2 \theta _1+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+4 e^{2 i
+            (\theta _1+\theta _2+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+8 e^{i (4 \theta
+            _1+\theta _2+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1-4 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1-16 e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+8 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        \kappa  (\hat{c}_1){}^* a_g^2 \hat{c}_1+3 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1+3 e^{2 i (\theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1-3 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1+6 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1-6 e^{i (\theta _1+2 \theta _2+3 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1-3 e^{i (\theta _1+\theta _2+4 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 \hat{c}_1+4 e^{2 i (2 \theta _1+\theta _2)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-4 e^{i (5 \theta _1+\theta _2)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-8 e^{3 i (\theta _1+\theta _3)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+16 e^{2 i (2 \theta _1+\theta _3)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-8 e^{i (5 \theta _1+\theta _3)} \kappa
+        (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+4 e^{2 i (\theta _1+\theta _2+\theta _3)}
+        \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+16 e^{i (4 \theta _1+\theta _2+\theta
+            _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-8 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-20 e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1+8 e^{i (2
+            \theta _1+\theta _2+3 \theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 \hat{c}_1-4 e^{3 i
+            (\theta _1+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1+4 e^{2 i (2
+            \theta _1+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1+4 e^{2 i (\theta
+            _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1+8 e^{i (4
+            \theta _1+\theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1-4 e^{i
+            (3 \theta _1+2 \theta _2+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g \hat{c}_1-16
+        e^{i (3 \theta _1+\theta _2+2 \theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g
+        \hat{c}_1+8 e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^*
+        a_g \hat{c}_1-e^{3 i (\theta _1+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1+e^{2 i (2 \theta
+            _1+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1+e^{2 i (\theta _1+\theta _2+\theta _3)}
+        (a_L){}^* a_g a_i \hat{c}_1+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_g a_i
+        \hat{c}_1-e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_g a_i \hat{c}_1-4 e^{i (3
+            \theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_g a_i \hat{c}_1+2 e^{i (2 \theta _1+\theta _2+3
+            \theta _3)} (a_L){}^* a_g a_i \hat{c}_1-8 e^{3 i (\theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+4 e^{2 i (2 \theta _1+\theta
+            _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+16 e^{2 i (\theta
+            _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+8
+        e^{i (4 \theta _1+\theta _2+\theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1-8 e^{i (3 \theta _1+2 \theta _2+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+4 e^{2 i (\theta _1+2 \theta
+            _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1-20 e^{i (3 \theta
+            _1+\theta _2+2 \theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L
+        \hat{c}_1+16 e^{i (2 \theta _1+\theta _2+3 \theta _3)} \kappa  ((a_Z){}^*){}^2
+        (\hat{c}_1){}^* a_L \hat{c}_1-8 e^{i (\theta _1+2 \theta _2+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1-4 e^{i (\theta _1+\theta _2+4 \theta
+            _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L \hat{c}_1+2 e^{2 i (\theta
+            _1+\theta _2+\theta _3)} (a_i){}^* a_g a_L \hat{c}_1-3 e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} (a_i){}^* a_g a_L \hat{c}_1+4 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_i){}^* a_g a_L \hat{c}_1-2 e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_i){}^* a_g
+        a_L \hat{c}_1-e^{i (\theta _1+\theta _2+4 \theta _3)} (a_i){}^* a_g a_L \hat{c}_1+2 e^{2 i
+            (\theta _1+\theta _2+\theta _3)} (a_Z){}^* a_g a_L \hat{c}_1-3 e^{i (3 \theta _1+\theta _2+2
+            \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1+4 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        (a_Z){}^* a_g a_L \hat{c}_1-2 e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_Z){}^* a_g
+        a_L \hat{c}_1-e^{i (\theta _1+\theta _2+4 \theta _3)} (a_Z){}^* a_g a_L \hat{c}_1-2 e^{3 i
+            (\theta _1+\theta _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+e^{2 i (2 \theta
+            _1+\theta _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+4 e^{2 i (\theta _1+\theta
+            _2+\theta _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+2 e^{i (4 \theta _1+\theta
+            _2+\theta _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-2 e^{i (3 \theta _1+2 \theta
+            _2+\theta _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+e^{2 i (\theta _1+2 \theta
+            _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-5 e^{i (3 \theta _1+\theta _2+2 \theta
+            _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1+4 e^{i (2 \theta _1+\theta _2+3 \theta
+            _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-2 e^{i (\theta _1+2 \theta _2+3 \theta
+            _3)} (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-e^{i (\theta _1+\theta _2+4 \theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L \hat{c}_1-e^{3 i (\theta _1+\theta _3)} (a_L){}^*
+        a_g a_Z \hat{c}_1+e^{2 i (2 \theta _1+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1+e^{2 i (\theta
+            _1+\theta _2+\theta _3)} (a_L){}^* a_g a_Z \hat{c}_1+2 e^{i (4 \theta _1+\theta _2+\theta
+            _3)} (a_L){}^* a_g a_Z \hat{c}_1-e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        (a_L){}^* a_g a_Z \hat{c}_1-4 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_g
+        a_Z \hat{c}_1+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_L){}^* a_g a_Z \hat{c}_1+e^{2 i
+            (2 \theta _1+\theta _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-e^{i (5 \theta _1+\theta
+            _2)} ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-2 e^{3 i (\theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+4 e^{2 i (2 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-2 e^{i (5 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+e^{2 i (\theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+4 e^{i (4 \theta _1+\theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-2 e^{i (3 \theta _1+2 \theta _2+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-5 e^{i (3 \theta _1+\theta _2+2 \theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1+2 e^{i (2 \theta _1+\theta _2+3 \theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z \hat{c}_1-2 e^{3 i (\theta _1+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+e^{2 i (2 \theta _1+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+4 e^{2 i (\theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+2 e^{i (4 \theta _1+\theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-2 e^{i (3 \theta _1+2 \theta _2+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+e^{2 i (\theta _1+2 \theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-5 e^{i (3 \theta _1+\theta _2+2 \theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1+4 e^{i (2 \theta _1+\theta _2+3 \theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-2 e^{i (\theta _1+2 \theta _2+3 \theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-e^{i (\theta _1+\theta _2+4 \theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z \hat{c}_1-2 i (d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _3}) \kappa
+        ((a_g){}^*){}^2 (e^{i \theta _1} (\hat{c}_1){}^*-e^{i \theta _3} \hat{c}_1)
+        ((e^{i (2 \theta _1+\theta _2)}+2 e^{i (2 \theta _1+\theta _3)}-3 e^{i (\theta
+            _1+\theta _2+\theta _3)}) (\hat{c}_1){}^*+e^{i (\theta _2+\theta _3)} (-3 e^{i
+            \theta _1}+2 e^{i \theta _2}+e^{i \theta _3}) \hat{c}_1)-(d-i)^2 e^{i (2 \theta _1+\theta _3)}
+        ((a_g){}^*){}^2 ((2 e^{i (2 \theta _1+\theta _2)}+e^{i (2 \theta
+            _1+\theta _3)}-3 e^{i (\theta _1+\theta _2+\theta _3)}) (\hat{c}_1){}^*+e^{i
+            (\theta _2+\theta _3)} (-3 e^{i \theta _1}+e^{i \theta _2}+2 e^{i \theta _3})
+        \hat{c}_1)+(d-i) e^{i \theta _1} (a_g){}^* (-2 i e^{2 i \theta _1} (e^{i \theta _1}-e^{i
+            \theta _3}) (e^{i (\theta _1+\theta _2)}+2 e^{i (\theta _1+\theta _3)}-3 e^{i
+            (\theta _2+\theta _3)}) \kappa  a_Z ((\hat{c}_1){}^*){}^2+e^{i \theta _1} (d
+        e^{2 i (\theta _1+\theta _3)} a_g+i e^{2 i (\theta _1+\theta _3)} a_g+2 d e^{i (2 \theta
+            _1+\theta _2+\theta _3)} a_g+2 i e^{i (2 \theta _1+\theta _2+\theta _3)} a_g-3 d e^{i (\theta
+            _1+\theta _2+2 \theta _3)} a_g-3 i e^{i (\theta _1+\theta _2+2 \theta _3)} a_g+(d+i) e^{i (\theta
+            _1+\theta _3)} (2 e^{i (\theta _1+\theta _2)}+e^{i (\theta _1+\theta _3)}-3 e^{i
+            (\theta _2+\theta _3)}) a_g+d e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_i-i e^{i
+            (3 \theta _1+\theta _2)} (a_L){}^* a_i-2 d e^{2 i (\theta _1+\theta _3)}
+        (a_L){}^* a_i+2 i e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_i+2 d e^{i (3 \theta
+            _1+\theta _3)} (a_L){}^* a_i-2 i e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_i-4 d
+        e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_i+4 i e^{i (2 \theta _1+\theta _2+\theta
+            _3)} (a_L){}^* a_i+3 d e^{i (\theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_i-3 i
+        e^{i (\theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_i+(d+i) e^{i \theta _3} (-e^{i \theta
+            _1}+e^{i \theta _3}) (e^{2 i \theta _2}-2 e^{i (\theta _1+\theta _2)}-e^{i (\theta _1+\theta
+            _3)}+2 e^{i (\theta _2+\theta _3)}) (a_i){}^* a_L+d e^{2 i (\theta _1+\theta
+            _3)} (a_Z){}^* a_L+i e^{2 i (\theta _1+\theta _3)} (a_Z){}^* a_L+d e^{2 i
+            (\theta _2+\theta _3)} (a_Z){}^* a_L+i e^{2 i (\theta _2+\theta _3)}
+        (a_Z){}^* a_L+2 d e^{i (2 \theta _1+\theta _2+\theta _3)} (a_Z){}^* a_L+2 i e^{i (2
+            \theta _1+\theta _2+\theta _3)} (a_Z){}^* a_L-d e^{i (\theta _1+2 \theta _2+\theta _3)}
+        (a_Z){}^* a_L-i e^{i (\theta _1+2 \theta _2+\theta _3)} (a_Z){}^* a_L-4 d e^{i
+            (\theta _1+\theta _2+2 \theta _3)} (a_Z){}^* a_L-4 i e^{i (\theta _1+\theta _2+2 \theta
+            _3)} (a_Z){}^* a_L-d e^{i (\theta _1+3 \theta _3)} (a_Z){}^* a_L-i e^{i
+            (\theta _1+3 \theta _3)} (a_Z){}^* a_L+2 d e^{i (\theta _2+3 \theta _3)}
+        (a_Z){}^* a_L+2 i e^{i (\theta _2+3 \theta _3)} (a_Z){}^* a_L+d e^{i (3 \theta
+            _1+\theta _2)} (a_L){}^* a_Z-i e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_Z-2 d
+        e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_Z+2 i e^{2 i (\theta _1+\theta _3)}
+        (a_L){}^* a_Z+2 d e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_Z-2 i e^{i (3 \theta
+            _1+\theta _3)} (a_L){}^* a_Z-4 d e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^*
+        a_Z+4 i e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_Z+3 d e^{i (\theta _1+\theta _2+2
+            \theta _3)} (a_L){}^* a_Z-3 i e^{i (\theta _1+\theta _2+2 \theta _3)} (a_L){}^*
+        a_Z+4 i e^{2 i (\theta _1+\theta _3)} \kappa  a_Z \hat{c}_1+4 i e^{2 i (\theta _2+\theta _3)}
+        \kappa  a_Z \hat{c}_1+8 i e^{i (2 \theta _1+\theta _2+\theta _3)} \kappa  a_Z \hat{c}_1-4 i e^{i (\theta
+            _1+2 \theta _2+\theta _3)} \kappa  a_Z \hat{c}_1-16 i e^{i (\theta _1+\theta _2+2 \theta _3)} \kappa
+        a_Z \hat{c}_1-4 i e^{i (\theta _1+3 \theta _3)} \kappa  a_Z \hat{c}_1+8 i e^{i (\theta _2+3 \theta
+            _3)} \kappa  a_Z \hat{c}_1) (\hat{c}_1){}^*+e^{i \theta _3} \hat{c}_1 (-3 d e^{i (2
+            \theta _1+\theta _2+\theta _3)} a_g-3 i e^{i (2 \theta _1+\theta _2+\theta _3)} a_g+d e^{i (\theta
+            _1+2 \theta _2+\theta _3)} a_g+i e^{i (\theta _1+2 \theta _2+\theta _3)} a_g+2 d e^{i (\theta
+            _1+\theta _2+2 \theta _3)} a_g+2 i e^{i (\theta _1+\theta _2+2 \theta _3)} a_g+(d+i) e^{i (\theta
+            _1+\theta _2+\theta _3)} (-3 e^{i \theta _1}+e^{i \theta _2}+2 e^{i \theta _3}) a_g+d e^{2 i
+            (\theta _1+\theta _2)} (a_L){}^* a_i-i e^{2 i (\theta _1+\theta _2)}
+        (a_L){}^* a_i-2 d e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_i+2 i e^{i (3 \theta
+            _1+\theta _2)} (a_L){}^* a_i+d e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_i-i e^{2
+            i (\theta _1+\theta _3)} (a_L){}^* a_i-d e^{i (3 \theta _1+\theta _3)}
+        (a_L){}^* a_i+i e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_i+4 d e^{i (2 \theta
+            _1+\theta _2+\theta _3)} (a_L){}^* a_i-4 i e^{i (2 \theta _1+\theta _2+\theta _3)}
+        (a_L){}^* a_i-d e^{i (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_i+i e^{i
+            (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_i-2 d e^{i (\theta _1+\theta _2+2 \theta
+            _3)} (a_L){}^* a_i+2 i e^{i (\theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_i-(d+i)
+        e^{i (\theta _2+\theta _3)} (-e^{i \theta _1}+e^{i \theta _3}) (-3 e^{i \theta _1}+2 e^{i
+            \theta _2}+e^{i \theta _3}) (a_i){}^* a_L-2 d e^{2 i (\theta _2+\theta _3)}
+        (a_Z){}^* a_L-2 i e^{2 i (\theta _2+\theta _3)} (a_Z){}^* a_L-3 d e^{i (2 \theta
+            _1+\theta _2+\theta _3)} (a_Z){}^* a_L-3 i e^{i (2 \theta _1+\theta _2+\theta _3)}
+        (a_Z){}^* a_L+2 d e^{i (\theta _1+2 \theta _2+\theta _3)} (a_Z){}^* a_L+2 i e^{i
+            (\theta _1+2 \theta _2+\theta _3)} (a_Z){}^* a_L+4 d e^{i (\theta _1+\theta _2+2 \theta
+            _3)} (a_Z){}^* a_L+4 i e^{i (\theta _1+\theta _2+2 \theta _3)} (a_Z){}^* a_L-d
+        e^{i (\theta _2+3 \theta _3)} (a_Z){}^* a_L-i e^{i (\theta _2+3 \theta _3)}
+        (a_Z){}^* a_L+d e^{2 i (\theta _1+\theta _2)} (a_L){}^* a_Z-i e^{2 i (\theta
+            _1+\theta _2)} (a_L){}^* a_Z-2 d e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_Z+2 i
+        e^{i (3 \theta _1+\theta _2)} (a_L){}^* a_Z+d e^{2 i (\theta _1+\theta _3)}
+        (a_L){}^* a_Z-i e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_Z-d e^{i (3 \theta
+            _1+\theta _3)} (a_L){}^* a_Z+i e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_Z+4 d
+        e^{i (2 \theta _1+\theta _2+\theta _3)} (a_L){}^* a_Z-4 i e^{i (2 \theta _1+\theta _2+\theta
+            _3)} (a_L){}^* a_Z-d e^{i (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_Z+i e^{i
+            (\theta _1+2 \theta _2+\theta _3)} (a_L){}^* a_Z-2 d e^{i (\theta _1+\theta _2+2 \theta
+            _3)} (a_L){}^* a_Z+2 i e^{i (\theta _1+\theta _2+2 \theta _3)} (a_L){}^* a_Z-4 i
+        e^{2 i (\theta _2+\theta _3)} \kappa  a_Z \hat{c}_1-6 i e^{i (2 \theta _1+\theta _2+\theta _3)}
+        \kappa  a_Z \hat{c}_1+4 i e^{i (\theta _1+2 \theta _2+\theta _3)} \kappa  a_Z \hat{c}_1+8 i e^{i (\theta
+            _1+\theta _2+2 \theta _3)} \kappa  a_Z \hat{c}_1-2 i e^{i (\theta _2+3 \theta _3)} \kappa  a_Z
+        \hat{c}_1))) a_1)+\frac{1}{\kappa }(4 e^{-i (2 \theta _1+\theta _2+2 \theta _3)} (e^{i
+            \theta _2}-e^{i \theta _3}) a_2 a_{21} \hat{c}_1 ((d-i)^2 e^{i (3 \theta _1+\theta _2)}
+        ((a_g){}^*){}^2+(d-i) e^{i \theta _1} (-((d+i) e^{i (\theta _2+2 \theta _3)}
+        a_g)-(d-i) e^{2 i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) (a_L){}^* a_Z+2 i e^{2 i
+            \theta _1} (e^{i \theta _1}-e^{i \theta _2}) \kappa  (\hat{c}_1){}^* a_Z-e^{i (\theta
+            _1+\theta _2)} ((d+i) e^{i \theta _1} a_g+(e^{i \theta _1}-e^{i \theta _2}) ((d+i)
+        (a_Z){}^* a_L+2 i \kappa  a_Z \hat{c}_1))) (a_g){}^*+(d+i) e^{2 i \theta _3} a_g
+        (-((d+i) e^{i \theta _2} (-e^{i \theta _1} a_g-e^{i \theta _1} (a_Z){}^* a_L+e^{i \theta _2}
+        (a_Z){}^* a_L))+(d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _2})
+        (a_L){}^* a_Z-2 i (e^{i \theta _1}-e^{i \theta _2}) \kappa  (a_Z){}^* (e^{i \theta
+            _1} (\hat{c}_1){}^*-e^{i \theta _2} \hat{c}_1))) a_1)+\frac{1}{\kappa }(4 e^{-i (2 \theta
+            _1+2 \theta _2+\theta _3)} (e^{i \theta _2}-e^{i \theta _3}) a_2 a_{12} \hat{c}_1 (-(d-i)^2 e^{i
+            (3 \theta _1+\theta _3)} ((a_g){}^*){}^2+(d-i) e^{i \theta _1} ((d+i) e^{i (2
+            \theta _2+\theta _3)} a_g+(d-i) e^{2 i \theta _1} (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^*
+        a_Z-2 i e^{2 i \theta _1} (e^{i \theta _1}-e^{i \theta _3}) \kappa  (\hat{c}_1){}^* a_Z+e^{i
+            (\theta _1+\theta _3)} ((d+i) e^{i \theta _1} a_g+(e^{i \theta _1}-e^{i \theta _3})
+        ((d+i) (a_Z){}^* a_L+2 i \kappa  a_Z \hat{c}_1))) (a_g){}^*-(d+i) e^{2 i
+            \theta _2} a_g (-((d+i) e^{i \theta _3} (-e^{i \theta _1} a_g-e^{i \theta _1} (a_Z){}^*
+        a_L+e^{i \theta _3} (a_Z){}^* a_L))+(d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta
+            _3}) (a_L){}^* a_Z-2 i (e^{i \theta _1}-e^{i \theta _3}) \kappa  (a_Z){}^*
+        (e^{i \theta _1} (\hat{c}_1){}^*-e^{i \theta _3} \hat{c}_1))) a_1)+\frac{1}{\kappa }(4
+        e^{-i (3 \theta _1+2 \theta _2+\theta _3)} a_2 a_{10} (-(d-i)^2 e^{2 i \theta _1} (4 e^{2 i
+            (\theta _1+\theta _2)} (\hat{c}_1){}^*-4 e^{i (\theta _1+2 \theta _2+\theta _3)}
+        (\hat{c}_1){}^*-e^{i (3 \theta _1+\theta _3)} \hat{c}_1+4 e^{2 i (\theta _2+\theta _3)}
+        \hat{c}_1+e^{i (2 \theta _1+\theta _2+\theta _3)} \hat{c}_1-4 e^{i (\theta _1+2 \theta _2+\theta
+            _3)} \hat{c}_1) ((a_g){}^*){}^2+(d-i) (2 e^{i \theta _1} (e^{i \theta
+            _1}-e^{i \theta _3}) (\hat{c}_1){}^* (2 (d+i) e^{4 i \theta _1} a_g+2 (d+i) e^{4 i \theta _2} a_g+i
+        e^{3 i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) \kappa  a_Z \hat{c}_1)+\hat{c}_1 ((d+i) e^{i
+            (2 \theta _1+\theta _3)} (-4 e^{3 i \theta _1}+e^{3 i \theta _2}-e^{i (\theta _1+2 \theta
+            _2)}+4 e^{i (2 \theta _1+\theta _3)}) a_g-(d-i) e^{4 i \theta _1} (e^{i \theta _1}-e^{i
+            \theta _2}) (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^* a_Z+e^{i \theta _3}
+        (-((d+i) (e^{5 i \theta _1}-e^{i (4 \theta _1+\theta _2)}+4 e^{i (\theta _1+4 \theta
+            _2)}-4 e^{i (4 \theta _2+\theta _3)}) a_g)-i e^{3 i \theta _1} (e^{i \theta _1}-e^{i
+            \theta _2}) (e^{i \theta _1}-e^{i \theta _3}) ((1-i d) (a_Z){}^* a_L+2 \kappa  a_Z
+        \hat{c}_1)))) (a_g){}^*+(d+i) e^{i (\theta _1+2 \theta _2)} a_g ((d-i)
+        e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) (e^{i \theta _1}-e^{i \theta _3})
+        (a_L){}^* a_Z \hat{c}_1-2 i (e^{i \theta _1}-e^{i \theta _2}) (e^{i \theta _1}-e^{i \theta
+            _3}) \kappa  (a_Z){}^* (e^{i \theta _1} (\hat{c}_1){}^*-e^{i \theta _3} \hat{c}_1)
+        \hat{c}_1-(d+i) ((e^{i \theta _1}-e^{i \theta _2}) (e^{2 i \theta _3}-e^{i (\theta _1+\theta
+            _3)}) (a_Z){}^* a_L \hat{c}_1+e^{i \theta _1} a_g (4 e^{2 i \theta _1}
+        (\hat{c}_1){}^*-4 e^{i (\theta _1+\theta _3)} (\hat{c}_1){}^*+4 e^{2 i \theta _3}
+        \hat{c}_1-5 e^{i (\theta _1+\theta _3)} \hat{c}_1+e^{i (\theta _2+\theta _3)}
+        \hat{c}_1)))) a_1)+\frac{1}{\kappa }(4 e^{-i (3 \theta _1+\theta _2+2 \theta _3)} a_2
+        a_{20} (-(d-i)^2 e^{2 i \theta _1} (4 e^{2 i (\theta _1+\theta _3)} (\hat{c}_1){}^*-4
+        e^{i (\theta _1+\theta _2+2 \theta _3)} (\hat{c}_1){}^*-e^{i (3 \theta _1+\theta _2)}
+        \hat{c}_1+4 e^{2 i (\theta _2+\theta _3)} \hat{c}_1+e^{i (2 \theta _1+\theta _2+\theta _3)}
+        \hat{c}_1-4 e^{i (\theta _1+\theta _2+2 \theta _3)} \hat{c}_1)
+        ((a_g){}^*){}^2+(d-i) (2 e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _2})
+        (\hat{c}_1){}^* (2 (d+i) e^{4 i \theta _1} a_g+2 (d+i) e^{4 i \theta _3} a_g+i e^{3 i \theta _1}
+        (e^{i \theta _1}-e^{i \theta _3}) \kappa  a_Z \hat{c}_1)+\hat{c}_1 ((d+i) e^{i (2 \theta
+            _1+\theta _2)} (-4 e^{3 i \theta _1}+4 e^{i (2 \theta _1+\theta _2)}+e^{3 i \theta _3}-e^{i
+            (\theta _1+2 \theta _3)}) a_g-(d-i) e^{4 i \theta _1} (e^{i \theta _1}-e^{i \theta _2})
+        (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^* a_Z+e^{i \theta _2} (-((d+i) (e^{5 i
+            \theta _1}-e^{i (4 \theta _1+\theta _3)}+4 e^{i (\theta _1+4 \theta _3)}-4 e^{i (\theta _2+4
+            \theta _3)}) a_g)-i e^{3 i \theta _1} (e^{i \theta _1}-e^{i \theta _2}) (e^{i \theta
+            _1}-e^{i \theta _3}) ((1-i d) (a_Z){}^* a_L+2 \kappa  a_Z \hat{c}_1))))
+        (a_g){}^*+(d+i) e^{i (\theta _1+2 \theta _3)} a_g ((d-i) e^{i \theta _1} (e^{i \theta
+            _1}-e^{i \theta _2}) (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^* a_Z \hat{c}_1-2 i (e^{i
+            \theta _1}-e^{i \theta _2}) (e^{i \theta _1}-e^{i \theta _3}) \kappa  (a_Z){}^* (e^{i
+            \theta _1} (\hat{c}_1){}^*-e^{i \theta _2} \hat{c}_1) \hat{c}_1-(d+i) ((e^{2 i \theta _2}-e^{i
+            (\theta _1+\theta _2)}) (e^{i \theta _1}-e^{i \theta _3}) (a_Z){}^* a_L
+        \hat{c}_1+e^{i \theta _1} a_g (4 e^{2 i \theta _1} (\hat{c}_1){}^*-4 e^{i (\theta _1+\theta
+            _2)} (\hat{c}_1){}^*+4 e^{2 i \theta _2} \hat{c}_1-5 e^{i (\theta _1+\theta _2)}
+        \hat{c}_1+e^{i (\theta _2+\theta _3)} \hat{c}_1)))) a_1)+\frac{1}{\kappa }(4 e^{-i
+            (\theta _1+2 (\theta _2+\theta _3))} (e^{i \theta _1}-e^{i \theta _2}) a_2 a_{10} a_{21}
+        ((d+i) e^{2 i \theta _2} a_g-(d-i) e^{2 i \theta _3} (a_g){}^*) ((d-i) e^{2 i \theta _1}
+        (a_g){}^*-(d+i) e^{2 i \theta _3} a_g) \hat{c}_1)+\frac{1}{\kappa }(4 e^{-i (\theta _1+2 (\theta
+            _2+\theta _3))} (e^{i \theta _2}-e^{i \theta _3}) a_2 a_{12} a_{21} ((d+i) e^{2 i \theta _2}
+        a_g-(d-i) e^{2 i \theta _3} (a_g){}^*) ((d+i) e^{2 i \theta _3} a_g-(d-i) e^{2 i \theta _1}
+        (a_g){}^*) \hat{c}_1)+\frac{1}{\kappa }(16 e^{-3 i (\theta _1+\theta _3)} (e^{i \theta
+            _1}-e^{i \theta _3}) a_2^3 (e^{i \theta _1} (\hat{c}_1){}^*-e^{i \theta _3} \hat{c}_1)
+        (-e^{2 i (\theta _1+\theta _3)} a_g^2 d^2-e^{4 i \theta _3} (a_i){}^* (a_Z){}^*
+        a_L^2 d^2-e^{2 i (\theta _1+\theta _3)} (a_i){}^* (a_Z){}^* a_L^2 d^2+2 e^{i
+            (\theta _1+3 \theta _3)} (a_i){}^* (a_Z){}^* a_L^2 d^2+e^{2 i (\theta _1+\theta
+            _3)} (a_L){}^* a_g a_i d^2-e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_g a_i
+        d^2-e^{2 i (\theta _1+\theta _3)} (a_i){}^* a_g a_L d^2+e^{i (\theta _1+3 \theta _3)}
+        (a_i){}^* a_g a_L d^2-e^{2 i (\theta _1+\theta _3)} (a_Z){}^* a_g a_L d^2+e^{i
+            (\theta _1+3 \theta _3)} (a_Z){}^* a_g a_L d^2+2 e^{2 i (\theta _1+\theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L d^2-e^{i (3 \theta _1+\theta _3)} (a_L){}^*
+        (a_Z){}^* a_i a_L d^2-e^{i (\theta _1+3 \theta _3)} (a_L){}^* (a_Z){}^* a_i
+        a_L d^2+e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_g a_Z d^2-e^{i (3 \theta _1+\theta
+            _3)} (a_L){}^* a_g a_Z d^2-e^{4 i \theta _1} ((a_L){}^*){}^2 a_i a_Z d^2-e^{2 i
+            (\theta _1+\theta _3)} ((a_L){}^*){}^2 a_i a_Z d^2+2 e^{i (3 \theta _1+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z d^2+2 e^{2 i (\theta _1+\theta _3)}
+        (a_i){}^* (a_L){}^* a_L a_Z d^2-e^{i (3 \theta _1+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z d^2-e^{i (\theta _1+3 \theta _3)} (a_i){}^* (a_L){}^* a_L
+        a_Z d^2-2 i e^{2 i (\theta _1+\theta _3)} a_g^2 d-2 i e^{2 i (\theta _1+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2 d+2 i e^{i (3 \theta _1+\theta _3)} \kappa  (\hat{c}_1){}^* a_g^2
+        d-2 i e^{4 i \theta _3} (a_i){}^* (a_Z){}^* a_L^2 d-2 i e^{2 i (\theta _1+\theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2 d+4 i e^{i (\theta _1+3 \theta _3)} (a_i){}^*
+        (a_Z){}^* a_L^2 d+2 i e^{4 i \theta _1} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 d+2 i
+        e^{2 i (\theta _1+\theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 d-4 i e^{i (3
+            \theta _1+\theta _3)} \kappa  (a_L){}^* (\hat{c}_1){}^* a_Z^2 d-2 i e^{2 i (\theta
+            _1+\theta _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g d+2 i e^{i (3 \theta _1+\theta
+            _3)} \kappa  (a_Z){}^* (\hat{c}_1){}^* a_g d-4 i e^{2 i (\theta _1+\theta _3)}
+        \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L d+2 i e^{i (3 \theta _1+\theta
+            _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L d+2 i e^{i (\theta _1+3
+            \theta _3)} \kappa  ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L d-2 i e^{2 i (\theta
+            _1+\theta _3)} (a_i){}^* a_g a_L d+2 i e^{i (\theta _1+3 \theta _3)} (a_i){}^* a_g
+        a_L d-2 i e^{2 i (\theta _1+\theta _3)} (a_Z){}^* a_g a_L d+2 i e^{i (\theta _1+3 \theta
+            _3)} (a_Z){}^* a_g a_L d+2 i e^{4 i \theta _1} ((a_L){}^*){}^2 a_i a_Z d+2 i e^{2
+            i (\theta _1+\theta _3)} ((a_L){}^*){}^2 a_i a_Z d-4 i e^{i (3 \theta _1+\theta
+            _3)} ((a_L){}^*){}^2 a_i a_Z d-2 i e^{2 i (\theta _1+\theta _3)} \kappa  a_g^2
+        \hat{c}_1 d+2 i e^{i (\theta _1+3 \theta _3)} \kappa  a_g^2 \hat{c}_1 d+4 i e^{2 i (\theta _1+\theta
+            _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1 d-2 i e^{i (3 \theta _1+\theta _3)} \kappa
+        (a_L){}^* a_Z^2 \hat{c}_1 d-2 i e^{i (\theta _1+3 \theta _3)} \kappa  (a_L){}^* a_Z^2
+        \hat{c}_1 d-2 i e^{2 i (\theta _1+\theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1 d+2 i e^{i
+            (\theta _1+3 \theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1 d-2 i e^{4 i \theta _3} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1 d-2 i e^{2 i (\theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1 d+4 i e^{i (\theta _1+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1 d-(d-i)^2 e^{2 i (\theta _1+\theta _3)}
+        ((a_g){}^*){}^2+e^{2 i (\theta _1+\theta _3)} a_g^2+2 e^{2 i (\theta _1+\theta
+            _3)} \kappa  (\hat{c}_1){}^* a_g^2-2 e^{i (3 \theta _1+\theta _3)} \kappa
+        (\hat{c}_1){}^* a_g^2+e^{4 i \theta _3} (a_i){}^* (a_Z){}^* a_L^2+e^{2 i (\theta
+            _1+\theta _3)} (a_i){}^* (a_Z){}^* a_L^2-2 e^{i (\theta _1+3 \theta _3)}
+        (a_i){}^* (a_Z){}^* a_L^2+2 e^{4 i \theta _1} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2+2 e^{2 i (\theta _1+\theta _3)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2-4 e^{i (3 \theta _1+\theta _3)} \kappa  (a_L){}^*
+        (\hat{c}_1){}^* a_Z^2+2 e^{2 i (\theta _1+\theta _3)} \kappa  (a_Z){}^*
+        (\hat{c}_1){}^* a_g-2 e^{i (3 \theta _1+\theta _3)} \kappa  (a_Z){}^*
+        (\hat{c}_1){}^* a_g+e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_g a_i-e^{i (3 \theta
+            _1+\theta _3)} (a_L){}^* a_g a_i+4 e^{2 i (\theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L-2 e^{i (3 \theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L-2 e^{i (\theta _1+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 (\hat{c}_1){}^* a_L+e^{2 i (\theta _1+\theta _3)}
+        (a_i){}^* a_g a_L-e^{i (\theta _1+3 \theta _3)} (a_i){}^* a_g a_L+e^{2 i (\theta
+            _1+\theta _3)} (a_Z){}^* a_g a_L-e^{i (\theta _1+3 \theta _3)} (a_Z){}^* a_g a_L+2
+        e^{2 i (\theta _1+\theta _3)} (a_L){}^* (a_Z){}^* a_i a_L-e^{i (3 \theta _1+\theta
+            _3)} (a_L){}^* (a_Z){}^* a_i a_L-e^{i (\theta _1+3 \theta _3)}
+        (a_L){}^* (a_Z){}^* a_i a_L+e^{2 i (\theta _1+\theta _3)} (a_L){}^* a_g
+        a_Z-e^{i (3 \theta _1+\theta _3)} (a_L){}^* a_g a_Z+e^{4 i \theta _1}
+        ((a_L){}^*){}^2 a_i a_Z+e^{2 i (\theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z-2 e^{i (3 \theta _1+\theta _3)}
+        ((a_L){}^*){}^2 a_i a_Z+2 e^{2 i (\theta _1+\theta _3)} (a_i){}^*
+        (a_L){}^* a_L a_Z-e^{i (3 \theta _1+\theta _3)} (a_i){}^* (a_L){}^* a_L
+        a_Z-e^{i (\theta _1+3 \theta _3)} (a_i){}^* (a_L){}^* a_L a_Z+2 e^{2 i (\theta
+            _1+\theta _3)} \kappa  a_g^2 \hat{c}_1-2 e^{i (\theta _1+3 \theta _3)} \kappa  a_g^2 \hat{c}_1+4 e^{2 i
+            (\theta _1+\theta _3)} \kappa  (a_L){}^* a_Z^2 \hat{c}_1-2 e^{i (3 \theta _1+\theta _3)}
+        \kappa  (a_L){}^* a_Z^2 \hat{c}_1-2 e^{i (\theta _1+3 \theta _3)} \kappa  (a_L){}^*
+        a_Z^2 \hat{c}_1+2 e^{2 i (\theta _1+\theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1-2 e^{i (\theta
+            _1+3 \theta _3)} \kappa  (a_Z){}^* a_g \hat{c}_1+2 e^{4 i \theta _3} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1+2 e^{2 i (\theta _1+\theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1-4 e^{i (\theta _1+3 \theta _3)} \kappa
+        ((a_Z){}^*){}^2 a_L \hat{c}_1-2 i (d-i) e^{i (\theta _1+\theta _3)} (-e^{i \theta
+            _1}+e^{i \theta _3}) \kappa  ((a_g){}^*){}^2 (e^{i \theta _3} \hat{c}_1-e^{i \theta _1}
+        (\hat{c}_1){}^*)+(d-i) e^{i (\theta _1+\theta _3)} (a_g){}^* (d e^{i
+            (\theta _1+\theta _3)} a_g+(d+i) e^{i (\theta _1+\theta _3)} a_g+i e^{i (\theta _1+\theta
+            _3)} a_g+d e^{2 i \theta _1} (a_L){}^* a_i-i e^{2 i \theta _1} (a_L){}^* a_i-d e^{i
+            (\theta _1+\theta _3)} (a_L){}^* a_i+i e^{i (\theta _1+\theta _3)} (a_L){}^*
+        a_i-d e^{2 i \theta _3} (a_i){}^* a_L-i e^{2 i \theta _3} (a_i){}^* a_L+d e^{i (\theta
+            _1+\theta _3)} (a_i){}^* a_L+i e^{i (\theta _1+\theta _3)} (a_i){}^* a_L-d e^{2 i
+            \theta _3} (a_Z){}^* a_L-i e^{2 i \theta _3} (a_Z){}^* a_L+d e^{i (\theta _1+\theta _3)}
+        (a_Z){}^* a_L+i e^{i (\theta _1+\theta _3)} (a_Z){}^* a_L+d e^{2 i \theta _1}
+        (a_L){}^* a_Z-i e^{2 i \theta _1} (a_L){}^* a_Z-d e^{i (\theta _1+\theta _3)}
+        (a_L){}^* a_Z+i e^{i (\theta _1+\theta _3)} (a_L){}^* a_Z-2 i e^{i \theta _1} (e^{i
+            \theta _1}-e^{i \theta _3}) \kappa  (\hat{c}_1){}^* a_Z-2 i e^{2 i \theta _3} \kappa  a_Z \hat{c}_1+2 i
+        e^{i (\theta _1+\theta _3)} \kappa  a_Z \hat{c}_1)))+\frac{1}{\kappa }(2 e^{-i (2 \theta _1+3
+            \theta _3)} (e^{i \theta _1}-e^{i \theta _3}) a_2 a_{20}^2 \hat{c}_1 (2 (d-i)^2 e^{i (3 \theta
+            _1+\theta _3)} ((a_g){}^*){}^2+(i d+1) e^{3 i \theta _1} (e^{i \theta _1}-e^{i \theta
+            _3}) \kappa  \hat{c}_1 ((a_g){}^*){}^2-2 (d-i) e^{i \theta _1} ((d+i) e^{3 i \theta _3}
+        a_g+(d+i) e^{i (2 \theta _1+\theta _3)} a_g+(d-i) e^{i (\theta _1+\theta _3)} (-e^{i \theta
+            _1}+e^{i \theta _3}) (a_L){}^* a_i-(d+i) e^{2 i \theta _1} (e^{i \theta _1}-e^{i \theta _3})
+        (a_i){}^* a_L) (a_g){}^*+(d+i) e^{2 i \theta _3} (2 (d+i) e^{i (\theta _1+\theta
+            _3)} a_g^2-i (e^{i \theta _1}-e^{i \theta _3}) (e^{i \theta _1} \kappa  \hat{c}_1 a_g^2-2 i (d-i)
+        e^{i \theta _3} (a_L){}^* a_i a_g+2 (1-i d) e^{i \theta _1} (a_i){}^* a_L
+        a_g))))-\frac{1}{\kappa }(2 e^{-i (\theta _1+\theta _2+3 \theta _3)} (e^{i \theta _2}-e^{i
+            \theta _3}) a_2 a_{21}^2 \hat{c}_1 (-2 (d-i)^2 e^{i (2 \theta _1+\theta _2+\theta _3)}
+        ((a_g){}^*){}^2-i (d-i) e^{i (2 \theta _1+\theta _2)} (e^{i \theta _2}-e^{i \theta
+            _3}) \kappa  \hat{c}_1 ((a_g){}^*){}^2+2 (d-i) ((d+i) e^{i (2 \theta _1+\theta
+            _2+\theta _3)} a_g+e^{i \theta _3} ((d+i) e^{i (\theta _2+2 \theta _3)} a_g-(d-i) e^{2 i \theta _1}
+        (e^{i \theta _2}-e^{i \theta _3}) (a_L){}^* a_i)-(d+i) e^{i (2 \theta _1+\theta
+            _2)} (e^{i \theta _2}-e^{i \theta _3}) (a_i){}^* a_L) (a_g){}^*+(d+i) e^{2 i
+            \theta _3} ((e^{i \theta _2}-e^{i \theta _3}) (i e^{i \theta _2} \kappa  \hat{c}_1 a_g^2+2 (d-i)
+        e^{i \theta _3} (a_L){}^* a_i a_g+2 (d+i) e^{i \theta _2} (a_i){}^* a_L a_g)-2 (d+i) e^{i
+            (\theta _2+\theta _3)} a_g^2)))-\frac{1}{\kappa }(4 e^{-i (2 \theta _1+\theta _2+3 \theta
+            _3)} a_2 a_{20} a_{21} \hat{c}_1 ((d-i)^2 e^{i (3 \theta _1+\theta _2+\theta _3)} (-e^{i
+            \theta _1}-e^{i \theta _2}+2 e^{i \theta _3}) ((a_g){}^*){}^2-i (d-i) e^{i (3 \theta
+            _1+\theta _2)} (e^{i \theta _1}-e^{i \theta _3}) (e^{i \theta _2}-e^{i \theta _3}) \kappa
+        \hat{c}_1 ((a_g){}^*){}^2-(d-i) e^{i \theta _1} ((d+i) e^{i (2 \theta _1+\theta _2+\theta
+            _3)} (-e^{i \theta _1}-e^{i \theta _2}+2 e^{i \theta _3}) a_g+e^{i \theta _3} ((d+i) e^{i
+            (\theta _2+2 \theta _3)} (-e^{i \theta _1}-e^{i \theta _2}+2 e^{i \theta _3}) a_g+(d-i) e^{i \theta
+            _1} (e^{i \theta _1}+e^{i \theta _2}) (e^{i \theta _1}-e^{i \theta _3}) (e^{i \theta _2}-e^{i
+            \theta _3}) (a_L){}^* a_i)+2 (d+i) e^{i (2 \theta _1+\theta _2)} (e^{i \theta
+            _1}-e^{i \theta _3}) (e^{i \theta _2}-e^{i \theta _3}) (a_i){}^* a_L)
+        (a_g){}^*+(d+i) e^{2 i \theta _3} ((d+i) e^{i (\theta _1+\theta _2+\theta _3)} (-e^{i
+            \theta _1}-e^{i \theta _2}+2 e^{i \theta _3}) a_g^2+(e^{i \theta _1}-e^{i \theta _3}) (e^{i \theta
+            _2}-e^{i \theta _3}) (i e^{i (\theta _1+\theta _2)} \kappa  \hat{c}_1 a_g^2+(d-i) e^{i \theta _3}
+        (e^{i \theta _1}+e^{i \theta _2}) (a_L){}^* a_i a_g+2 (d+i) e^{i (\theta _1+\theta _2)}
+        (a_i){}^* a_L a_g))))+\frac{1}{\kappa }(4 e^{-i (2 \theta _1+3 \theta _3)}
+        (-e^{i \theta _2}+e^{i \theta _3}) a_2^2 a_{21} \hat{c}_1 (-(d-i)^2 e^{i (3 \theta _1+\theta
+            _3)} ((a_g){}^*){}^2+(d-i) e^{i \theta _1} ((d+i) e^{3 i \theta _3} a_g+(d-i) e^{2 i
+            \theta _1} (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^* a_Z-2 i e^{2 i \theta _1} (e^{i \theta
+            _1}-e^{i \theta _3}) \kappa  (\hat{c}_1){}^* a_Z+e^{i (\theta _1+\theta _3)} ((d+i) e^{i
+            \theta _1} a_g+(e^{i \theta _1}-e^{i \theta _3}) ((d+i) (a_Z){}^* a_L+2 i \kappa  a_Z
+        \hat{c}_1))) (a_g){}^*-(d+i) e^{2 i \theta _3} a_g (-((d+i) e^{i \theta _3}
+        (-e^{i \theta _1} a_g-e^{i \theta _1} (a_Z){}^* a_L+e^{i \theta _3} (a_Z){}^*
+        a_L))+(d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^* a_Z-2 i
+        (e^{i \theta _1}-e^{i \theta _3}) \kappa  (a_Z){}^* (e^{i \theta _1}
+        (\hat{c}_1){}^*-e^{i \theta _3} \hat{c}_1))))+\frac{1}{\kappa }(4 e^{-3 i (\theta
+            _1+\theta _3)} (-e^{i \theta _1}+e^{i \theta _3}) a_2^2 a_{20} (-(d-i)^2 e^{i (2 \theta
+            _1+\theta _3)} ((e^{2 i \theta _1}+4 e^{2 i \theta _3}) \hat{c}_1-4 e^{i (\theta _1+\theta
+            _3)} (\hat{c}_1){}^*) ((a_g){}^*){}^2+(d-i) (\hat{c}_1 ((d+i) e^{i
+            (2 \theta _1+\theta _3)} (4 e^{2 i \theta _1}+e^{2 i \theta _3}) a_g+(d-i) e^{4 i \theta _1}
+        (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^* a_Z+e^{i \theta _3} ((d+i) (e^{4 i \theta
+            _1}+4 e^{4 i \theta _3}) a_g+e^{3 i \theta _1} (e^{i \theta _1}-e^{i \theta _3}) ((d+i)
+        (a_Z){}^* a_L+2 i \kappa  a_Z \hat{c}_1)))-2 i e^{i \theta _1} (\hat{c}_1){}^*
+        (2 (1-i d) e^{4 i \theta _1} a_g+2 (1-i d) e^{4 i \theta _3} a_g+e^{3 i \theta _1} (e^{i \theta _1}-e^{i \theta
+            _3}) \kappa  a_Z \hat{c}_1)) (a_g){}^*-(d+i) e^{i (\theta _1+2 \theta _3)} a_g
+        ((d-i) e^{i \theta _1} (e^{i \theta _1}-e^{i \theta _3}) (a_L){}^* a_Z \hat{c}_1-2 i
+        (e^{i \theta _1}-e^{i \theta _3}) \kappa  (a_Z){}^* (e^{i \theta _1}
+        (\hat{c}_1){}^*-e^{i \theta _3} \hat{c}_1) \hat{c}_1-(d+i) (4 e^{2 i \theta _1}
+        (\hat{c}_1){}^* a_g-5 e^{i (\theta _1+\theta _3)} \hat{c}_1 a_g+e^{2 i \theta _3}
+        (a_Z){}^* a_L \hat{c}_1-e^{i (\theta _1+\theta _3)} (a_Z){}^* a_L
+        \hat{c}_1))))
+$
+\end{flushleft}
+
+\end{document}
