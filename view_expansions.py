@@ -13,143 +13,7 @@ import thal3
 from argparse import ArgumentDefaultsHelpFormatter as ADHF
 from argparse import ArgumentParser
 
-def model_cgl1():
-
-    pd2 = {'om':1,'amp':1,'om_fix':1}
-    # default period must be 2*np.pi
-    system2 = rsp(var_names=[],
-                  pardict=pd2,rhs=None,init=None,
-                  coupling=None,
-                  model_name='f1',
-                  forcing_fn=np.sin,
-                  idx=1,
-                  TN=0)
-
-    pd1 = {'q':1,'d':.9,'sig':.1,'rho':.15,'mu':.15,
-           'om':1,'om_fix':1,'alc':3,'bec':2,'esyn':0}
-    
-    system1 = rsp(var_names=['x','y','w'],
-                  pardict=pd1,rhs=rhs_cgl,
-                  init=np.array([.333,0,0,2*np.pi]),
-                  TN=2000,
-                  idx=0,
-                  model_name='cgl0',
-                  
-                  recompute_list=[],
-                  z_forward=False,
-                  i_forward=False,
-                  i_bad_dx=False,
-                  coupling=cgl1.coupling_cgl)
-
-    return system1,system2
-
-
-def model_cgl2():
-    
-    pd1 = {'q':1,'d':.9,'sig':.1,'rho':.15,'mu':.15,
-           'om':1,'om_fix':1,'alc':3,'bec':2,'esyn':0}
-    
-    system1 = rsp(var_names=['x','y','w'],
-                  pardict=pd1,rhs=rhs_cgl,
-                  init=np.array([.333,0,0,2*np.pi]),
-                  TN=2000,
-                  idx=0,
-                  model_name='cgl0',
-                  
-                  recompute_list=[],
-                  z_forward=False,
-                  i_forward=False,
-                  i_bad_dx=False,
-                  coupling=cgl2.coupling_cgl)
-
-    pd2 = {'q':1,'d':.9,'sig':.1,'rho':.15,'mu':.15,
-           'om':1,'om_fix':1,'alc':3,'bec':2,'esyn':0}
-    
-    system2 = rsp(var_names=['x','y','w'],
-                  pardict=pd2,rhs=rhs_cgl,
-                  init=np.array([.333,0,0,2*np.pi]),
-                  TN=2000,
-                  idx=1,
-                  model_name='cgl1',
-                  
-                  recompute_list=[],
-                  z_forward=False,
-                  i_forward=False,
-                  i_bad_dx=False,
-                  coupling=cgl2.coupling_cgl)
-
-    return system1,system2
-
-def model_thal1():
-    
-    pd1 = {'gL':0.05,'gna':3,'gk':5,
-           'gt':5,'eL':-70,'ena':50,
-           'ek':-90,'et':0,'esyn':-1,
-           'c':1,'alpha':3,'beta':2,
-           'sigmat':0.8,'vt':-20,
-           'ib':8.5,'om':1,'om_fix':1}
-
-    system1 = rsp(var_names=['v','h','r','qt'],
-                  pardict=pd1,rhs=rhs_thal,
-                  init=np.array([-.64,0.71,0.25,0,5]),
-                  TN=2000,
-                  idx=0,
-                  model_name='thalf0',
-
-                  recompute_list=[],
-                  z_forward=False,
-                  i_forward=False,
-                  i_bad_dx=False,
-                  coupling=thal1.coupling_thal)
-    
-    pd2 = {'om':1,'amp':1,'om_fix':1,'esyn':0,'c':1}
-    ff = lambda x: np.sin(x)+.2
-    
-    # default period must be 2*np.pi
-    system2 = rsp(var_names=[],
-                  pardict=pd2,rhs=None,init=None,
-                  coupling=None,
-                  model_name='thal_force1',
-                  forcing_fn=ff,
-                  idx=1,
-                  TN=0)
-
-    return system1,system2
-
-def model(name):
-
-    if name == 'cgl2':
-        return model_cgl2()
-
-    if name == 'cgl1':
-        return model_cgl1()
-
-    if name == 'thal1':
-        return model_thal1()
-    
-def neat_out(d,num=1):
-    # d is dictionary of sym terms
-    s = ''
-    for i in range(len(d)):
-        print(i,len(d),d[i])
-        s += '    '*num + 'Order ' +str(i)+': '+str(d[i])+'\n'
-
-    return s
-    
-def main():
-
-    d = 'View specific expansions in models'
-    parser = ArgumentParser(description=d,formatter_class=ADHF)
-
-    parser.add_argument('-t','--terms',default='all',type=str,
-                        help='pick terms to display')
-
-    #parser.add_argument('-m','--model',default='cgl2',type=str,
-    #                    help='pick model pair')
-
-    args = parser.parse_args()
-    print('args',args)
-
+def get_cgl3():
     var_names = ['x','y']
 
     pardict = {'q_val':1,
@@ -158,11 +22,6 @@ def main():
                'sig_val':.1,
                'rho_val':.15,
                'mu_val':1}
-
-    pdict = {}
-    for key in pardict.keys():
-        key2 = key[:-4]
-        pdict[key2] = pardict[key]
 
     kwargs = {'recompute_list':[],
               
@@ -197,6 +56,121 @@ def main():
     # for NIC, 3rd derivatives go away, so we only need trunc_gh=3.
     a = nm(cgl3.rhs,cgl3.coupling,lc_init,var_names,pardict,**kwargs)
 
+    return a
+
+def get_thal3():
+    var_names = ['v','h','r','w']
+    
+    pardict = {'gL_val':0.05,
+               'gna_val':3,
+               'gk_val':5,
+               'gt_val':5,
+               'eL_val':-70,
+               'ena_val':50,
+               'ek_val':-90,
+               'et_val':0,
+               'esyn_val':0,
+               'c_val':1,
+               'alpha_val':3,
+               'beta_val':2,
+               'sigmat_val':0.8,
+               'vt_val':-20,
+               'ib_val':3.5}
+    
+    
+    kwargs = {
+
+              'N':3,
+              'coupling_mat':thal3.coupling_mat,
+              'dir':'data/dat_thalamicn/',
+              'trunc_order':2,
+              'max_n':25,
+              
+              'ignore_var':True,
+
+              'NG':100,
+              'NA':500,
+              'p_iter':25,
+              'max_iter':20,
+              'TN':10000,
+              
+              
+              'rtol':1e-9,
+              'atol':1e-9,
+              'rel_tol':1e-7,
+              'LC_tol':1e-10,
+              'load_all':True,
+              'save_fig':True,
+              'log_level':'DEBUG'}
+    
+    #T_init = 10.6
+    #LC_init = np.array([-.64,0.71,0.25,0,T_init])
+    
+    #pardict['beta_val'] = .2
+    #pardict['ib_val'] = 0.8
+    #pardict['esyn_val'] = -100
+    #T_init = 34.74
+    #LC_init = np.array([-.64,0.98,0.48,.1,T_init])
+    
+    pardict['beta_val'] = .2
+    pardict['ib_val'] = 0.8
+    pardict['esyn_val'] = -100
+    kwargs['z_forward'] = [False,False,False]
+    kwargs['i_forward'] = [False,False,False]
+    T_init = 34.7
+    
+    lc_init = np.array([-.05467127, 0.3326327, 0.3430555, 0.4488427,T_init])
+    #LC_init = np.array([-.5927,0.99,0.507,.006,T_init]) # for ib=.6
+    
+    a = nm(thal3.rhs,thal3.coupling,lc_init,var_names,pardict,**kwargs)
+
+    return a
+
+def get_model(model):
+
+    if model in ['cgl','cgl3']:
+        a = get_cgl3()
+    elif model in ['thal','thal3']:
+        a = get_thal3()
+
+    return a
+
+def neat_out(d,num=1):
+    # d is dictionary of sym terms
+    s = ''
+    for i in range(len(d)):
+        print(i,len(d),d[i])
+        s += '    '*num + 'Order ' +str(i)+': '+str(d[i])+'\n'
+
+    return s
+
+
+def get_pdict(pardict):
+    pdict = {}
+    for key in pardict.keys():
+        key2 = key[:-4]
+        pdict[key2] = pardict[key]
+
+    return pdict
+
+def main():
+
+    d = 'View specific expansions in models'
+    parser = ArgumentParser(description=d,formatter_class=ADHF)
+
+    parser.add_argument('-t','--terms',default='all',type=str,
+                        help='pick terms to display')
+
+    parser.add_argument('-m','--model',default='cgl2',type=str,
+                        help='pick model pair')
+
+    
+
+    args = parser.parse_args()
+    print('args',args)
+
+    a = get_model(args.model)
+
     args.terms = args.terms.lower()
     if args.terms == 'all':
         args.terms = 'kgp'
@@ -216,11 +190,11 @@ def main():
                             print(neat_out(a.k[i][key][j]))
                 
            
-
-            if letter == 'p':
-                print('p, i={}:'.format(i))
-                print(neat_out(a.p['sym'][i,:]))
-                print()
+            for k in range(a.miter):
+                if letter == 'p':
+                    print('p, i={}:'.format(i))
+                    print(a.p['sym'][i,:,k])
+                    print()
 
             
             if letter == 'h':
