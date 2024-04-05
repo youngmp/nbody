@@ -137,7 +137,7 @@ def load_coupling_expansions(obj,recompute=False):
         for key_idx,key in enumerate(obj.var_names):
             obj.i[i]['vec'][key_idx] = obj.i[i][key+'_eps']
             obj.z[i]['vec'][key_idx] = obj.z[i][key+'_eps']
-
+            
 def generate_coupling_expansions(obj):
     """
     obj: nBodyCoupling object
@@ -151,7 +151,7 @@ def generate_coupling_expansions(obj):
 
     rule_psi = {}
     for i in range(obj.N):
-        rule_psi[i] = {'psi':obj.p[i]['expand']}
+        rule_psi[i] = {obj.psi:obj.p[i]['expand']}
     
     rule_trunc = {}
     for l in range(obj.miter,obj.miter+200):
@@ -173,6 +173,7 @@ def generate_coupling_expansions(obj):
                              mul=True,log=False,
                              multinomial=True)
             tmp = tmp.subs(rule_trunc)
+            
             
             g_collected = collect(expand(tmp).subs(rule_trunc),eps)
         
