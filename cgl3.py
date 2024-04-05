@@ -129,7 +129,7 @@ def coupling_mat(N,option='val'):
 
     elif option == 'sym':
         #a = sym.MatrixSymbol('a',N,N)
-        a = sym.Matrix(N,N, lambda i,j:sym.var('a_%d%d' % (i,j)))
+        a = sym.Matrix(N,N, lambda i,j:sym.symbols('a%d%d' % (i,j),real=True))
         
         print('a',a)
             
