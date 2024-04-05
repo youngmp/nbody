@@ -357,7 +357,9 @@ class nBodyCoupling(object):
 
         # Symbolic variables and functions
         self.eye = np.identity(self.dim)
-        self.psi, self.eps, self.kappa = sym.symbols('psi eps kappa')
+        self.psi, self.eps = sym.symbols('psi eps',real=True)
+        
+        self.kappa = sym.symbols('kappa',negative=True)
         
         # all symbolic variables
         # loc == local, glb == global
@@ -381,7 +383,7 @@ class nBodyCoupling(object):
         #      varN1, varN2, ..., varNn
         # where n is the single oscillator dimension
             
-        self.t = symbols('t')
+        self.t = symbols('t',real=True)
         
         # coupling variables
         # ths stands for thetas and pss stands for psis
@@ -537,7 +539,7 @@ class nBodyCoupling(object):
             
             #self.load_pg()
             
-            #self.load_h_sym()
+            self.load_h_sym()
         
         if not(self.load_test):
             #self.load_h()
