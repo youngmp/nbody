@@ -1,4 +1,4 @@
-
+   
 ---
 title: "Generating Higher-Order Coupling Functions for N-Body Oscillator Interations: A Python Library"
 author:
@@ -9,9 +9,9 @@ author:
 output:
   pdf_document
 abstract: "We document the nBodyCoupling library. The framework is reasonably general, with no a priori restrictions on model dimension or type of coupling function."
-
 ...
 
+Please see the latest github repository at https://github.com/youngmp/nbody. Permalink versions are not always up-to-date.
 
 
 # Introduction
